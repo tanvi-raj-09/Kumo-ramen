@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KUMO RAMEN — Checkout & Order Online</title>
+  <meta name="description" content="Review your bag and complete your order for delivery or scheduled pickup." />
+  <style>
+    /* ============ FONTS ============ */
+    @font-face {
+      font-family: "Shippori Mincho";
+      src: url("fonts/ShipporiMincho-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Shippori Mincho";
+      src: url("fonts/ShipporiMincho-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Shippori Mincho";
+      src: url("fonts/ShipporiMincho-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    @font-face {
+      font-family: "Zen Kaku Gothic New";
+      src: url("fonts/ZenKakuGothicNew-Light.ttf") format("truetype");
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Zen Kaku Gothic New";
+      src: url("fonts/ZenKakuGothicNew-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Zen Kaku Gothic New";
+      src: url("fonts/ZenKakuGothicNew-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ============ DESIGN TOKENS ============ */
+    :root {
+      --bg: #f8f4ef;
+      --bg-card: rgba(255, 255, 255, 0.65);
+      --ink: #111111;
+      --ink-soft: #5f5f5f;
+      --ink-muted: #888888;
+      --border: rgba(17, 17, 17, 0.12);
+      --border-strong: rgba(17, 17, 17, 0.28);
+      --seal: #b23a24;
+      --seal-bg: rgba(178, 58, 36, 0.08);
+      --gold: #c5a059;
+      --ease: cubic-bezier(0.16, 0.8, 0.24, 1);
+      --radius: 4px;
+    }
+
+    /* ============ RESET & BASE ============ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes fadeInPage {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 14.5px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      opacity: 0;
+      animation: fadeInPage 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Noise Texture Overlay */
+    .grain {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ============ HEADER STYLES ============ */
+    .checkout-header {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 16px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Logo Brand */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand img {
+      width: 32px;
+      height: auto;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-text .kumo {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+    }
+
+    .brand-text .ramen {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--ink-soft);
+      margin-top: 1px;
+    }
+
+    /* Stepper Navigation */
+    .stepper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .step-tab {
+      font-family: "Space Mono", monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      color: var(--ink-muted);
+      padding: 6px 0;
+      position: relative;
+      cursor: pointer;
+      transition: color 300ms var(--ease);
+      user-select: none;
+    }
+
+    .step-tab.active {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .step-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--ink);
+    }
+
+    .step-divider {
+      width: 36px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Secure indicator */
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-self: end;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+    }
+
+    .secure-badge svg {
+      width: 13px;
+      height: 13px;
+      fill: none;
+      stroke: var(--ink-soft);
+      stroke-width: 2;
+    }
+
+    /* ============ MAIN LAYOUT ============ */
+    .main-container {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      padding: 0 40px;
+      min-height: 0; /* Essential for flex child scaling and scrolling */
+    }
+
+    /* Sidebar columns */
+    .sidebar-left {
+      width: 120px;
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-right: 1px solid var(--border);
+      height: 100%;
+    }
+
+    .seal-box {
+      border: 1px solid var(--seal);
+      color: var(--seal);
+      padding: 6px;
+      font-size: 11px;
+      line-height: 1.3;
+      text-align: center;
+      margin-bottom: 32px;
+      background: var(--seal-bg);
+      font-family: "Shippori Mincho", serif;
+      width: 36px;
+      height: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vertical-motto {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      font-family: "Shippori Mincho", serif;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      letter-spacing: 0.25em;
+      position: relative;
+      padding-bottom: 48px;
+    }
+
+    .vertical-motto::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 32px;
+      background: var(--border-strong);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 24px 0 24px 48px;
+      max-width: 960px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Steps sections */
+    .step-section-content {
+      display: none;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden; /* Fully handled by internal container scrolls */
+    }
+
+    .step-section-content.active {
+      display: flex;
+    }
+
+    /* Heading details */
+    .page-title-row {
+      margin-bottom: 4px;
+      border-left: 2px solid var(--gold);
+      padding-left: 14px;
+      flex-shrink: 0;
+    }
+
+    .page-title {
+      font-family: "Shippori Mincho", serif;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .page-subtitle {
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      margin-bottom: 20px;
+      padding-left: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ============ STEP 1: BAG ============ */
+    .table-container {
+      max-height: 170px;
+      overflow-y: auto;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 1;
+      margin-bottom: 16px;
+    }
+
+    .table-container::-webkit-scrollbar,
+    .scrollable-form-container::-webkit-scrollbar {
+      width: 5px;
+    }
+    .table-container::-webkit-scrollbar-track,
+    .scrollable-form-container::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    .table-container::-webkit-scrollbar-thumb,
+    .scrollable-form-container::-webkit-scrollbar-thumb {
+      background: rgba(17, 17, 17, 0.1);
+      border-radius: 4px;
+    }
+
+    .bag-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .bag-table th {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 5;
+      text-align: left;
+    }
+
+    .bag-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .col-item {
+      text-align: left;
+    }
+
+    .col-price {
+      text-align: right;
+      width: 110px;
+      font-family: "Space Mono", monospace;
+      font-size: 13.5px;
+    }
+
+    .col-qty {
+      text-align: center;
+      width: 120px;
+    }
+
+    .col-total {
+      text-align: right;
+      width: 110px;
+      font-family: "Space Mono", monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .col-remove {
+      text-align: right;
+      width: 32px;
+    }
+
+    /* Item Card */
+    .bag-item-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bag-item-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .bag-item-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bag-item-name {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+
+    .bag-item-desc {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 1px;
+    }
+
+    /* Qty Selector */
+    .qty-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 80px;
+      height: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.4);
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 100%;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:hover {
+      background: rgba(17, 17, 17, 0.05);
+    }
+
+    .qty-val {
+      font-family: "Space Mono", monospace;
+      font-size: 12.5px;
+      color: var(--ink);
+    }
+
+    /* Remove button */
+    .remove-btn {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      color: var(--ink-muted);
+      cursor: pointer;
+      padding: 2px;
+    }
+
+    .remove-btn:hover {
+      color: var(--ink);
+    }
+
+    /* Coupon section */
+    .coupon-section {
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    .coupon-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      user-select: none;
+      width: fit-content;
+    }
+
+    .coupon-toggle svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .coupon-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms var(--ease);
+    }
+
+    .coupon-panel.open {
+      max-height: 60px;
+      margin-top: 10px;
+    }
+
+    .coupon-form {
+      display: flex;
+      gap: 8px;
+      max-width: 320px;
+    }
+
+    .coupon-form .form-control {
+      height: 38px;
+      font-size: 13px;
+    }
+
+    /* Side-by-side container for scheduling and summary */
+    .bag-middle-row {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    /* Delivery scheduling widget */
+    .scheduling-card {
+      flex: 1.2;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+
+    .scheduling-title {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .scheduling-options {
+      display: flex;
+      gap: 20px;
+    }
+
+    .scheduling-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    .scheduling-label input[type="radio"] {
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      outline: none;
+      display: grid;
+      place-content: center;
+      cursor: pointer;
+    }
+
+    .scheduling-label input[type="radio"]::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ink);
+      transform: scale(0);
+      transition: transform 200ms var(--ease);
+    }
+
+    .scheduling-label input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+
+    .schedule-inputs-row {
+      display: flex;
+      gap: 12px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms var(--ease), margin-top 300ms var(--ease);
+    }
+
+    .schedule-inputs-row.open {
+      max-height: 65px;
+      margin-top: 12px;
+    }
+
+    /* Summary blocks */
+    .summary-container {
+      flex: 0.8;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .summary-row.total-row {
+      border-top: 1px dashed var(--border);
+      padding-top: 8px;
+      margin-top: 4px;
+      align-items: baseline;
+    }
+
+    .summary-row.total-row span {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+    }
+
+    .summary-row.total-row strong {
+      font-family: "Shippori Mincho", serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    /* ============ FORM CONTROLS ============ */
+    .scrollable-form-container {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-section-title {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 6px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .input-icon-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 42px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 300ms var(--ease), background-color 300ms var(--ease);
+    }
+
+    .form-control::placeholder {
+      color: var(--ink-muted);
+    }
+
+    .form-control:focus {
+      border-color: var(--ink);
+      background-color: #fff;
+    }
+
+    .input-icon-wrap .form-control {
+      padding-right: 42px;
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 14px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: var(--ink-muted);
+      stroke-width: 1.8;
+    }
+
+    /* Checkout actions footer */
+    .checkout-footer-btn-row {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      flex-shrink: 0;
+    }
+
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 48px;
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: "Space Mono", monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: background 300ms var(--ease), transform 200ms var(--ease);
+      user-select: none;
+    }
+
+    .btn-action:hover {
+      background: #2b2b2b;
+    }
+
+    .btn-action svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+    }
+
+    /* ============ STEP 3: PAYMENT ============ */
+    .card-logos {
+      position: absolute;
+      right: 14px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .card-logos img {
+      height: 10px;
+      opacity: 0.7;
+    }
+
+    /* CVV specific question badge */
+    .cvv-help {
+      position: absolute;
+      right: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .cvv-help svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: var(--ink-muted);
+      stroke-width: 2;
+    }
+
+    /* Checkbox list style */
+    .checkbox-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    .checkbox-wrap input[type="checkbox"] {
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      outline: none;
+      display: grid;
+      place-content: center;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .checkbox-wrap input[type="checkbox"]::before {
+      content: "";
+      width: 8px;
+      height: 6px;
+      clip-path: polygon(14% 44%, 0 58%, 38% 100%, 100% 16%, 86% 2%, 38% 70%);
+      background: var(--ink);
+      transform: scale(0);
+      transition: transform 200ms var(--ease);
+    }
+
+    .checkbox-wrap input[type="checkbox"]:checked::before {
+      transform: scale(1);
+    }
+
+    /* ============ SUCCESS CONFIRMATION STATE ============ */
+    .success-container {
+      display: none;
+      text-align: center;
+      max-width: 540px;
+      margin: 16px auto;
+      animation: fadeIn 600ms var(--ease) forwards;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .success-container.active {
+      display: block;
+    }
+
+    .success-seal {
+      border: 1.5px solid var(--seal);
+      color: var(--seal);
+      font-size: 14px;
+      font-family: "Shippori Mincho", serif;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      background: var(--seal-bg);
+      font-weight: 700;
+    }
+
+    .success-title {
+      font-family: "Shippori Mincho", serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .success-desc {
+      color: var(--ink-soft);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .order-details-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.3);
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 13.5px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-row span {
+      color: var(--ink-soft);
+    }
+
+    .detail-row strong {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* ============ RESPONSIVE LAYOUT ============ */
+    @media (max-width: 992px) {
+      body {
+        overflow-y: auto;
+        height: auto;
+      }
+
+      .checkout-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        justify-items: center;
+        padding: 16px;
+      }
+
+      .secure-badge {
+        justify-self: center;
+      }
+
+      .main-container {
+        flex-direction: column;
+        padding: 0 20px;
+        height: auto;
+      }
+
+      .sidebar-left {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+        height: auto;
+      }
+
+      .seal-box {
+        margin-bottom: 0;
+      }
+
+      .vertical-motto {
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+        padding-bottom: 0;
+        letter-spacing: 0.1em;
+      }
+
+      .vertical-motto::after {
+        display: none;
+      }
+
+      .content-area {
+        padding: 24px 0 48px;
+        height: auto;
+        overflow: visible;
+      }
+
+      .step-section-content {
+        overflow: visible;
+        height: auto;
+      }
+
+      .table-container {
+        max-height: none;
+        overflow: visible;
+      }
+
+      .bag-middle-row {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .summary-container {
+        align-items: flex-end;
+      }
+    }
+
+    /* REDESIGNED TWO-COLUMN CHECKOUT */
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .checkout-left-col {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .checkout-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      overflow-y: auto;
+      height: 100%;
+      padding-right: 8px;
+    }
+
+    .checkout-right-col::-webkit-scrollbar {
+      width: 4px;
+    }
+    .checkout-right-col::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .checkout-right-col::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+    }
+
+    /* Form card container inside right column */
+    .checkout-form-card {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .checkout-form-card.summary-card {
+      background: rgba(17, 17, 17, 0.02);
+    }
+
+    .form-card-title {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--seal);
+      border-left: 2px solid var(--seal);
+      padding-left: 8px;
+      margin-bottom: 4px;
+    }
+
+    .coupon-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Navigation profile buttons on order.html */
+    .nav-cart-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      color: var(--ink);
+      transition: color 250ms var(--ease);
+      padding: 0;
+    }
+
+    .nav-cart-btn:hover {
+      color: var(--seal);
+    }
+
+    .cart-icon-svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+    }
+
+    /* Media query updates for responsive design */
+    @media (max-width: 900px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+        gap: 32px;
+      }
+      .checkout-left-col,
+      .checkout-right-col {
+        height: auto;
+        overflow: visible;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <!-- CHECKOUT HEADER -->
+  <header class="checkout-header">
+    <a href="index.html#home" class="brand">
+      <img src="images/logo.png" alt="Kumo Ramen Logo" />
+      <div class="brand-text">
+        <span class="kumo">KUMO</span>
+        <span class="ramen">RAMEN</span>
+      </div>
+    </a>    <!-- Back to Menu -->
+    <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;">
+      <a href="menu.html" style="color: var(--ink-soft); text-decoration: none; display: flex; align-items: center; gap: 8px;">
+        &larr; BACK TO MENU
+      </a>
+    </div>
+
+    <!-- Secure logo -->
+    <div class="secure-badge">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+      <span>100% SECURE</span>
+    </div>
+  </header>
+
+  <!-- MAIN VIEW CONTAINER -->
+  <main class="main-container" id="mainContainer">
+    <!-- Left vertical decorative elements -->
+    <aside class="sidebar-left">
+      <div class="seal-box">雲<br />クモ</div>
+      <div class="vertical-motto">おいしさを、あなたのもとへ。</div>
+    </aside>
+
+    <!-- Main forms block -->
+    <section class="content-area" id="checkoutContent">
+      <div class="checkout-grid">
+        
+        <!-- LEFT COLUMN: ORDERS LIST -->
+        <div class="checkout-left-col">
+          <div class="page-title-row">
+            <h2 class="page-title">Your Bag</h2>
+          </div>
+          <p class="page-subtitle" style="margin-bottom: 24px;">Review your items before completing your order.</p>
+          
+          <div class="table-container">
+            <table class="bag-table">
+              <thead>
+                <tr>
+                  <th class="col-item">Item</th>
+                  <th class="col-price">Price</th>
+                  <th class="col-qty">Qty</th>
+                  <th class="col-total">Total</th>
+                  <th class="col-remove"></th>
+                </tr>
+              </thead>
+              <tbody id="cartTableBody">
+                <!-- Dynamically populated rows -->
+              </tbody>
+            </table>
+          </div>
+          
+          <div id="emptyBagMsg" style="display: none; text-align: center; padding: 40px 24px; color: var(--ink-soft);">
+            <p style="font-size: 15px; margin-bottom: 20px;">Your Bag is empty.</p>
+            <a href="menu.html" class="btn-action" style="max-width: 220px; margin: 0 auto; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">BROWSE MENU</a>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: OPTIONS, TOTALS & PAYMENT -->
+        <form class="checkout-right-col" id="bagActiveControls" onsubmit="event.preventDefault(); submitFinalOrder();">
+          
+          <!-- Section 1: Delivery Details -->
+          <div class="checkout-form-card">
+            <h3 class="form-card-title">01 / Delivery Details</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="custName" class="form-control" required placeholder="Full Name" />
+              </div>
+              <div class="form-group">
+                <input type="tel" id="custPhone" class="form-control" required placeholder="Mobile Number" />
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" id="custLocality" class="form-control" required placeholder="Locality / Area" />
+            </div>
+            <div class="form-group">
+              <input type="text" id="custBuilding" class="form-control" required placeholder="House No., Building / Block" />
+            </div>
+            <div class="form-group">
+              <input type="text" id="custStreet" class="form-control" placeholder="Street / Road / Landmark (Optional)" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="custPincode" class="form-control" required placeholder="Pincode" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="custCity" class="form-control" required placeholder="City" value="Tokyo" readonly style="background: rgba(17,17,17,0.03); color: var(--ink-soft);" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Delivery Options / Scheduling -->
+          <div class="checkout-form-card">
+            <h3 class="form-card-title">02 / Delivery Options</h3>
+            <div class="scheduling-options" style="margin-bottom: 0;">
+              <label class="scheduling-label" onclick="toggleSchedulingInputs(false)">
+                <input type="radio" name="orderType" value="now" checked />
+                <span>Deliver ASAP</span>
+              </label>
+              <label class="scheduling-label" onclick="toggleSchedulingInputs(true)">
+                <input type="radio" name="orderType" value="later" />
+                <span>Schedule for Later</span>
+              </label>
+            </div>
+            
+            <div class="schedule-inputs-row" id="scheduleInputsRow">
+              <div class="form-group" style="margin-bottom: 0; flex: 1.1;">
+                <label style="font-size: 11px; font-weight: 700; color: var(--ink-soft); display: block; margin-bottom: 4px;">Select Date</label>
+                <input type="date" id="deliveryDate" class="form-control" style="height: 38px; padding: 6px 10px;" />
+              </div>
+              <div class="form-group" style="margin-bottom: 0; flex: 0.9;">
+                <label style="font-size: 11px; font-weight: 700; color: var(--ink-soft); display: block; margin-bottom: 4px;">Time Slot</label>
+                <select id="deliveryTime" class="form-control" style="height: 38px; padding: 0 10px; font-size: 13.5px;">
+                  <option value="12:00 PM - 12:30 PM">12:00 PM</option>
+                  <option value="1:30 PM - 2:00 PM">1:30 PM</option>
+                  <option value="6:00 PM - 6:30 PM">6:00 PM</option>
+                  <option value="7:30 PM - 8:00 PM">7:30 PM</option>
+                  <option value="9:00 PM - 9:30 PM">9:00 PM</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Coupon Section -->
+          <div class="checkout-form-card">
+            <h3 class="form-card-title">03 / Coupon Code</h3>
+            <div class="coupon-form">
+              <input type="text" id="couponInput" class="form-control" placeholder="Coupon Code (e.g. KUMO10)" />
+              <button type="button" class="btn-action" style="width: 90px; height: 42px; padding: 0;" onclick="applyCoupon()">APPLY</button>
+            </div>
+            <p id="couponFeedback" style="font-size: 12px; margin-top: 6px; font-weight: 500;"></p>
+          </div>
+
+          <!-- Section 4: Payment Details -->
+          <div class="checkout-form-card">
+            <h3 class="form-card-title">04 / Payment details</h3>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <select id="payMethod" class="form-control" onchange="handlePaymentMethodChange()" style="padding: 0 16px; height: 42px;">
+                <option value="card">Credit / Debit Card</option>
+                <option value="cod">Cash on Delivery</option>
+                <option value="upi">UPI / Net Banking</option>
+              </select>
+            </div>
+            
+            <div id="cardDetailsGroup">
+              <div class="form-group">
+                <div class="input-icon-wrap">
+                  <input type="text" id="cardNum" class="form-control" placeholder="Card Number" />
+                  <div class="card-logos">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 12px;" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/RuPay-Logo.svg" alt="RuPay" style="height: 9px;" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" id="cardName" class="form-control" placeholder="Cardholder Name" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <input type="text" id="cardExpiry" class="form-control" placeholder="Expiry Date (MM/YY)" />
+                </div>
+                <div class="form-group">
+                  <input type="password" id="cardCvv" class="form-control" placeholder="CVV" maxlength="4" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Summary Calculations and Order Placement -->
+          <div class="checkout-form-card summary-card">
+            <div class="summary-container" style="border: none; padding: 0;">
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotalVal">¥0</span>
+              </div>
+              <div class="summary-row" id="discountRow" style="display: none; color: var(--seal);">
+                <span>Discount (10%)</span>
+                <span id="discountVal">-¥0</span>
+              </div>
+              <div class="summary-row">
+                <span>Delivery Fee</span>
+                <span id="deliveryVal">¥350</span>
+              </div>
+              <div class="summary-row total-row" style="border-top: 1px dashed var(--border); padding-top: 12px; margin-top: 12px;">
+                <span>Total</span>
+                <strong id="totalVal">¥350</strong>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn-action place-order-btn" style="width: 100%; margin-top: 12px; height: 50px; justify-content: center;">
+              <span>PLACE SECURE ORDER &rarr;</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= SUCCESS SCREEN ================= -->
+    <section class="success-container" id="orderSuccessSection">
+      <div class="success-seal">注文</div>
+      <h2 class="success-title">Order Confirmed!</h2>
+      <p class="success-desc">Thank you for ordering from KUMO RAMEN. Your delicious bowl is being prepared.</p>
+
+      <!-- Order details receipt -->
+      <div class="order-details-card">
+        <h4 style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 6px; color: var(--ink-muted);">RECEIPT DETAILS</h4>
+        <div class="detail-row">
+          <span>Order Number</span>
+          <strong id="receiptOrderNum">#KM-92817</strong>
+        </div>
+        <div class="detail-row">
+          <span>Delivery Schedule</span>
+          <strong id="receiptDeliveryTime">ASAP (30-45 mins)</strong>
+        </div>
+        <div class="detail-row">
+          <span>Customer Name</span>
+          <strong id="receiptCustomerName">-</strong>
+        </div>
+        <div class="detail-row">
+          <span>Address Details</span>
+          <strong id="receiptCustomerAddress" style="text-align: right; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">-</strong>
+        </div>
+        <div class="detail-row">
+          <span>Amount Paid</span>
+          <strong id="receiptAmountPaid" style="font-family: 'Space Mono', monospace; font-size: 14.5px;">¥0</strong>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn-action" style="max-width: 240px; margin: 0 auto; text-decoration: none;">RETURN TO HOME</a>
+    </section>
+  </main>
+
+  <!-- INTERACTIVE CHECKOUT CODE -->
+  <script>
+    // State management
+    let cart = [];
+    let discount = 0;
+    const deliveryFee = 350;
+    let scheduled = false;
+
+    // Load initial cart
+    function loadCart() {
+      try {
+        const stored = localStorage.getItem("kumo_cart");
+        if (stored) {
+          cart = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.error("Cart loading failed", e);
+      }
+      renderCartTable();
+      updateCalculations();
+    }
+
+    // Save cart state
+    function saveCartState() {
+      try {
+        localStorage.setItem("kumo_cart", JSON.stringify(cart));
+      } catch (e) {}
+      updateCalculations();
+    }
+
+    // Toggle Coupon code panel
+    function toggleCouponPanel() {
+      const toggle = document.getElementById("couponToggle");
+      const panel = document.getElementById("couponPanel");
+      toggle.classList.toggle("active");
+      panel.classList.toggle("open");
+    }
+
+    // Apply Coupon Code
+    function applyCoupon() {
+      const code = document.getElementById("couponInput").value.trim().toUpperCase();
+      const feedback = document.getElementById("couponFeedback");
+      
+      if (code === "KUMO10") {
+        discount = 0.10; // 10% discount
+        feedback.textContent = "Coupon KUMO10 applied: 10% Discount!";
+        feedback.style.color = "var(--seal)";
+        document.getElementById("discountRow").style.display = "flex";
+      } else {
+        discount = 0;
+        feedback.textContent = "Invalid Coupon Code.";
+        feedback.style.color = "var(--ink-soft)";
+        document.getElementById("discountRow").style.display = "none";
+      }
+      updateCalculations();
+    }
+
+    // Toggle Schedule date inputs
+    function toggleSchedulingInputs(show) {
+      scheduled = show;
+      const inputs = document.getElementById("scheduleInputsRow");
+      const dateInput = document.getElementById("deliveryDate");
+      
+      if (show) {
+        inputs.classList.add("open");
+        // Set default date to today
+        const today = new Date().toISOString().split("T")[0];
+        dateInput.value = today;
+        dateInput.required = true;
+      } else {
+        inputs.classList.remove("open");
+        dateInput.required = false;
+      }
+    }
+
+    // Handle Payment Method changing
+    function handlePaymentMethodChange() {
+      const method = document.getElementById("payMethod").value;
+      const cardGroup = document.getElementById("cardDetailsGroup");
+      const cardInputs = cardGroup.querySelectorAll(".form-control");
+      
+      if (method === "card") {
+        cardGroup.style.display = "block";
+        cardInputs.forEach(input => input.required = true);
+      } else {
+        cardGroup.style.display = "none";
+        cardInputs.forEach(input => {
+          input.required = false;
+          input.value = "";
+        });
+      }
+    }
+
+    // Render Items inside Table
+    function renderCartTable() {
+      const tbody = document.getElementById("cartTableBody");
+      const controls = document.getElementById("bagActiveControls");
+      const emptyMsg = document.getElementById("emptyBagMsg");
+
+      if (cart.length === 0) {
+        tbody.innerHTML = "";
+        controls.style.display = "none";
+        emptyMsg.style.display = "block";
+        return;
+      }
+
+      controls.style.display = "block";
+      emptyMsg.style.display = "none";
+
+      let html = "";
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        html += `
+          <tr>
+            <td class="col-item">
+              <div class="bag-item-card">
+                <img src="${item.image || 'images/broth_tonkotsu.jpg'}" alt="${item.name}" class="bag-item-img" />
+                <div class="bag-item-details">
+                  <span class="bag-item-name">${item.name}</span>
+                  <span class="bag-item-desc">${item.desc || ""}</span>
+                </div>
+              </div>
+            </td>
+            <td class="col-price">¥${item.price.toLocaleString()}</td>
+            <td class="col-qty">
+              <div class="qty-wrap">
+                <button type="button" class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
+                <span class="qty-val">${item.quantity}</span>
+                <button type="button" class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+              </div>
+            </td>
+            <td class="col-total">¥${itemTotal.toLocaleString()}</td>
+            <td class="col-remove">
+              <button type="button" class="remove-btn" onclick="removeItem(${index})">&times;</button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    // Quantity selectors logic
+    window.updateQty = function(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      renderCartTable();
+      saveCartState();
+    };
+
+    // Remove row logic
+    window.removeItem = function(index) {
+      cart.splice(index, 1);
+      renderCartTable();
+      saveCartState();
+    };
+
+    // Calculate totals
+    function updateCalculations() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const discountVal = subtotal * discount;
+      const total = subtotal - discountVal + (subtotal > 0 ? deliveryFee : 0);
+
+      document.getElementById("subtotalVal").textContent = `¥${subtotal.toLocaleString()}`;
+      document.getElementById("discountVal").textContent = `-¥${discountVal.toLocaleString()}`;
+      document.getElementById("totalVal").textContent = `¥${total.toLocaleString()}`;
+    }
+
+    // Step navigations
+    window.navigateToStep = function(stepNum) {
+      // Step validation boundaries
+      if (stepNum > 1 && cart.length === 0) {
+        alert("Your bag is empty! Please add items to your cart before proceeding.");
+        return;
+      }
+      
+      if (stepNum === 3) {
+        const addressForm = document.getElementById("addressForm");
+        if (!addressForm.checkValidity()) {
+          addressForm.reportValidity();
+          return;
+        }
+      }
+
+      // Hide all contents
+      document.querySelectorAll(".step-section-content").forEach(el => el.classList.remove("active"));
+      // Show active content
+      document.getElementById(`content-step-${stepNum}`).classList.add("active");
+
+      // Update tabs indicators
+      document.querySelectorAll(".step-tab").forEach(el => el.classList.remove("active"));
+      document.getElementById(`tab-step-${stepNum}`).classList.add("active");
+
+      // Scroll to top of content
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // Submit order payload
+    function submitFinalOrder() {
+      const checkoutForm = document.getElementById("bagActiveControls");
+      if (checkoutForm && !checkoutForm.checkValidity()) {
+        checkoutForm.reportValidity();
+        return;
+      }
+
+      // Calculate totals
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const discountVal = subtotal * discount;
+      const finalAmount = subtotal - discountVal + deliveryFee;
+
+      // Extract delivery data
+      const name = document.getElementById("custName").value;
+      const locality = document.getElementById("custLocality").value;
+      const building = document.getElementById("custBuilding").value;
+      
+      // Update success ticket details
+      document.getElementById("receiptCustomerName").textContent = name;
+      document.getElementById("receiptCustomerAddress").textContent = `${building}, ${locality}`;
+      document.getElementById("receiptAmountPaid").textContent = `¥${finalAmount.toLocaleString()}`;
+      
+      // Random order number generator
+      const orderNum = "#KM-" + Math.floor(10000 + Math.random() * 90000);
+      document.getElementById("receiptOrderNum").textContent = orderNum;
+
+      const deliveryTimeText = scheduled 
+        ? `Scheduled: ${document.getElementById("deliveryDate").value} @ ${document.getElementById("deliveryTime").value}` 
+        : "ASAP (30-45 mins)";
+      document.getElementById("receiptDeliveryTime").textContent = deliveryTimeText;
+
+      // Prepare order payload
+      const orderPayload = {
+        orderId: orderNum,
+        customerName: name,
+        address: `${building}, ${locality}`,
+        amountPaid: finalAmount,
+        deliveryTime: deliveryTimeText,
+        items: cart,
+        timestamp: new Date().toISOString()
+      };
+
+      // Send to backend API
+      fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderPayload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Order saved to backend:', data);
+      })
+      .catch(err => {
+        console.error('Failed to save order to backend:', err);
+      });
+
+      // Save to local storage user orders history
+      let userOrders = [];
+      try {
+        const storedOrders = localStorage.getItem("kumo_orders");
+        if (storedOrders) userOrders = JSON.parse(storedOrders);
+      } catch (e) {}
+      userOrders.push(orderPayload);
+      try {
+        localStorage.setItem("kumo_orders", JSON.stringify(userOrders));
+      } catch (e) {}
+
+      // Switch to success layout
+      document.getElementById("checkoutContent").style.display = "none";
+      const stepper = document.getElementById("checkoutStepper");
+      if (stepper) stepper.style.display = "none";
+      document.getElementById("orderSuccessSection").classList.add("active");
+
+      // Empty cart from storage
+      cart = [];
+      localStorage.setItem("kumo_cart", JSON.stringify(cart));
+    }
+
+    // Initialize Card details requirements on load
+    handlePaymentMethodChange();
+    loadCart();
+
+    // Page exit transitions
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("a").forEach(link => {
+        const href = link.getAttribute("href");
+        if (href && !href.startsWith("#") && !link.classList.contains("no-transition") && link.target !== "_blank") {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.body.style.transition = "opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1)";
+            document.body.style.opacity = "0";
+            document.body.style.transform = "translateY(-8px)";
+            setTimeout(() => {
+              window.location.href = href;
+            }, 400);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

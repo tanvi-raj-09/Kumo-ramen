@@ -1,0 +1,3488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KUMO RAMEN — Slow-simmered broths, thoughtful ingredients.</title>
+  <meta name="description"
+    content="Experience authentic slow-simmered Japanese ramen at KUMO RAMEN. Pure broths, artisanal noodles, and mindful hospitality." />
+  <style>
+    /* ============ FONTS ============ */
+    @font-face {
+      font-family: "Shippori Mincho";
+      src: url("fonts/ShipporiMincho-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Shippori Mincho";
+      src: url("fonts/ShipporiMincho-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Shippori Mincho";
+      src: url("fonts/ShipporiMincho-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Shippori Mincho";
+      src: url("fonts/ShipporiMincho-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    @font-face {
+      font-family: "Zen Kaku Gothic New";
+      src: url("fonts/ZenKakuGothicNew-Light.ttf") format("truetype");
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Zen Kaku Gothic New";
+      src: url("fonts/ZenKakuGothicNew-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Zen Kaku Gothic New";
+      src: url("fonts/ZenKakuGothicNew-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ============ DESIGN TOKENS ============ */
+    :root {
+      --bg: #f8f4ef;
+      --bg-card: rgba(255, 255, 255, 0.65);
+      --ink: #111111;
+      --ink-soft: #5f5f5f;
+      --ink-muted: #888888;
+      --border: rgba(17, 17, 17, 0.12);
+      --border-strong: rgba(17, 17, 17, 0.28);
+      --seal: #b23a24;
+      --seal-bg: rgba(178, 58, 36, 0.08);
+      --gold: #c5a059;
+      --ease: cubic-bezier(0.16, 0.8, 0.24, 1);
+      --radius: 4px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeInPage {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Shippori Mincho", serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInPage 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 850ms cubic-bezier(0.16, 1, 0.3, 1), transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-section.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* subtle paper texture background */
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ============ BUTTONS & UTILITIES ============ */
+    .btn-outline {
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border-strong);
+      border-radius: 0;
+      padding: 16px 28px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 300ms var(--ease);
+    }
+
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .btn-primary {
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      padding: 16px 28px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 300ms var(--ease);
+    }
+
+    .btn-primary:hover {
+      background: var(--seal);
+      border-color: var(--seal);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .section-tag {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--seal);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 600;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(248, 244, 239, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+      transition: padding 300ms var(--ease), background 300ms var(--ease);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: auto;
+      display: block;
+    }
+
+    .brand-text {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      line-height: 1;
+    }
+
+    .brand-text .kumo {
+      display: block;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+    }
+
+    .brand-text .ramen {
+      display: block;
+      margin-top: 3px;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.4em;
+      color: var(--ink-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .nav-links li a {
+      position: relative;
+      opacity: 0.7;
+      padding-bottom: 4px;
+      transition: opacity 300ms var(--ease);
+    }
+
+    .nav-links li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--seal);
+      transition: width 320ms var(--ease);
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      opacity: 1;
+    }
+
+    .nav-links li a:hover::after,
+    .nav-links li a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      height: 48px;
+      padding: 0 24px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 60;
+      width: 32px;
+      height: 32px;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 1.5px;
+      background: var(--ink);
+      display: block;
+      transition: all 300ms var(--ease);
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    /* ============ HERO SECTION ============ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      height: 100vh;
+      max-height: 100vh;
+      width: 100%;
+      padding: 130px 64px 45px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1600px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 3;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      font-size: 15px;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .headline {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 300;
+      font-size: clamp(54px, 6.5vw, 98px);
+      line-height: 0.96;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+    }
+
+    .headline span {
+      display: block;
+    }
+
+    .divider {
+      width: 44px;
+      height: 1px;
+      background: var(--border-strong);
+      margin: 28px 0 24px;
+    }
+
+    .body-copy {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin-bottom: 36px;
+      max-width: 380px;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .scroll-indicator {
+      margin-top: 38px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .scroll-indicator .line {
+      width: 44px;
+      height: 1px;
+      background: var(--border-strong);
+    }
+
+    .scroll-indicator span {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--ink-soft);
+    }
+
+    /* Vertical Japanese text */
+    .hero-center {
+      position: absolute;
+      left: 47%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      pointer-events: none;
+    }
+
+    .vertical-jp {
+      writing-mode: vertical-rl;
+      font-family: "Shippori Mincho", serif;
+      font-weight: 400;
+      font-size: 18px;
+      letter-spacing: 0.28em;
+      line-height: 1.9;
+      color: var(--ink);
+    }
+
+    .seal {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--seal);
+      color: var(--seal);
+      background: var(--seal-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      font-family: "Shippori Mincho", serif;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      font-weight: 600;
+    }
+
+    /* Bowl image container matching reference exactly */
+    .hero-right {
+      position: absolute;
+      right: -4%;
+      bottom: -6%;
+      width: 58vw;
+      max-width: 1120px;
+      z-index: 2;
+      pointer-events: none;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+
+    /* ============ STORY SECTION (PHILOSOPHY) ============ */
+    .story-section {
+      position: relative;
+      min-height: 100vh;
+      height: 100vh;
+      max-height: 100vh;
+      width: 100%;
+      padding: 130px 64px 45px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1600px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .story-left {
+      position: relative;
+      z-index: 3;
+      max-width: 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .philosophy-tag {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #b88a58;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .story-jp-title {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 600;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin-bottom: 16px;
+      text-transform: none;
+    }
+
+    .story-en-sub {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #888888;
+      margin-bottom: 16px;
+    }
+
+    .story-line {
+      width: 36px;
+      height: 1px;
+      background: var(--border-strong);
+      margin-bottom: 20px;
+    }
+
+    .story-text {
+      font-family: "Shippori Mincho", serif;
+      font-size: 15px;
+      line-height: 1.85;
+      color: #555555;
+      margin-bottom: 28px;
+    }
+
+    .story-scroll {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      margin-top: 28px;
+    }
+
+    .story-scroll span {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--ink-soft);
+    }
+
+    .story-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 58vw;
+      max-width: 1100px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .story-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+      display: block;
+    }
+
+
+    /* ============ MENU SECTION (SIGNATURE BOWLS) ============ */
+    .menu-section {
+      position: relative;
+      min-height: 100vh;
+      height: 100vh;
+      max-height: 100vh;
+      width: 100%;
+      padding: 95px 64px 36px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 1600px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .menu-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .menu-header-row .section-title {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.2vw, 56px);
+      padding-bottom: 4px;
+      margin-top: 4px;
+    }
+
+    .menu-header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 4px;
+    }
+
+    .menu-header-right .jp-sub {
+      font-family: "Shippori Mincho", serif;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      letter-spacing: 0.1em;
+    }
+
+    .header-seal {
+      width: 42px;
+      height: 42px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .menu-item-row {
+      display: grid;
+      grid-template-columns: 50px 1.4fr 2fr 220px;
+      align-items: flex-start;
+      padding: 18px 24px;
+      margin: 0 -24px;
+      border-top: 1px solid var(--border);
+      transition: background-color 300ms var(--ease), border-color 300ms var(--ease);
+      cursor: pointer;
+    }
+
+    .menu-item-row:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .menu-item-row:hover {
+      background-color: rgba(255, 255, 255, 0.45);
+      border-color: var(--border-strong);
+    }
+
+    .menu-num {
+      font-family: "Space Mono", monospace;
+      font-size: 13.5px;
+      color: #b88a58;
+      margin-top: 8px;
+    }
+
+    .menu-name-block h3 {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 600;
+      font-size: 21px;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .menu-jp-name {
+      font-family: "Shippori Mincho", serif;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+    }
+
+    .menu-desc-block .desc-tag {
+      font-family: "Shippori Mincho", serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      margin-bottom: 2px;
+    }
+
+    .menu-desc-block .desc-text {
+      font-family: "Shippori Mincho", serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: #555555;
+    }
+
+    .menu-price-block {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+      position: relative;
+      margin-top: 2px;
+    }
+
+    .menu-price-block .price {
+      font-family: "Space Mono", monospace;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .stamp-img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+
+    .spicy-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .menu-footer-link {
+      margin-top: 16px;
+    }
+
+    .menu-footer-link a {
+      font-family: "Space Mono", monospace;
+      font-size: 11.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: opacity 200ms var(--ease);
+    }
+
+    .menu-footer-link a:hover {
+      opacity: 0.6;
+    }
+
+
+    /* ============ BUILD YOUR BOWL SECTION ============ */
+    .build-section {
+      padding: 120px 64px 140px 64px;
+      max-width: 1500px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      position: relative;
+    }
+
+    .build-header {
+      margin-bottom: 56px;
+    }
+
+    .build-tag {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #b23a24;
+      display: block;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .build-title {
+      font-family: "Shippori Mincho", serif;
+      font-size: clamp(38px, 4.5vw, 56px);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .build-subtitle {
+      font-family: "Shippori Mincho", serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555555;
+    }
+
+    .step-section {
+      margin-bottom: 64px;
+    }
+
+    .step-section-title {
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #b23a24;
+      margin-bottom: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .step-section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .build-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .build-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 300ms var(--ease);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .build-card:hover {
+      border-color: var(--ink);
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transform: translateY(-3px);
+    }
+
+    .build-card.selected {
+      border: 1.5px solid var(--seal);
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(178, 58, 36, 0.12);
+    }
+
+    .build-card-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      display: block;
+      background: #eee8e0;
+    }
+
+    .build-card-title {
+      font-family: "Shippori Mincho", serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .build-card-desc {
+      font-family: "Shippori Mincho", serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #555555;
+      margin-bottom: 14px;
+      flex-grow: 1;
+    }
+
+    .build-card-price {
+      font-family: "Space Mono", monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #b88a58;
+    }
+
+    /* Extras Grid */
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .extra-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 250ms var(--ease);
+    }
+
+    .extra-card:hover {
+      border-color: var(--ink);
+      background: #ffffff;
+    }
+
+    .extra-card.selected {
+      border: 1.5px solid var(--seal);
+      background: #ffffff;
+    }
+
+    .extra-name {
+      font-family: "Shippori Mincho", serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .extra-price {
+      font-family: "Space Mono", monospace;
+      font-size: 12.5px;
+      color: #b88a58;
+      font-weight: 700;
+    }
+
+    /* Floating Order Bar */
+    .floating-summary-bar {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 90;
+      width: 90%;
+      max-width: 760px;
+      background: #181715;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 4px;
+      transition: all 300ms var(--ease);
+    }
+
+    .floating-summary-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .floating-summary-label {
+      font-family: "Space Mono", monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c5a059;
+    }
+
+    .floating-summary-text {
+      font-family: "Shippori Mincho", serif;
+      font-size: 14px;
+      color: #e5e2dc;
+      letter-spacing: 0.02em;
+    }
+
+    .floating-summary-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .floating-price {
+      font-family: "Space Mono", monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .floating-summary-bar .btn-primary {
+      padding: 14px 24px;
+      font-size: 11px;
+      background: #ffffff;
+      color: #111111;
+      border-color: #ffffff;
+    }
+
+    .floating-summary-bar .btn-primary:hover {
+      background: var(--seal);
+      color: #ffffff;
+      border-color: var(--seal);
+    }
+
+    /* ============ WHY KUMO ============ */
+    .why-section {
+      position: relative;
+      min-height: 100vh;
+      height: auto;
+      width: 100%;
+      padding: 80px 64px 70px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 1600px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .why-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .why-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 28px;
+    }
+
+    .why-top-left {
+      max-width: 520px;
+    }
+
+    .why-tag {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #b23a24;
+      display: block;
+      font-weight: 700;
+    }
+
+    .why-tag-line {
+      width: 36px;
+      height: 1.5px;
+      background: #b23a24;
+      margin: 10px 0 20px;
+    }
+
+    .why-headline {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 600;
+      font-size: clamp(34px, 3.8vw, 52px);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+
+    .why-subtext {
+      font-family: "Shippori Mincho", serif;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #555555;
+    }
+
+    .why-top-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      max-width: 540px;
+      width: 44vw;
+    }
+
+    .why-bowl-img {
+      width: 100%;
+      height: auto;
+      max-height: 330px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .why-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+      margin: 32px 0 36px 0;
+    }
+
+    .pillar-col {
+      padding: 0 24px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .pillar-col:first-child {
+      padding-left: 0;
+    }
+
+    .pillar-col:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .pillar-icon-wrap {
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .pillar-icon {
+      height: 100%;
+      width: auto;
+      max-height: 100px;
+      object-fit: contain;
+    }
+
+    .pillar-title {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .pillar-desc {
+      font-family: "Shippori Mincho", serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #555555;
+      max-width: 250px;
+    }
+
+    .why-buttons-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 32px;
+      padding-bottom: 4px;
+    }
+
+    /* ============ RESERVATION MODAL ============ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 17, 17, 0.5);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms var(--ease);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg);
+      border: 1px solid var(--ink);
+      max-width: 520px;
+      width: 100%;
+      padding: 44px;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 300ms var(--ease);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--ink-soft);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 16px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 200ms var(--ease);
+    }
+
+    .form-control:focus {
+      border-color: var(--ink);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Confirmation Message */
+    .reservation-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .reservation-success .seal-icon {
+      margin: 0 auto 16px;
+    }
+
+    /* ============ FOOTER SECTION ============ */
+    .site-footer {
+      background: #181715;
+      color: #e5e2dc;
+      padding: 80px 56px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr 1.6fr;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .footer-brand-logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-brand .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-brand .kumo {
+      font-family: "Space Mono", monospace;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .footer-brand .ramen {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.55em;
+      color: #99948c;
+      margin-top: 4px;
+    }
+
+    .brand-copy {
+      font-family: "Shippori Mincho", serif;
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: #99948c;
+      max-width: 280px;
+    }
+
+    .footer-col .col-title {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c5a059;
+      margin-bottom: 6px;
+    }
+
+    .footer-col .col-title-line {
+      width: 26px;
+      height: 1.5px;
+      background: #b23a24;
+      margin-bottom: 22px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      font-family: "Shippori Mincho", serif;
+      font-size: 13.5px;
+      color: #b0ab9f;
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: #ffffff;
+    }
+
+    .newsletter-col {
+      position: relative;
+    }
+
+    .newsletter-copy {
+      font-family: "Shippori Mincho", serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #b0ab9f;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      padding: 12px 38px 12px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 2px;
+      color: #ffffff;
+      font-family: "Shippori Mincho", serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 200ms ease;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #6d6860;
+    }
+
+    .newsletter-form input:focus {
+      border-color: #c5a059;
+    }
+
+    .newsletter-form button {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: #b0ab9f;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 200ms ease, transform 200ms ease;
+    }
+
+    .newsletter-form button:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    .footer-seal-wrap {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
+
+    .footer-seal-img {
+      width: 44px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      color: #7a766e;
+    }
+
+    .footer-bottom .motto-jp {
+      font-family: "Shippori Mincho", serif;
+      font-size: 13.5px;
+      color: #b0ab9f;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-legal {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-legal a {
+      color: #7a766e;
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .footer-legal a:hover {
+      color: #ffffff;
+    }
+
+    .footer-legal .sep {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ============ UPDATED & NEW STYLES ============ */
+    .mobile-only {
+      display: none !important;
+    }
+
+    .brand {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Cart Button in Nav */
+    .nav-cart-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      color: var(--ink);
+      transition: color 250ms var(--ease);
+      padding: 0;
+    }
+
+    .nav-cart-btn:hover {
+      color: var(--seal);
+    }
+
+    .cart-icon-svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+    }
+
+    .nav-cart-count {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: var(--seal);
+      color: #ffffff;
+      font-family: "Space Mono", monospace;
+      font-size: 9px;
+      font-weight: 700;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      box-shadow: 0 2px 6px rgba(178, 58, 36, 0.3);
+    }
+
+    /* Dropdown styles */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-dropdown-btn {
+      padding: 14px 22px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: rgba(248, 244, 239, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--ink);
+      min-width: 200px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      z-index: 100;
+      margin-top: 8px;
+      transition: opacity 300ms var(--ease), transform 300ms var(--ease), visibility 300ms var(--ease);
+      display: block;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: block;
+      padding: 14px 20px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--ink);
+      color: var(--bg);
+    }
+
+    /* Global Cart Drawer Modal */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 17, 17, 0.5);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: none;
+      justify-content: flex-end;
+    }
+
+    .cart-drawer-overlay.active {
+      display: flex;
+    }
+
+    .cart-drawer {
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      background: var(--bg);
+      border-left: 1px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 24px;
+      box-shadow: -10px 0 32px rgba(0, 0, 0, 0.15);
+      animation: slideIn 300ms var(--ease);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .cart-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .cart-drawer-close {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      transition: color 200ms ease;
+    }
+
+    .cart-drawer-close:hover {
+      color: var(--seal);
+    }
+
+    .cart-sections-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .cart-sections-wrapper::-webkit-scrollbar {
+      width: 4px;
+    }
+    .cart-sections-wrapper::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .cart-sections-wrapper::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+    }
+
+    .cart-section {
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+      padding-bottom: 20px;
+    }
+    .cart-section:last-child {
+      border-bottom: none;
+    }
+
+    .cart-section-title {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--seal);
+      margin-bottom: 14px;
+      font-weight: 700;
+      border-left: 2px solid var(--seal);
+      padding-left: 8px;
+    }
+
+    .cart-section-subtotal {
+      display: flex;
+      justify-content: space-between;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-top: 14px;
+      font-weight: 500;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.04);
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      padding-right: 16px;
+    }
+
+    .cart-item-name {
+      font-family: "Shippori Mincho", serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .cart-item-desc {
+      font-family: "Shippori Mincho", serif;
+      font-size: 11.5px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    .cart-item-price {
+      font-family: "Space Mono", monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .cart-item-qty-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--ink);
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+
+    .qty-btn:hover {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .cart-item-qty {
+      font-family: "Space Mono", monospace;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--ink-muted);
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: color 200ms ease;
+      margin-top: 4px;
+    }
+
+    .cart-item-remove:hover {
+      color: var(--seal);
+    }
+
+    .cart-summary {
+      background: rgba(17, 17, 17, 0.02);
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .cart-subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Space Mono", monospace;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .cart-subtotal-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .btn-checkout {
+      width: 100%;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      padding: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 300ms var(--ease);
+    }
+
+    .btn-checkout.active:hover {
+      background: var(--seal);
+      border-color: var(--seal);
+      color: #ffffff;
+    }
+
+    .btn-checkout:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .artisanal-quality-tag {
+      font-family: "Space Mono", monospace;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* Profile Tab Buttons and Layout */
+    .profile-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      gap: 16px;
+    }
+
+    .profile-tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 4px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--ink-soft);
+      position: relative;
+      transition: color 250ms ease;
+    }
+
+    .profile-tab-btn:hover {
+      color: var(--ink);
+    }
+
+    .profile-tab-btn.active {
+      color: var(--seal);
+      font-weight: 700;
+    }
+
+    .profile-tab-btn.active::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--seal);
+    }
+
+    .profile-content-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-tab-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Past Order card styles */
+    .past-order-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: rgba(17, 17, 17, 0.01);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .past-order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 8px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+    }
+
+    .past-order-number {
+      font-weight: 700;
+      color: var(--seal);
+    }
+
+    .past-order-date {
+      color: var(--ink-soft);
+    }
+
+    .past-order-items {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 4px 0;
+    }
+
+    .past-order-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-family: "Shippori Mincho", serif;
+    }
+
+    .past-order-item-qty {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .past-order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed var(--border);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+
+    .past-order-total {
+      font-family: "Space Mono", monospace;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .past-order-status {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(46, 125, 50, 0.1);
+      color: #2e7d32;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+
+    /* Terms Conditions Content */
+    .terms-text-block {
+      font-family: "Shippori Mincho", serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .terms-text-block h4 {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 8px;
+      margin-bottom: -4px;
+    }
+
+    /* Premium Entry Animations */
+    .stagger-1 {
+      opacity: 0;
+      animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 150ms forwards;
+    }
+    .stagger-2 {
+      opacity: 0;
+      animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards;
+    }
+    .stagger-3 {
+      opacity: 0;
+      animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 450ms forwards;
+    }
+    .stagger-image {
+      opacity: 0;
+      animation: imageEnter 1200ms cubic-bezier(0.16, 1, 0.3, 1) 250ms forwards;
+    }
+
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes imageEnter {
+      from {
+        opacity: 0;
+        transform: scale(1.04) translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* ============ RESPONSIVE BREAKPOINTS ============ */
+    @media (max-width: 1180px) {
+      .hero {
+        grid-template-columns: 1fr auto minmax(320px, 1fr);
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .navbar {
+        padding: 18px 32px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 140px;
+        gap: 48px;
+      }
+
+      .hero-left {
+        align-items: center;
+      }
+
+      .divider {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-center {
+        flex-direction: row;
+        writing-mode: horizontal-tb;
+      }
+
+      .vertical-jp {
+        writing-mode: horizontal-tb;
+      }
+
+      .builder-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-box {
+        position: static;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        font-size: 16px;
+        z-index: 55;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 300ms var(--ease);
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-dropdown {
+        display: none !important;
+      }
+
+      .mobile-only {
+        display: block !important;
+      }
+
+      .navbar {
+        padding: 16px 24px;
+      }
+
+      .hero {
+        padding: 110px 24px 60px;
+      }
+
+      .story-section,
+      .menu-section,
+      .build-section {
+        padding: 80px 24px;
+      }
+
+      .why-section {
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        padding: 80px 24px;
+      }
+
+      .why-top-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .why-tag-line {
+        margin: 8px auto 24px;
+      }
+
+      .why-top-right {
+        width: 100%;
+        max-width: 360px;
+        margin-top: 24px;
+        justify-content: center;
+      }
+
+      .why-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 16px;
+        margin: 32px 0;
+      }
+
+      .pillar-col {
+        border-right: none;
+        padding: 0 12px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-item-row {
+        padding: 18px 12px;
+        margin: 0 -12px;
+      }
+    }
+
+    /* Menu Image Hover Preview */
+    .menu-hover-preview {
+      display: none;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .menu-hover-preview {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        height: 240px;
+        pointer-events: none;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0 16px 36px rgba(17, 17, 17, 0.2);
+        border: 1px solid var(--ink);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(var(--x, 0px), var(--y, 0px), 0) scale(0.85) rotate(-3deg);
+        transform-origin: center center;
+        transition: opacity 300ms var(--ease), transform 120ms cubic-bezier(0.25, 1, 0.5, 1), visibility 300ms var(--ease);
+        background: var(--bg);
+      }
+      .menu-hover-preview.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(var(--x, 0px), var(--y, 0px), 0) scale(1) rotate(0deg);
+      }
+      .menu-hover-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.15);
+        transition: transform 500ms var(--ease);
+      }
+      .menu-hover-preview.active img {
+        transform: scale(1);
+      }
+    }
+
+    /* Toast Notification */
+    .kumo-toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 16px 28px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+      z-index: 2000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+      pointer-events: none;
+    }
+    .kumo-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html#home" class="brand">
+      <img src="images/logo.png" alt="Kumo Ramen Logo" />
+      <div class="brand-text">
+        <span class="kumo">KUMO</span>
+        <span class="ramen">RAMEN</span>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#home" class="active">Home</a></li>
+      <li><a href="index.html#story">Story</a></li>
+      <li><a href="menu.html">Bowls</a></li>
+      <li><a href="build.html">Customisation</a></li>
+      <li><a href="index.html#why">Why Kumo</a></li>
+      <li class="mobile-only"><a href="#" class="open-modal-btn">Reserve a Table</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <!-- Profile & History Button -->
+      <button class="nav-cart-btn" id="navProfileBtn" aria-label="Open Profile">
+        <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </button>
+
+      <!-- Cart Icon Toggle Button -->
+      <button class="nav-cart-btn" id="navCartBtn" aria-label="Open Cart">
+        <svg class="cart-icon-svg" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span class="nav-cart-count" id="navCartCount">0</span>
+      </button>
+
+      <button class="btn-outline nav-cta open-modal-btn">Reserve a Table</button>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="eyebrow stagger-1">シンプルな一杯、深い味わい。</p>
+
+      <h1 class="headline stagger-1">
+        <span>KUMO</span>
+        <span>RAMEN</span>
+      </h1>
+
+      <div class="divider stagger-2"></div>
+
+      <p class="body-copy stagger-2">
+        Slow-simmered broths.<br />
+        Thoughtful ingredients.<br />
+        Pure comfort.
+      </p>
+
+      <div class="cta-row stagger-3">
+        <a href="#menu" class="btn-primary">EXPLORE MENU →</a>
+        <button class="btn-outline open-modal-btn">RESERVE A TABLE</button>
+      </div>
+
+      <div class="scroll-indicator stagger-3">
+        <span>SCROLL</span>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <div class="hero-center stagger-2">
+      <p class="vertical-jp">一杯のラーメン、<br />無限のやさしさ。</p>
+      <div class="seal">羅麺</div>
+    </div>
+
+    <div class="hero-right stagger-image">
+      <img src="images/bowl.png"
+        alt="A steaming bowl of artisanal Kumo Ramen with chashu pork, soft-boiled ajitama egg, scallions, and chopsticks" />
+    </div>
+  </section>
+
+  <!-- STORY SECTION (PHILOSOPHY) -->
+  <section class="story-section" id="story">
+    <div class="story-left">
+      <span class="philosophy-tag">OUR PHILOSOPHY</span>
+
+      <h2 class="story-jp-title">
+        Thoughtful<br />
+        in every detail.
+      </h2>
+
+      <p class="story-en-sub"
+        style="font-family: 'Shippori Mincho', serif; font-size: 13.5px; letter-spacing: 0.18em; color: #888888; text-transform: none;">
+        細部への深いこだわり。</p>
+
+      <div class="story-line"></div>
+
+      <p class="story-text">
+        Ramen is more than a meal.<br />
+        It's a moment between the everydays.<br />
+        We pour our time, our care,<br />
+        and our heart into every bowl we serve.
+      </p>
+
+      <div class="story-scroll">
+        <span>SCROLL</span>
+        <span style="font-size: 14px; letter-spacing: 0; line-height: 1;">↓</span>
+      </div>
+    </div>
+
+    <div class="story-right">
+      <img src="images/story.jpg"
+        alt="Kumo Ramen Philosophy - Noren Curtain with Japanese Calligraphy, Handcrafted Ceramic Bowl, Chopsticks and Soft Shadows" />
+    </div>
+  </section>
+
+  <!-- MENU SECTION (SIGNATURE BOWLS) -->
+  <section class="menu-section" id="menu">
+    <div class="menu-container">
+      <div class="menu-header-row">
+        <div>
+          <span class="section-tag">SIGNATURE RAMEN</span>
+          <h2 class="section-title">Our Signature Bowls</h2>
+        </div>
+        <div class="menu-header-right">
+          <span class="jp-sub">それぞれの好みに、こだわりの物語を。</span>
+          <img src="images/seal_kumo.png" alt="Kumo Seal" class="header-seal" />
+        </div>
+      </div>
+
+      <div class="menu-list">
+        <!-- Item 01 -->
+        <div class="menu-item-row" data-image="images/shio_ramen.png" data-id="r_shio" data-name="Kumo Shio Ramen" data-price="1350">
+          <div class="menu-num">01</div>
+          <div class="menu-name-block">
+            <h3>Kumo Shio Ramen</h3>
+            <span class="menu-jp-name">雲 塩ラーメン</span>
+          </div>
+          <div class="menu-desc-block">
+            <p class="desc-tag">Clean & delicate.</p>
+            <p class="desc-text">Sea salt broth with a gentle, deep umami.</p>
+          </div>
+          <div class="menu-price-block">
+            <span class="price">¥1,350</span>
+          </div>
+        </div>
+ 
+        <!-- Item 02 -->
+        <div class="menu-item-row" data-image="images/miso_ramen.jpg" data-id="r_miso" data-name="Miso Ramen" data-price="1450">
+          <div class="menu-num">02</div>
+          <div class="menu-name-block">
+            <h3>Miso Ramen</h3>
+            <span class="menu-jp-name">味噌ラーメン</span>
+          </div>
+          <div class="menu-desc-block">
+            <p class="desc-tag">Rich & warm.</p>
+            <p class="desc-text">A hearty miso broth with roasted depth.</p>
+          </div>
+          <div class="menu-price-block">
+            <img src="images/chefs_pick.png" alt="Chef's Pick" class="stamp-img" />
+            <span class="price">¥1,450</span>
+          </div>
+        </div>
+ 
+        <!-- Item 03 -->
+        <div class="menu-item-row" data-image="images/tonkotsu_ramen.jpg" data-id="r_tonkotsu" data-name="Tonkotsu Ramen" data-price="1400">
+          <div class="menu-num">03</div>
+          <div class="menu-name-block">
+            <h3>Tonkotsu Ramen</h3>
+            <span class="menu-jp-name">豚骨ラーメン</span>
+          </div>
+          <div class="menu-desc-block">
+            <p class="desc-tag">Creamy & satisfying.</p>
+            <p class="desc-text">Slow-cooked pork broth, silky and full-bodied.</p>
+          </div>
+          <div class="menu-price-block">
+            <span class="price">¥1,400</span>
+          </div>
+        </div>
+ 
+        <!-- Item 04 -->
+        <div class="menu-item-row" data-image="images/tantan_ramen.jpg" data-id="r_tantan" data-name="Spicy Tantan Ramen" data-price="1450">
+          <div class="menu-num">04</div>
+          <div class="menu-name-block">
+            <h3>Spicy Tantan Ramen</h3>
+            <span class="menu-jp-name">担々麺</span>
+          </div>
+          <div class="menu-desc-block">
+            <p class="desc-tag">Bold & aromatic.</p>
+            <p class="desc-text">Sesame and chili with a perfect kick.</p>
+          </div>
+          <div class="menu-price-block" style="flex-direction: column; align-items: flex-end; gap: 4px;">
+            <span class="price">¥1,450</span>
+            <img src="images/spicy_badge.png" alt="Spicy" class="spicy-img" />
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-footer-link">
+        <a href="menu.html"><span>→</span> SEE OUR FULL MENU</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILD YOUR BOWL PREVIEW SECTION -->
+  <section class="build-preview-section" id="build" style="padding: 110px 64px; max-width: 1600px; margin: 0 auto; border-top: 1px solid var(--border); background: var(--bg);">
+    <div class="build-preview-container" style="display: flex; align-items: center; justify-content: space-between; gap: 64px; flex-wrap: wrap;">
+      <div class="build-preview-left" style="max-width: 540px;">
+        <span class="section-tag" style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--seal); letter-spacing: 0.28em;">CUSTOM RAMEN EXPERIENCE</span>
+        <h2 class="section-title" style="font-family: 'Shippori Mincho', serif; font-size: clamp(36px, 4.2vw, 54px); font-weight: 600; line-height: 1.15; margin: 12px 0 20px;">Craft Your Silence.<br />Build Your Own Bowl.</h2>
+        <p class="build-preview-text" style="font-family: 'Shippori Mincho', serif; font-size: 16px; line-height: 1.85; color: #555555; margin-bottom: 32px;">
+          Immerse yourself in our dedicated interactive bowl builder. Select slow-simmered broths, hand-cut noodles, flame-torched chashu, and gourmet toppings tailored to your exact taste.
+        </p>
+        <div>
+          <a href="build.html" class="btn-primary" style="padding: 18px 36px; text-decoration: none;">BUILD YOUR BOWL &nbsp;&nbsp;&rarr;</a>
+        </div>
+      </div>
+
+      <div class="build-preview-right" style="flex: 1; display: flex; justify-content: flex-end; min-width: 300px;">
+        <div class="build-preview-card" style="background: rgba(255, 255, 255, 0.7); border: 1px solid var(--border); border-radius: 4px; padding: 36px; max-width: 480px; width: 100%; text-align: center; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);">
+          <img src="images/bowl.png" alt="Custom Kumo Ramen Bowl" class="preview-bowl-img" style="width: 100%; height: auto; max-height: 260px; object-fit: contain; display: block; margin: 0 auto 20px;" />
+          <div class="preview-badge" style="display: flex; flex-direction: column; gap: 4px; padding-top: 16px; border-top: 1px dashed var(--border);">
+            <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #b23a24;">INTERACTIVE BUILDER</span>
+            <strong style="font-family: 'Shippori Mincho', serif; font-size: 15px; color: var(--ink);">Craft Your Personal Ramen Signature</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY KUMO SECTION -->
+  <section class="why-section" id="why">
+    <div class="why-container">
+      <!-- Top Row: Left Text + Right Bowl Image -->
+      <div class="why-top-row">
+        <div class="why-top-left">
+          <span class="why-tag">WHY KUMO</span>
+          <div class="why-tag-line"></div>
+          <h2 class="why-headline">
+            More than ramen.<br />
+            A way of life.
+          </h2>
+          <p class="why-subtext">
+            At Kumo, we believe a bowl of ramen<br />
+            can be simple, honest, and unforgettable.<br />
+            Here's what we stand for.
+          </p>
+        </div>
+
+        <div class="why-top-right">
+          <img src="images/why_bowl.png" alt="Kumo Ramen Ceramic Bowl with Chopsticks" class="why-bowl-img" />
+        </div>
+      </div>
+
+      <!-- 4 Pillars Grid -->
+      <div class="why-pillars-grid">
+        <!-- Col 1 -->
+        <div class="pillar-col">
+          <div class="pillar-icon-wrap">
+            <img src="images/why_icon1.png" alt="Eighteen hours - 火" class="pillar-icon" />
+          </div>
+          <h3 class="pillar-title">Eighteen hours</h3>
+          <p class="pillar-desc">
+            Broth simmered from bone since five a.m. No concentrate, no shortcut, no starting late.
+          </p>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="pillar-col">
+          <div class="pillar-icon-wrap">
+            <img src="images/why_icon2.png" alt="Pulled by hand - 手" class="pillar-icon" />
+          </div>
+          <h3 class="pillar-title">Pulled by hand</h3>
+          <p class="pillar-desc">
+            Noodles made each morning in the back room and cut to order, bowl by bowl.
+          </p>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="pillar-col">
+          <div class="pillar-icon-wrap">
+            <img src="images/why_icon3.png" alt="Season, not menu - 季" class="pillar-icon" />
+          </div>
+          <h3 class="pillar-title">Season, not menu</h3>
+          <p class="pillar-desc">
+            Toppings shift with what's good this week — the printed menu is a starting point.
+          </p>
+        </div>
+
+        <!-- Col 4 -->
+        <div class="pillar-col">
+          <div class="pillar-icon-wrap">
+            <img src="images/why_icon4.png" alt="Twelve seats - 静" class="pillar-icon" />
+          </div>
+          <h3 class="pillar-title">Twelve seats</h3>
+          <p class="pillar-desc">
+            No booths, no second seating pushing you out the door. Stay until the bowl is empty.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Buttons Row -->
+      <div class="why-buttons-row">
+        <a href="#menu" class="btn-primary">EXPLORE OUR MENU &nbsp;&nbsp;&rarr;</a>
+        <button class="btn-outline open-modal-btn">RESERVE A TABLE &nbsp;&nbsp;&rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL CART DRAWER -->
+  <div class="cart-drawer-overlay" id="globalCartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3 class="cart-title">
+          <svg style="width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;" viewBox="0 0 24 24">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          Your Bag
+        </h3>
+        <button class="cart-drawer-close" id="globalCartCloseBtn">&times;</button>
+      </div>
+
+      <div class="cart-sections-wrapper">
+        <!-- Group 1: Signature Menu Items -->
+        <div class="cart-section" id="cartSectionMenu">
+          <h4 class="cart-section-title">Signature Menu</h4>
+          <div class="cart-section-items" id="cartSectionMenuItems">
+            <!-- items go here -->
+          </div>
+          <div class="cart-section-subtotal">
+            <span>Menu Subtotal:</span>
+            <span id="cartSectionMenuSubtotal">¥0</span>
+          </div>
+        </div>
+
+        <!-- Group 2: Build Your Own Bowl -->
+        <div class="cart-section" id="cartSectionBuild">
+          <h4 class="cart-section-title">Custom Bowls</h4>
+          <div class="cart-section-items" id="cartSectionBuildItems">
+            <!-- items go here -->
+          </div>
+          <div class="cart-section-subtotal">
+            <span>Custom Subtotal:</span>
+            <span id="cartSectionBuildSubtotal">¥0</span>
+          </div>
+        </div>
+
+        <!-- Empty state placeholder -->
+        <div class="cart-empty-state" id="globalCartEmptyState">
+          <svg class="cart-empty-icon" viewBox="0 0 24 24">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <p class="cart-empty-text">Your bag is empty.</p>
+        </div>
+      </div>
+
+      <div class="cart-summary" style="margin-top:auto; padding-top:20px; border-top: 1px solid var(--border);">
+        <div class="cart-subtotal-row">
+          <span style="font-weight:700;">Grand Total</span>
+          <span class="cart-subtotal-price" id="globalCartGrandTotal">¥0</span>
+        </div>
+        <button class="btn-checkout" id="globalCartCheckoutBtn" disabled>Checkout</button>
+        <div class="artisanal-quality-tag">Artisanal Quality &bull; Simmered Daily</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL PROFILE & HISTORY DRAWER -->
+  <div class="cart-drawer-overlay" id="globalProfileDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3 class="cart-title">
+          <svg style="width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Profile & History
+        </h3>
+        <button class="cart-drawer-close" id="globalProfileCloseBtn">&times;</button>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="profile-tabs">
+        <button class="profile-tab-btn active" id="tabBtnHistory" onclick="toggleProfileTab('history')">Order History</button>
+        <button class="profile-tab-btn" id="tabBtnTerms" onclick="toggleProfileTab('terms')">Terms & Conditions</button>
+      </div>
+
+      <div class="profile-content-wrapper">
+        <!-- Tab Content 1: Order History -->
+        <div class="profile-tab-content active" id="profileTabHistory">
+          <div id="profileOrdersList">
+            <!-- Dynamically loaded list of past orders -->
+          </div>
+          <div class="cart-empty-state" id="profileOrdersEmpty" style="display: flex;">
+            <svg class="cart-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <p class="cart-empty-text">No order history found.</p>
+          </div>
+        </div>
+
+        <!-- Tab Content 2: Terms & Conditions -->
+        <div class="profile-tab-content" id="profileTabTerms" style="display: none;">
+          <div class="terms-text-block">
+            <h4>1. Quality Promise</h4>
+            <p>At Kumo Ramen, our broths are slow-simmered for 18 hours daily using fresh ingredients. We do not use any artificial preservatives. Once prepared, orders should be consumed within 2 hours to ensure freshness.</p>
+            
+            <h4>2. Ordering & Deliveries</h4>
+            <p>We deliver within a 5km radius of our kitchens. Standard preparation times vary between 15-25 minutes, with delivery times ranging from 30-45 minutes. Pre-orders are cooked to be ready at the scheduled slot.</p>
+            
+            <h4>3. Cancellations & Refunds</h4>
+            <p>Due to the perishable nature of our fresh ramen, orders cannot be cancelled once preparation has started. In case of damaged deliveries or incorrect items, please contact support with details within 30 minutes of receipt for refunds.</p>
+
+            <h4>4. Allergy Warnings</h4>
+            <p>Our kitchen processes wheat, egg, soy, seafood, peanuts, sesame, and dairy. Please consult our allergens guide or speak to a chef before placing orders if you have severe dietary sensitivities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESERVATION MODAL -->
+  <div class="modal-overlay" id="reservationModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModalBtn" aria-label="Close modal">&times;</button>
+
+      <div id="reservationFormContainer">
+        <span class="section-tag">TABLE RESERVATION</span>
+        <h3 style="font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 24px; margin-bottom: 20px;">Reserve Your
+          Seat</h3>
+
+        <form id="reservationForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="resName">Full Name</label>
+              <input type="text" id="resName" class="form-control" required placeholder="Kenji Sato" />
+            </div>
+            <div class="form-group">
+              <label for="resGuests">Guests</label>
+              <select id="resGuests" class="form-control">
+                <option value="1">1 Person (Counter)</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="6">6 Guests</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="resDate">Date</label>
+              <input type="date" id="resDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="resTime">Time Slot</label>
+              <select id="resTime" class="form-control">
+                <option value="12:00 PM">12:00 PM (Lunch)</option>
+                <option value="1:30 PM">1:30 PM (Lunch)</option>
+                <option value="6:00 PM" selected>6:00 PM (Dinner)</option>
+                <option value="7:30 PM">7:30 PM (Dinner)</option>
+                <option value="9:00 PM">9:00 PM (Late Night)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resNote">Special Notes / Dietary Requests</label>
+            <input type="text" id="resNote" class="form-control" placeholder="e.g. Counter seating preferred" />
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Confirm Reservation</button>
+        </form>
+      </div>
+
+      <div class="reservation-success" id="reservationSuccess">
+        <div class="seal" style="margin: 0 auto 16px; width: 48px; height: 48px; font-size: 14px;">予約</div>
+        <h3 style="font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 22px; margin-bottom: 8px;">Reservation
+          Confirmed!</h3>
+        <p style="color: var(--ink-soft); font-size: 14.5px;" id="successDetails">We look forward to hosting you at KUMO
+          RAMEN.</p>
+        <button class="btn-primary" id="successDoneBtn" style="margin-top: 24px; width: 100%;">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <!-- Col 1: Brand -->
+      <div class="footer-col brand-col">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Kumo Ramen Logo" class="footer-brand-logo" />
+          <div class="brand-text">
+            <span class="kumo">KUMO</span>
+            <span class="ramen">RAMEN</span>
+          </div>
+        </div>
+
+        <p class="brand-copy">
+          Ramen is more than a meal.<br />
+          It's a moment of comfort,<br />
+          crafted with care.
+        </p>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div class="footer-col">
+        <h5 class="col-title">QUICK LINKS</h5>
+        <div class="col-title-line"></div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="#build">Build Your Bowl</a></li>
+          <li><a href="#why">Why Kumo</a></li>
+          <li><a href="#why">Visit Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Menu -->
+      <div class="footer-col">
+        <h5 class="col-title">MENU</h5>
+        <div class="col-title-line"></div>
+        <ul>
+          <li><a href="menu.html">Starter</a></li>
+          <li><a href="menu.html">Signature Ramen</a></li>
+          <li><a href="#build">Build Your Own</a></li>
+          <li><a href="#menu">Dessert</a></li>
+          <li><a href="#menu">Drinks</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Info -->
+      <div class="footer-col">
+        <h5 class="col-title">INFO</h5>
+        <div class="col-title-line"></div>
+        <ul>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Private Dining</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Newsletter -->
+      <div class="footer-col newsletter-col">
+        <h5 class="col-title">NEWSLETTER</h5>
+        <div class="col-title-line"></div>
+        <p class="newsletter-copy">
+          Be the first to know about<br />
+          new bowls and special offers.
+        </p>
+
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+          <input type="email" placeholder="Your email address" required />
+          <button type="submit" aria-label="Subscribe">→</button>
+        </form>
+
+        <div class="footer-seal-wrap">
+          <img src="images/seal_kumo.png" alt="Kumo Seal" class="footer-seal-img" />
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="copyright">&copy; 2024 Kumo Ramen. All rights reserved.</span>
+      <span class="motto-jp">一杯のラーメン、無限の温もり。</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <span class="sep">|</span>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Menu Image Hover Preview Container -->
+  <div class="menu-hover-preview" id="menuHoverPreview">
+    <img src="" alt="Ramen Preview" id="menuHoverPreviewImg" />
+  </div>
+
+  <!-- INTERACTIVE JAVASCRIPT -->
+  <script>
+    // Navigation & Mobile Drawer
+    const navbar = document.getElementById('navbar');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    navAnchors.forEach(anchor => {
+      anchor.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ============ GLOBAL CART DRAWER & STATE ============
+    let cart = [];
+
+    function loadCart() {
+      try {
+        const stored = localStorage.getItem("kumo_cart");
+        if (stored) {
+          cart = JSON.parse(stored);
+        } else {
+          cart = [];
+        }
+      } catch (e) {
+        cart = [];
+      }
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem("kumo_cart", JSON.stringify(cart));
+      } catch (e) {}
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      // Update nav counts
+      const counts = document.querySelectorAll("#navCartCount");
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      counts.forEach(el => {
+        el.textContent = totalItems;
+      });
+
+      // Elements inside Global Cart Drawer
+      const menuItemsContainer = document.getElementById("cartSectionMenuItems");
+      const buildItemsContainer = document.getElementById("cartSectionBuildItems");
+      const menuSection = document.getElementById("cartSectionMenu");
+      const buildSection = document.getElementById("cartSectionBuild");
+      const emptyState = document.getElementById("globalCartEmptyState");
+      const subtotalMenuText = document.getElementById("cartSectionMenuSubtotal");
+      const subtotalBuildText = document.getElementById("cartSectionBuildSubtotal");
+      const grandTotalText = document.getElementById("globalCartGrandTotal");
+      const checkoutBtn = document.getElementById("globalCartCheckoutBtn");
+
+      if (!menuItemsContainer) return; // safeguard if called on order.html or elsewhere without full drawer markup
+
+      // Partition items
+      const menuItems = cart.filter(item => item.category !== 'build');
+      const buildItems = cart.filter(item => item.category === 'build');
+
+      let menuSubtotal = 0;
+      let buildSubtotal = 0;
+
+      // Render menu items
+      if (menuItems.length > 0) {
+        menuSection.style.display = "block";
+        let html = "";
+        menuItems.forEach(item => {
+          const itemSub = item.price * item.quantity;
+          menuSubtotal += itemSub;
+          html += `
+            <div class="cart-item">
+              <div class="cart-item-info">
+                <span class="cart-item-name">${item.name}</span>
+                <span class="cart-item-price">¥${item.price.toLocaleString()}</span>
+                <div class="cart-item-qty-row">
+                  <button class="qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+                  <span class="cart-item-qty">${item.quantity}</span>
+                  <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                </div>
+              </div>
+              <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</button>
+            </div>
+          `;
+        });
+        menuItemsContainer.innerHTML = html;
+        subtotalMenuText.textContent = `¥${menuSubtotal.toLocaleString()}`;
+      } else {
+        menuSection.style.display = "none";
+        menuItemsContainer.innerHTML = "";
+      }
+
+      // Render custom bowl items
+      if (buildItems.length > 0) {
+        buildSection.style.display = "block";
+        let html = "";
+        buildItems.forEach(item => {
+          const itemSub = item.price * item.quantity;
+          buildSubtotal += itemSub;
+          html += `
+            <div class="cart-item">
+              <div class="cart-item-info">
+                <span class="cart-item-name">${item.name}</span>
+                <span class="cart-item-desc">${item.desc || ''}</span>
+                <span class="cart-item-price">¥${item.price.toLocaleString()}</span>
+                <div class="cart-item-qty-row">
+                  <button class="qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+                  <span class="cart-item-qty">${item.quantity}</span>
+                  <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                </div>
+              </div>
+              <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</button>
+            </div>
+          `;
+        });
+        buildItemsContainer.innerHTML = html;
+        subtotalBuildText.textContent = `¥${buildSubtotal.toLocaleString()}`;
+      } else {
+        buildSection.style.display = "none";
+        buildItemsContainer.innerHTML = "";
+      }
+
+      // Check empty state
+      if (cart.length === 0) {
+        emptyState.style.display = "flex";
+        checkoutBtn.disabled = true;
+        checkoutBtn.classList.remove("active");
+      } else {
+        emptyState.style.display = "none";
+        checkoutBtn.disabled = false;
+        checkoutBtn.classList.add("active");
+      }
+
+      const grandTotal = menuSubtotal + buildSubtotal;
+      grandTotalText.textContent = `¥${grandTotal.toLocaleString()}`;
+    }
+
+    window.updateQty = function(id, delta) {
+      const item = cart.find(item => item.id === id);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => i.id !== id);
+        }
+      }
+      saveCart();
+    };
+
+    window.removeFromCart = function(id) {
+      cart = cart.filter(i => i.id !== id);
+      saveCart();
+    };
+
+    // Toggle Drawer
+    const cartDrawerOverlay = document.getElementById("globalCartDrawerOverlay");
+    const navCartBtn = document.getElementById("navCartBtn");
+    const globalCartCloseBtn = document.getElementById("globalCartCloseBtn");
+    const globalCartCheckoutBtn = document.getElementById("globalCartCheckoutBtn");
+
+    if (navCartBtn && cartDrawerOverlay) {
+      navCartBtn.addEventListener("click", () => {
+        cartDrawerOverlay.classList.add("active");
+      });
+    }
+
+    if (globalCartCloseBtn && cartDrawerOverlay) {
+      globalCartCloseBtn.addEventListener("click", () => {
+        cartDrawerOverlay.classList.remove("active");
+      });
+    }
+
+    if (cartDrawerOverlay) {
+      cartDrawerOverlay.addEventListener("click", (e) => {
+        if (e.target === cartDrawerOverlay) {
+          cartDrawerOverlay.classList.remove("active");
+        }
+      });
+    }
+
+    if (globalCartCheckoutBtn) {
+      globalCartCheckoutBtn.addEventListener("click", () => {
+        if (cart.length > 0) {
+          window.location.href = "order.html";
+        }
+      });
+    }
+
+    // Profile Drawer Controls & History Render
+    const profileDrawerOverlay = document.getElementById("globalProfileDrawerOverlay");
+    const navProfileBtn = document.getElementById("navProfileBtn");
+    const globalProfileCloseBtn = document.getElementById("globalProfileCloseBtn");
+
+    if (navProfileBtn && profileDrawerOverlay) {
+      navProfileBtn.addEventListener("click", () => {
+        profileDrawerOverlay.classList.add("active");
+        renderOrdersHistory();
+      });
+    }
+
+    if (globalProfileCloseBtn && profileDrawerOverlay) {
+      globalProfileCloseBtn.addEventListener("click", () => {
+        profileDrawerOverlay.classList.remove("active");
+      });
+    }
+
+    if (profileDrawerOverlay) {
+      profileDrawerOverlay.addEventListener("click", (e) => {
+        if (e.target === profileDrawerOverlay) {
+          profileDrawerOverlay.classList.remove("active");
+        }
+      });
+    }
+
+    window.toggleProfileTab = function(tabName) {
+      const btnHistory = document.getElementById("tabBtnHistory");
+      const btnTerms = document.getElementById("tabBtnTerms");
+      const tabHistory = document.getElementById("profileTabHistory");
+      const tabTerms = document.getElementById("profileTabTerms");
+
+      if (tabName === 'history') {
+        btnHistory.classList.add("active");
+        btnTerms.classList.remove("active");
+        tabHistory.style.display = "flex";
+        tabTerms.style.display = "none";
+      } else {
+        btnHistory.classList.remove("active");
+        btnTerms.classList.add("active");
+        tabHistory.style.display = "none";
+        tabTerms.style.display = "block";
+      }
+    };
+
+    function renderOrdersHistory() {
+      const ordersListContainer = document.getElementById("profileOrdersList");
+      const ordersEmptyState = document.getElementById("profileOrdersEmpty");
+
+      let orders = [];
+      try {
+        const stored = localStorage.getItem("kumo_orders");
+        if (stored) orders = JSON.parse(stored);
+      } catch (e) {}
+
+      if (orders.length === 0) {
+        ordersListContainer.innerHTML = "";
+        ordersEmptyState.style.display = "flex";
+      } else {
+        ordersEmptyState.style.display = "none";
+        // Sort orders newest first
+        const sortedOrders = [...orders].reverse();
+        
+        let html = "";
+        sortedOrders.forEach(order => {
+          const dateObj = new Date(order.timestamp || Date.now());
+          const formattedDate = dateObj.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+
+          let itemsHtml = "";
+          order.items.forEach(item => {
+            itemsHtml += `
+              <div class="past-order-item">
+                <span>${item.name} <span class="past-order-item-qty">x${item.quantity}</span></span>
+                <span>¥${(item.price * item.quantity).toLocaleString()}</span>
+              </div>
+            `;
+          });
+
+          html += `
+            <div class="past-order-card">
+              <div class="past-order-header">
+                <span class="past-order-number">${order.orderId || '#KM-ORDER'}</span>
+                <span class="past-order-date">${formattedDate}</span>
+              </div>
+              <div class="past-order-items">
+                ${itemsHtml}
+              </div>
+              <div class="past-order-footer">
+                <span class="past-order-status">Delivered</span>
+                <span class="past-order-total">Total: ¥${order.amountPaid.toLocaleString()}</span>
+              </div>
+            </div>
+          `;
+        });
+        ordersListContainer.innerHTML = html;
+      }
+    }
+
+    // Page Entrance and Exit transitions
+    document.addEventListener("DOMContentLoaded", () => {
+      loadCart();
+      updateCartDisplay();
+
+      // Page exit transitions
+      document.querySelectorAll("a").forEach(link => {
+        const href = link.getAttribute("href");
+        if (href && !href.startsWith("#") && !link.classList.contains("no-transition") && link.target !== "_blank") {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.body.style.transition = "opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1)";
+            document.body.style.opacity = "0";
+            document.body.style.transform = "translateY(-8px)";
+            setTimeout(() => {
+              window.location.href = href;
+            }, 400);
+          });
+        }
+      });
+    });
+
+    // Active Route Highlighting on Scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navAnchors.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) {
+          a.classList.add('active');
+        }
+      });
+    });
+
+    // Menu Filter Tabs
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const menuCards = document.querySelectorAll('.menu-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        menuCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Bowl Customizer Logic
+    let bowlState = {
+      broth: { name: 'Tonkotsu Velvet', price: 19 },
+      noodle: { name: 'Thick Wavy', price: 0 },
+      protein: { name: 'Chashu Pork', price: 4 },
+      toppings: []
+    };
+
+    function updateBowlSummary() {
+      const summaryTextEl = document.getElementById('floatingSummaryText');
+      const totalPriceEl = document.getElementById('floatingTotalPrice');
+
+      let total = bowlState.broth.price + (bowlState.noodle ? bowlState.noodle.price : 0) + (bowlState.protein ? bowlState.protein.price : 0);
+      let summaryText = `${bowlState.broth ? bowlState.broth.name : ''}`;
+
+      if (bowlState.noodle) {
+        summaryText += ` • ${bowlState.noodle.name}`;
+      }
+
+      if (bowlState.protein) {
+        summaryText += ` • ${bowlState.protein.name}`;
+      }
+
+      if (bowlState.toppings.length > 0) {
+        bowlState.toppings.forEach(t => {
+          total += t.price;
+        });
+        summaryText += ` (+${bowlState.toppings.length} extras)`;
+      }
+
+      if (summaryTextEl) summaryTextEl.textContent = summaryText;
+      if (totalPriceEl) totalPriceEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Option click listeners for build-card & extra-card
+    document.querySelectorAll('.build-card, .extra-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-type');
+        const name = btn.getAttribute('data-name');
+        const price = parseFloat(btn.getAttribute('data-price') || '0');
+
+        if (type === 'topping') {
+          btn.classList.toggle('selected');
+          const exists = bowlState.toppings.find(t => t.name === name);
+          if (exists) {
+            bowlState.toppings = bowlState.toppings.filter(t => t.name !== name);
+          } else {
+            bowlState.toppings.push({ name, price });
+          }
+        } else {
+          // Single select options
+          const parent = btn.parentElement;
+          parent.querySelectorAll('.build-card, .extra-card').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          bowlState[type] = { name, price };
+        }
+        updateBowlSummary();
+      });
+    });
+
+    // Quick preset from menu
+    window.selectBrothPreset = function (brothName) {
+      const brothBtn = Array.from(document.querySelectorAll('#brothOptions .option-btn')).find(
+        b => b.getAttribute('data-name').includes(brothName) || brothName.includes(b.getAttribute('data-name'))
+      );
+      if (brothBtn) {
+        brothBtn.click();
+      }
+    };
+
+    // Initial Summary Render
+    updateBowlSummary();
+
+    // Set default reservation date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById('resDate').valueAsDate = tomorrow;
+
+    // Modal Logic
+    const modal = document.getElementById('reservationModal');
+    const openModalBtns = document.querySelectorAll('.open-modal-btn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const reservationForm = document.getElementById('reservationForm');
+    const formContainer = document.getElementById('reservationFormContainer');
+    const successContainer = document.getElementById('reservationSuccess');
+    const successDoneBtn = document.getElementById('successDoneBtn');
+
+    openModalBtns.forEach(b => {
+      b.addEventListener('click', () => {
+        modal.classList.add('active');
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    successDoneBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      // Reset form
+      setTimeout(() => {
+        formContainer.style.display = 'block';
+        successContainer.style.display = 'none';
+      }, 300);
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    reservationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('resName').value;
+      const guests = parseInt(document.getElementById('resGuests').value, 10);
+      const date = document.getElementById('resDate').value;
+      const time = document.getElementById('resTime').value;
+
+      // Send reservation payload to server
+      const reservationPayload = {
+        customerName: name,
+        guests: guests,
+        date: date,
+        time: time,
+        timestamp: new Date().toISOString()
+      };
+
+      fetch('/api/reservations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reservationPayload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Reservation saved to backend:', data);
+      })
+      .catch(err => {
+        console.error('Failed to save reservation to backend:', err);
+      });
+
+      document.getElementById('successDetails').textContent =
+        `Thank you, ${name}! Your table for ${guests} guests on ${date} at ${time} is reserved.`;
+
+      formContainer.style.display = 'none';
+      successContainer.style.display = 'block';
+    });
+
+    // Signature Bowls Hover Image Preview
+    const hoverPreview = document.getElementById('menuHoverPreview');
+    const hoverPreviewImg = document.getElementById('menuHoverPreviewImg');
+    const menuItemRows = document.querySelectorAll('.menu-item-row');
+
+    // Cart logic for homepage
+    function addToCart(id, name, price) {
+      loadCart();
+      const existingItem = cart.find(item => item.id === id);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ id, name, price, quantity: 1, category: "ramen" });
+      }
+      saveCart();
+      showToast(`${name} added to cart!`);
+    }
+
+    // Show custom toast notification
+    function showToast(message) {
+      const existingToast = document.querySelector('.kumo-toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+
+      const toast = document.createElement('div');
+      toast.className = 'kumo-toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      // Trigger reflow
+      toast.offsetHeight;
+
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 3000);
+    }
+
+    menuItemRows.forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        const imgSrc = row.getAttribute('data-image');
+        if (imgSrc) {
+          hoverPreviewImg.src = imgSrc;
+          hoverPreview.classList.add('active');
+        }
+      });
+
+      row.addEventListener('mouseleave', () => {
+        hoverPreview.classList.remove('active');
+      });
+
+      row.addEventListener('mousemove', (e) => {
+        const width = 240;
+        const height = 240;
+        let x = e.clientX + 30;
+        let y = e.clientY - 120;
+
+        // Boundary collision detection
+        if (x + width > window.innerWidth) {
+          x = e.clientX - width - 30;
+        }
+        if (y + height > window.innerHeight) {
+          y = window.innerHeight - height - 20;
+        }
+        if (y < 20) {
+          y = 20;
+        }
+
+        hoverPreview.style.setProperty('--x', `${x}px`);
+        hoverPreview.style.setProperty('--y', `${y}px`);
+      });
+
+      // Click to add to cart
+      row.addEventListener('click', () => {
+        const id = row.getAttribute('data-id');
+        const name = row.getAttribute('data-name');
+        const price = parseInt(row.getAttribute('data-price'), 10);
+        if (id && name && price) {
+          addToCart(id, name, price);
+        }
+      });
+    });
+
+    // Scroll Reveal Intersection Observer
+    document.addEventListener("DOMContentLoaded", () => {
+      const observerOptions = {
+        root: null,
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      };
+
+      const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target); // Reveal once
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.story-section, .menu-section, .build-preview-section, .why-section').forEach(section => {
+        section.classList.add('reveal-section');
+        sectionObserver.observe(section);
+      });
+    });
+  </script>
+</body>
+
+</html>
