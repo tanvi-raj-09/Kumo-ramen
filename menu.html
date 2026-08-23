@@ -1,2575 +1,3050 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KUMO RAMEN — Our Menu</title>
-  <meta name="description"
-    content="Explore the full menu of KUMO RAMEN. Authentic starters, slow-simmered ramen bowls, handcrafted desserts, and seasonal drinks." />
-  <style>
-    /* ============ FONTS ============ */
-    @font-face {
-      font-family: "Shippori Mincho";
-      src: url("fonts/ShipporiMincho-Regular.ttf") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: "Shippori Mincho";
-      src: url("fonts/ShipporiMincho-Medium.ttf") format("truetype");
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: "Shippori Mincho";
-      src: url("fonts/ShipporiMincho-SemiBold.ttf") format("truetype");
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: "Shippori Mincho";
-      src: url("fonts/ShipporiMincho-Bold.ttf") format("truetype");
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-
-    @font-face {
-      font-family: "Zen Kaku Gothic New";
-      src: url("fonts/ZenKakuGothicNew-Light.ttf") format("truetype");
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: "Zen Kaku Gothic New";
-      src: url("fonts/ZenKakuGothicNew-Regular.ttf") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: "Zen Kaku Gothic New";
-      src: url("fonts/ZenKakuGothicNew-Bold.ttf") format("truetype");
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    /* ============ DESIGN TOKENS ============ */
-    :root {
-      --bg: #f8f4ef;
-      --bg-card: rgba(255, 255, 255, 0.65);
-      --ink: #111111;
-      --ink-soft: #5f5f5f;
-      --ink-muted: #888888;
-      --border: rgba(17, 17, 17, 0.12);
-      --border-strong: rgba(17, 17, 17, 0.28);
-      --seal: #b23a24;
-      --seal-bg: rgba(178, 58, 36, 0.08);
-      --gold: #c5a059;
-      --ease: cubic-bezier(0.16, 0.8, 0.24, 1);
-      --radius: 4px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    @keyframes fadeInPage {
-      from {
-        opacity: 0;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KUMO RAMEN — Our Menu</title>
+    <meta
+      name="description"
+      content="Explore the full menu of KUMO RAMEN. Authentic starters, slow-simmered ramen bowls, handcrafted desserts, and seasonal drinks."
+    />
+    <style>
+      /* ============ FONTS ============ */
+      @font-face {
+        font-family: "Shippori Mincho";
+        src: url("fonts/ShipporiMincho-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
       }
-      to {
+
+      @font-face {
+        font-family: "Shippori Mincho";
+        src: url("fonts/ShipporiMincho-Medium.ttf") format("truetype");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Shippori Mincho";
+        src: url("fonts/ShipporiMincho-SemiBold.ttf") format("truetype");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Shippori Mincho";
+        src: url("fonts/ShipporiMincho-Bold.ttf") format("truetype");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
+      @font-face {
+        font-family: "Zen Kaku Gothic New";
+        src: url("fonts/ZenKakuGothicNew-Light.ttf") format("truetype");
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Zen Kaku Gothic New";
+        src: url("fonts/ZenKakuGothicNew-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Zen Kaku Gothic New";
+        src: url("fonts/ZenKakuGothicNew-Bold.ttf") format("truetype");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* ============ DESIGN TOKENS ============ */
+      :root {
+        --bg: #f8f4ef;
+        --bg-card: rgba(255, 255, 255, 0.65);
+        --ink: #111111;
+        --ink-soft: #5f5f5f;
+        --ink-muted: #888888;
+        --border: rgba(17, 17, 17, 0.12);
+        --border-strong: rgba(17, 17, 17, 0.28);
+        --seal: #b23a24;
+        --seal-bg: rgba(178, 58, 36, 0.08);
+        --gold: #c5a059;
+        --ease: cubic-bezier(0.16, 0.8, 0.24, 1);
+        --radius: 4px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @keyframes fadeInPage {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Shippori Mincho", serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+        opacity: 0;
+        animation: fadeInPage 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0.05;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      /* ============ BUTTONS & UTILITIES ============ */
+      .btn-outline {
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--border-strong);
+        border-radius: 0;
+        padding: 16px 28px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 300ms var(--ease);
+      }
+
+      .btn-outline:hover {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+
+      .btn-primary {
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--bg);
+        border: 1px solid var(--ink);
+        padding: 16px 28px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 300ms var(--ease);
+      }
+
+      .btn-primary:hover {
+        background: var(--seal);
+        border-color: var(--seal);
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+
+      /* ============ NAVBAR ============ */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 48px;
+        background: rgba(248, 244, 239, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+        transition:
+          padding 300ms var(--ease),
+          background 300ms var(--ease);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand img {
+        width: 42px;
+        height: auto;
+        display: block;
+      }
+
+      .brand-text {
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        line-height: 1;
+      }
+
+      .brand-text .kumo {
+        display: block;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+      }
+
+      .brand-text .ramen {
+        display: block;
+        margin-top: 3px;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.4em;
+        color: var(--ink-soft);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .nav-links li a {
+        position: relative;
+        opacity: 0.7;
+        padding-bottom: 4px;
+        transition: opacity 300ms var(--ease);
+      }
+
+      .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: var(--seal);
+        transition: width 320ms var(--ease);
+      }
+
+      .nav-links li a:hover,
+      .nav-links li a.active {
         opacity: 1;
       }
-    }
 
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: "Shippori Mincho", serif;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-      opacity: 0;
-      animation: fadeInPage 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .grain {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-      opacity: 0.05;
-      mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    /* ============ BUTTONS & UTILITIES ============ */
-    .btn-outline {
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid var(--border-strong);
-      border-radius: 0;
-      padding: 16px 28px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 300ms var(--ease);
-    }
-
-    .btn-outline:hover {
-      background: var(--ink);
-      color: var(--bg);
-      border-color: var(--ink);
-    }
-
-    .btn-primary {
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: var(--ink);
-      color: var(--bg);
-      border: 1px solid var(--ink);
-      padding: 16px 28px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 300ms var(--ease);
-    }
-
-    .btn-primary:hover {
-      background: var(--seal);
-      border-color: var(--seal);
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    /* ============ NAVBAR ============ */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(248, 244, 239, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
-      transition: padding 300ms var(--ease), background 300ms var(--ease);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand img {
-      width: 42px;
-      height: auto;
-      display: block;
-    }
-
-    .brand-text {
-      font-family: "Zen Kaku Gothic New", sans-serif;
-      line-height: 1;
-    }
-
-    .brand-text .kumo {
-      display: block;
-      font-family: "Zen Kaku Gothic New", sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-    }
-
-    .brand-text .ramen {
-      display: block;
-      margin-top: 3px;
-      font-size: 18px;
-      font-weight: 400;
-      letter-spacing: 0.4em;
-      color: var(--ink-soft);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-
-    .nav-links li a {
-      position: relative;
-      opacity: 0.7;
-      padding-bottom: 4px;
-      transition: opacity 300ms var(--ease);
-    }
-
-    .nav-links li a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 1px;
-      background: var(--seal);
-      transition: width 320ms var(--ease);
-    }
-
-    .nav-links li a:hover,
-    .nav-links li a.active {
-      opacity: 1;
-    }
-
-    .nav-links li a:hover::after,
-    .nav-links li a.active::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      height: 48px;
-      padding: 0 24px;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 60;
-      width: 32px;
-      height: 32px;
-    }
-
-    .hamburger span {
-      width: 26px;
-      height: 1.5px;
-      background: var(--ink);
-      display: block;
-      transition: all 300ms var(--ease);
-    }
-
-    /* ============ MENU LAYOUT SECTION ============ */
-    .menu-section {
-      padding: 135px 48px 80px 48px;
-      max-width: 1600px;
-      margin: 0 auto;
-      min-height: calc(100vh - 80px);
-    }
-
-    /* Header block */
-    .menu-intro {
-      margin-bottom: 48px;
-    }
-
-    .menu-intro-tag {
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    .menu-intro-title {
-      font-family: "Shippori Mincho", serif;
-      font-size: clamp(38px, 4.5vw, 56px);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--ink);
-      margin-bottom: 16px;
-    }
-
-    .menu-intro-desc {
-      font-family: "Shippori Mincho", serif;
-      font-size: 15px;
-      line-height: 1.7;
-      color: #555555;
-      max-width: 600px;
-    }
-
-    /* Outer Wrapper split layout */
-    .menu-split-container {
-      display: flex;
-      align-items: flex-start;
-      gap: 48px;
-      width: 100%;
-    }
-
-    /* Sidebar Column */
-    .menu-sidebar {
-      width: 280px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    /* Categories List */
-    .menu-categories-list {
-      display: flex;
-      flex-direction: column;
-      border-top: 1px solid var(--border);
-    }
-
-    .menu-category-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      cursor: pointer;
-      transition: all 250ms var(--ease);
-      font-weight: 500;
-    }
-
-    .menu-category-item:hover {
-      color: var(--ink);
-      padding-left: 6px;
-    }
-
-    .menu-category-item.active {
-      color: var(--ink);
-      font-weight: 700;
-    }
-
-    .menu-category-item .arrow {
-      font-family: inherit;
-      font-weight: inherit;
-      color: var(--border-strong);
-      transition: transform 250ms var(--ease), color 250ms var(--ease);
-    }
-
-    .menu-category-item.active .arrow {
-      color: var(--seal);
-      transform: translateX(3px);
-    }
-
-    /* Dietary Notice Card */
-    .dietary-notice-card {
-      background: rgba(178, 58, 36, 0.04);
-      border: 1px solid rgba(178, 58, 36, 0.15);
-      border-radius: 4px;
-      padding: 24px;
-    }
-
-    .dietary-notice-card .notice-title {
-      font-family: "Space Mono", monospace;
-      font-size: 10.5px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--seal);
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .dietary-notice-card .notice-text {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--ink-soft);
-    }
-
-    /* Cart Card */
-    .cart-card {
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: sticky;
-      top: 130px;
-      z-index: 40;
-      max-height: calc(100vh - 180px);
-      overflow-y: auto;
-    }
-
-    .cart-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .cart-title {
-      font-family: "Shippori Mincho", serif;
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .cart-count-badge {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-
-    .cart-empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 32px 0;
-      color: var(--ink-muted);
-      text-align: center;
-    }
-
-    .cart-empty-icon {
-      width: 44px;
-      height: 44px;
-      opacity: 0.35;
-      stroke: currentColor;
-      stroke-width: 1.5;
-      fill: none;
-    }
-
-    .cart-empty-text {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-
-    .cart-items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-height: 240px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      font-family: "Shippori Mincho", serif;
-      font-size: 14px;
-      gap: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px dashed rgba(17, 17, 17, 0.08);
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .cart-item-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
-    }
-
-    .cart-item-name {
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .cart-item-price {
-      font-family: "Space Mono", monospace;
-      font-size: 12.5px;
-      color: #b88a58;
-    }
-
-    .cart-item-qty-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    .qty-btn {
-      width: 20px;
-      height: 20px;
-      border: 1px solid var(--border-strong);
-      background: transparent;
-      color: var(--ink);
-      font-family: "Space Mono", monospace;
-      font-size: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 150ms ease;
-    }
-
-    .qty-btn:hover {
-      background: var(--ink);
-      color: var(--bg);
-      border-color: var(--ink);
-    }
-
-    .cart-item-qty {
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .cart-item-remove {
-      background: none;
-      border: none;
-      color: var(--ink-soft);
-      cursor: pointer;
-      font-size: 11px;
-      font-family: "Space Mono", monospace;
-      padding: 0 4px;
-      transition: color 150ms ease;
-    }
-
-    .cart-item-remove:hover {
-      color: var(--seal);
-    }
-
-    .cart-summary {
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .cart-subtotal-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .cart-subtotal-price {
-      font-size: 16px;
-      color: var(--ink);
-    }
-
-    .btn-checkout {
-      width: 100%;
-      padding: 15px;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      background: rgba(17, 17, 17, 0.15);
-      color: #999999;
-      border: none;
-      cursor: not-allowed;
-      transition: all 300ms var(--ease);
-      text-align: center;
-    }
-
-    .btn-checkout.active {
-      background: var(--ink);
-      color: var(--bg);
-      cursor: pointer;
-    }
-
-    .btn-checkout.active:hover {
-      background: var(--seal);
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    .artisanal-quality-tag {
-      font-family: "Space Mono", monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      text-align: center;
-      margin-top: 4px;
-    }
-
-    /* Main Menu Grid Column */
-    .menu-main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    /* Category header block */
-    .menu-category-header {
-      border-bottom: 1.5px solid var(--ink);
-      padding-bottom: 20px;
-      margin-bottom: 8px;
-    }
-
-    .menu-category-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .menu-active-category-title {
-      font-family: "Shippori Mincho", serif;
-      font-size: 32px;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: 0.01em;
-    }
-
-    .menu-active-category-count {
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      padding-bottom: 6px;
-    }
-
-    /* Cards Grid */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 32px;
-    }
-
-    /* Grid cards style matching reference exactly */
-    .menu-card {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      transition: all 300ms var(--ease);
-      position: relative;
-    }
-
-    .menu-card:hover {
-      border-color: var(--ink);
-      background: #ffffff;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
-      transform: translateY(-2px);
-    }
-
-    .menu-card-img-wrap {
-      width: 100%;
-      height: 250px;
-      overflow: hidden;
-      position: relative;
-      background: #eee8e0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .drink-card .menu-card-img-wrap {
-      height: 380px;
-    }
-
-    .menu-card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 500ms var(--ease);
-    }
-
-    .menu-card:hover .menu-card-img {
-      transform: scale(1.04);
-    }
-
-
-
-    .menu-card-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--seal);
-      color: #ffffff;
-      font-family: "Space Mono", monospace;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 2px;
-      z-index: 5;
-      box-shadow: 0 4px 12px rgba(178, 58, 36, 0.2);
-    }
-
-    .menu-card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      gap: 12px;
-    }
-
-    .menu-card-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .menu-card-title {
-      font-family: "Shippori Mincho", serif;
-      font-weight: 600;
-      font-size: 17px;
-      color: var(--ink);
-      line-height: 1.35;
-    }
-
-    .menu-card-price {
-      font-family: "Space Mono", monospace;
-      font-size: 14.5px;
-      font-weight: 700;
-      color: #b88a58;
-      white-space: nowrap;
-    }
-
-    .menu-card-desc {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: #555555;
-      flex-grow: 1;
-    }
-
-    .menu-card-action {
-      border-top: 1px dashed var(--border);
-      padding-top: 16px;
-      margin-top: 4px;
-      text-align: center;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink);
-      cursor: pointer;
-      transition: color 200ms ease, background-color 200ms ease;
-      font-weight: 700;
-    }
-
-    .menu-card-action:hover {
-      color: var(--seal);
-    }
-
-    .menu-card-counter {
-      border-top: 1px dashed var(--border);
-      padding-top: 12px;
-      margin-top: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .menu-counter-btn {
-      background: transparent;
-      border: 1px solid var(--border-strong);
-      color: var(--ink);
-      font-family: "Space Mono", monospace;
-      font-size: 14px;
-      font-weight: 700;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 200ms ease;
-    }
-
-    .menu-counter-btn:hover {
-      background: var(--ink);
-      color: var(--bg);
-      border-color: var(--ink);
-    }
-
-    .menu-counter-qty {
-      font-family: "Space Mono", monospace;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--seal);
-    }
-
-    /* Floating summary bar for mobile devices */
-    .mobile-cart-summary-bar {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 500px;
-      background: #181715;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 4px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-      padding: 14px 20px;
-      z-index: 80;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .mobile-cart-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .mobile-cart-label {
-      font-family: "Space Mono", monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-    }
-
-    .mobile-cart-value {
-      font-family: "Space Mono", monospace;
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .mobile-cart-btn {
-      background: #ffffff;
-      color: #111111;
-      border: 1px solid #ffffff;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      padding: 8px 16px;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: 700;
-      transition: all 200ms ease;
-    }
-
-    .mobile-cart-btn:hover {
-      background: var(--seal);
-      border-color: var(--seal);
-      color: #ffffff;
-    }
-
-    /* Mobile Cart Modal Drawer */
-    .cart-drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(17, 17, 17, 0.5);
-      backdrop-filter: blur(6px);
-      z-index: 110;
-      display: none;
-      justify-content: flex-end;
-    }
-
-    .cart-drawer-overlay.active {
-      display: flex;
-    }
-
-    .cart-drawer {
-      width: 100%;
-      max-width: 420px;
-      height: 100%;
-      background: var(--bg);
-      border-left: 1px solid var(--ink);
-      display: flex;
-      flex-direction: column;
-      padding: 32px 24px;
-      box-shadow: -10px 0 32px rgba(0, 0, 0, 0.15);
-      animation: slideIn 300ms var(--ease);
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(100%); }
-      to { transform: translateX(0); }
-    }
-
-    .cart-drawer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
-
-    .cart-drawer-close {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: var(--ink-soft);
-    }
-
-    /* ============ FOOTER SECTION ============ */
-    .site-footer {
-      background: #181715;
-      color: #e5e2dc;
-      padding: 80px 48px 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-    }
-
-    .footer-grid {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.8fr 1fr 1fr 1fr 1.6fr;
-      gap: 48px;
-      margin-bottom: 64px;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .footer-brand-logo {
-      height: 48px;
-      width: auto;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-    }
-
-    .footer-brand .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .footer-brand .kumo {
-      font-family: "Space Mono", monospace;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.35em;
-      color: #ffffff;
-      line-height: 1.1;
-    }
-
-    .footer-brand .ramen {
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.55em;
-      color: #99948c;
-      margin-top: 4px;
-    }
-
-    .brand-copy {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13.5px;
-      line-height: 1.8;
-      color: #99948c;
-      max-width: 280px;
-    }
-
-    .footer-col .col-title {
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: #c5a059;
-      margin-bottom: 6px;
-    }
-
-    .footer-col .col-title-line {
-      width: 26px;
-      height: 1.5px;
-      background: #b23a24;
-      margin-bottom: 22px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 12px;
-    }
-
-    .footer-col ul li a {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13.5px;
-      color: #b0ab9f;
-      text-decoration: none;
-      transition: color 200ms ease;
-    }
-
-    .footer-col ul li a:hover {
-      color: #ffffff;
-    }
-
-    .newsletter-col {
-      position: relative;
-    }
-
-    .newsletter-copy {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13.5px;
-      line-height: 1.65;
-      color: #b0ab9f;
-      margin-bottom: 20px;
-    }
-
-    .newsletter-form {
-      position: relative;
-      display: flex;
-      align-items: center;
-      width: 100%;
-      max-width: 280px;
-    }
-
-    .newsletter-form input {
-      width: 100%;
-      padding: 12px 38px 12px 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 2px;
-      color: #ffffff;
-      font-family: "Shippori Mincho", serif;
-      font-size: 13px;
-      outline: none;
-      transition: border-color 200ms ease;
-    }
-
-    .newsletter-form input::placeholder {
-      color: #6d6860;
-    }
-
-    .newsletter-form input:focus {
-      border-color: #c5a059;
-    }
-
-    .newsletter-form button {
-      position: absolute;
-      right: 12px;
-      background: none;
-      border: none;
-      color: #b0ab9f;
-      font-size: 16px;
-      cursor: pointer;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 200ms ease, transform 200ms ease;
-    }
-
-    .newsletter-form button:hover {
-      color: #ffffff;
-      transform: translateX(3px);
-    }
-
-    .footer-seal-wrap {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 24px;
-    }
-
-    .footer-seal-img {
-      width: 44px;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
-
-    .footer-bottom {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      color: #7a766e;
-    }
-
-    .footer-bottom .motto-jp {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13.5px;
-      color: #b0ab9f;
-      letter-spacing: 0.08em;
-    }
-
-    .footer-legal {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .footer-legal a {
-      color: #7a766e;
-      text-decoration: none;
-      transition: color 200ms ease;
-    }
-
-    .footer-legal a:hover {
-      color: #ffffff;
-    }
-
-    .footer-legal .sep {
-      color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* ============ RESERVATION & CHECKOUT MODAL ============ */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(17, 17, 17, 0.5);
-      backdrop-filter: blur(6px);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 300ms var(--ease);
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-card {
-      background: var(--bg);
-      border: 1px solid var(--ink);
-      max-width: 520px;
-      width: 100%;
-      padding: 44px;
-      position: relative;
-      transform: translateY(20px);
-      transition: transform 300ms var(--ease);
-    }
-
-    .modal-overlay.active .modal-card {
-      transform: translateY(0);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--ink-soft);
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 14px 16px;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      font-family: inherit;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 200ms var(--ease);
-    }
-
-    .form-control:focus {
-      border-color: var(--ink);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .reservation-success,
-    .checkout-success {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
-    }
-
-    /* ============ UPDATED & NEW STYLES ============ */
-    .mobile-only {
-      display: none !important;
-    }
-
-    .brand {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    /* Cart Button in Nav */
-    .nav-cart-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      color: var(--ink);
-      transition: color 250ms var(--ease);
-      padding: 0;
-    }
-
-    .nav-cart-btn:hover {
-      color: var(--seal);
-    }
-
-    .cart-icon-svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      fill: none;
-    }
-
-    .nav-cart-count {
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      background: var(--seal);
-      color: #ffffff;
-      font-family: "Space Mono", monospace;
-      font-size: 9px;
-      font-weight: 700;
-      min-width: 16px;
-      height: 16px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 4px;
-      box-shadow: 0 2px 6px rgba(178, 58, 36, 0.3);
-    }
-
-    /* Dropdown styles */
-    .nav-dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .nav-dropdown-btn {
-      padding: 14px 22px;
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dropdown-menu {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: rgba(248, 244, 239, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--ink);
-      min-width: 200px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      z-index: 100;
-      margin-top: 8px;
-      transition: opacity 300ms var(--ease), transform 300ms var(--ease), visibility 300ms var(--ease);
-      display: block;
-    }
-
-    .nav-dropdown:hover .dropdown-menu,
-    .nav-dropdown:focus-within .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown-item {
-      display: block;
-      padding: 14px 20px;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink);
-      border-bottom: 1px solid var(--border);
-      transition: background-color 200ms ease, color 200ms ease;
-    }
-
-    .dropdown-item:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-item:hover {
-      background-color: var(--ink);
-      color: var(--bg);
-    }
-
-    /* Global Cart Drawer Modal */
-    .cart-drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(17, 17, 17, 0.5);
-      backdrop-filter: blur(6px);
-      z-index: 200;
-      display: none;
-      justify-content: flex-end;
-    }
-
-    .cart-drawer-overlay.active {
-      display: flex;
-    }
-
-    .cart-drawer {
-      width: 100%;
-      max-width: 440px;
-      height: 100%;
-      background: var(--bg);
-      border-left: 1px solid var(--ink);
-      display: flex;
-      flex-direction: column;
-      padding: 32px 24px;
-      box-shadow: -10px 0 32px rgba(0, 0, 0, 0.15);
-      animation: slideIn 300ms var(--ease);
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(100%); }
-      to { transform: translateX(0); }
-    }
-
-    .cart-drawer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
-
-    .cart-drawer-close {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: var(--ink-soft);
-      transition: color 200ms ease;
-    }
-
-    .cart-drawer-close:hover {
-      color: var(--seal);
-    }
-
-    .cart-sections-wrapper {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .cart-sections-wrapper::-webkit-scrollbar {
-      width: 4px;
-    }
-    .cart-sections-wrapper::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .cart-sections-wrapper::-webkit-scrollbar-thumb {
-      background: var(--border-strong);
-    }
-
-    .cart-section {
-      margin-bottom: 24px;
-      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
-      padding-bottom: 20px;
-    }
-    .cart-section:last-child {
-      border-bottom: none;
-    }
-
-    .cart-section-title {
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--seal);
-      margin-bottom: 14px;
-      font-weight: 700;
-      border-left: 2px solid var(--seal);
-      padding-left: 8px;
-    }
-
-    .cart-section-subtotal {
-      display: flex;
-      justify-content: space-between;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      color: var(--ink-soft);
-      margin-top: 14px;
-      font-weight: 500;
-      padding-top: 8px;
-      border-top: 1px dashed var(--border);
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(17, 17, 17, 0.04);
-    }
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-
-    .cart-item-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-      padding-right: 16px;
-    }
-
-    .cart-item-name {
-      font-family: "Shippori Mincho", serif;
-      font-size: 14.5px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .cart-item-desc {
-      font-family: "Shippori Mincho", serif;
-      font-size: 11.5px;
-      color: var(--ink-soft);
-      line-height: 1.4;
-    }
-
-    .cart-item-price {
-      font-family: "Space Mono", monospace;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .cart-item-qty-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .qty-btn {
-      width: 24px;
-      height: 24px;
-      border: 1px solid var(--border-strong);
-      background: transparent;
-      color: var(--ink);
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 200ms ease;
-    }
-
-    .qty-btn:hover {
-      background: var(--ink);
-      color: var(--bg);
-      border-color: var(--ink);
-    }
-
-    .cart-item-qty {
-      font-family: "Space Mono", monospace;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .cart-item-remove {
-      background: none;
-      border: none;
-      color: var(--ink-muted);
-      font-family: "Space Mono", monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: color 200ms ease;
-      margin-top: 4px;
-    }
-
-    .cart-item-remove:hover {
-      color: var(--seal);
-    }
-
-    .cart-summary {
-      background: rgba(17, 17, 17, 0.02);
-      border-radius: 4px;
-      padding: 16px;
-    }
-
-    .cart-subtotal-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: "Space Mono", monospace;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
-    }
-
-    .cart-subtotal-price {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .btn-checkout {
-      width: 100%;
-      font-family: "Space Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: var(--ink);
-      color: var(--bg);
-      border: 1px solid var(--ink);
-      padding: 16px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 300ms var(--ease);
-    }
-
-    .btn-checkout.active:hover {
-      background: var(--seal);
-      border-color: var(--seal);
-      color: #ffffff;
-    }
-
-    .btn-checkout:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .artisanal-quality-tag {
-      font-family: "Space Mono", monospace;
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      text-align: center;
-      margin-top: 12px;
-    }
-
-    /* Profile Tab Buttons and Layout */
-    .profile-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
-      gap: 16px;
-    }
-
-    .profile-tab-btn {
-      background: none;
-      border: none;
-      padding: 10px 4px;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      color: var(--ink-soft);
-      position: relative;
-      transition: color 250ms ease;
-    }
-
-    .profile-tab-btn:hover {
-      color: var(--ink);
-    }
-
-    .profile-tab-btn.active {
-      color: var(--seal);
-      font-weight: 700;
-    }
-
-    .profile-tab-btn.active::after {
-      content: "";
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--seal);
-    }
-
-    .profile-content-wrapper {
-      flex: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .profile-tab-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Past Order card styles */
-    .past-order-card {
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 16px;
-      margin-bottom: 16px;
-      background: rgba(17, 17, 17, 0.01);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .past-order-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px dashed var(--border);
-      padding-bottom: 8px;
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-    }
-
-    .past-order-number {
-      font-weight: 700;
-      color: var(--seal);
-    }
-
-    .past-order-date {
-      color: var(--ink-soft);
-    }
-
-    .past-order-items {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      padding: 4px 0;
-    }
-
-    .past-order-item {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      font-family: "Shippori Mincho", serif;
-    }
-
-    .past-order-item-qty {
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      color: var(--ink-soft);
-    }
-
-    .past-order-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px dashed var(--border);
-      padding-top: 8px;
-      margin-top: 4px;
-    }
-
-    .past-order-total {
-      font-family: "Space Mono", monospace;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .past-order-status {
-      font-family: "Space Mono", monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      background: rgba(46, 125, 50, 0.1);
-      color: #2e7d32;
-      padding: 2px 8px;
-      border-radius: 2px;
-    }
-
-    /* Terms Conditions Content */
-    .terms-text-block {
-      font-family: "Shippori Mincho", serif;
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .terms-text-block h4 {
-      font-family: "Zen Kaku Gothic New", sans-serif;
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-top: 8px;
-      margin-bottom: -4px;
-    }
-
-    /* Premium Entry Animations */
-    .stagger-1 {
-      opacity: 0;
-      animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 150ms forwards;
-    }
-    .stagger-2 {
-      opacity: 0;
-      animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards;
-    }
-    .stagger-3 {
-      opacity: 0;
-      animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 450ms forwards;
-    }
-    .stagger-image {
-      opacity: 0;
-      animation: imageEnter 1200ms cubic-bezier(0.16, 1, 0.3, 1) 250ms forwards;
-    }
-
-    @keyframes pageEnter {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
+      .nav-links li a:hover::after,
+      .nav-links li a.active::after {
+        width: 100%;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
-    @keyframes imageEnter {
-      from {
-        opacity: 0;
-        transform: scale(1.04) translateY(12px);
+      .nav-cta {
+        height: 48px;
+        padding: 0 24px;
       }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
 
-    /* ============ RESPONSIVE BREAKPOINTS ============ */
-    @media (max-width: 1024px) {
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 60;
+        width: 32px;
+        height: 32px;
+      }
+
+      .hamburger span {
+        width: 26px;
+        height: 1.5px;
+        background: var(--ink);
+        display: block;
+        transition: all 300ms var(--ease);
+      }
+
+      /* ============ MENU LAYOUT SECTION ============ */
       .menu-section {
-        padding-left: 24px;
-        padding-right: 24px;
+        padding: 135px 48px 80px 48px;
+        max-width: 1600px;
+        margin: 0 auto;
+        min-height: calc(100vh - 80px);
       }
 
+      /* Header block */
+      .menu-intro {
+        margin-bottom: 48px;
+      }
+
+      .menu-intro-tag {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: block;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      .menu-intro-title {
+        font-family: "Shippori Mincho", serif;
+        font-size: clamp(38px, 4.5vw, 56px);
+        font-weight: 600;
+        line-height: 1.15;
+        color: var(--ink);
+        margin-bottom: 16px;
+      }
+
+      .menu-intro-desc {
+        font-family: "Shippori Mincho", serif;
+        font-size: 15px;
+        line-height: 1.7;
+        color: #555555;
+        max-width: 600px;
+      }
+
+      /* Outer Wrapper split layout */
       .menu-split-container {
+        display: flex;
+        align-items: flex-start;
+        gap: 48px;
+        width: 100%;
+      }
+
+      /* Sidebar Column */
+      .menu-sidebar {
+        width: 280px;
+        flex-shrink: 0;
+        display: flex;
         flex-direction: column;
         gap: 32px;
       }
 
-      .menu-sidebar {
-        width: 100%;
-        position: static;
-        gap: 24px;
-      }
-
-      /* Horizontal Scrolling Categories */
+      /* Categories List */
       .menu-categories-list {
-        flex-direction: row;
-        border-top: none;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE */
-        border-bottom: 1px solid var(--border);
-        width: 100%;
-        gap: 20px;
-      }
-
-      .menu-categories-list::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--border);
       }
 
       .menu-category-item {
-        border-bottom: none;
-        padding: 12px 16px;
-        white-space: nowrap;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        cursor: pointer;
+        transition: all 250ms var(--ease);
+        font-weight: 500;
+      }
+
+      .menu-category-item:hover {
+        color: var(--ink);
+        padding-left: 6px;
       }
 
       .menu-category-item.active {
-        border-bottom: 2px solid var(--seal);
-        color: var(--seal);
+        color: var(--ink);
+        font-weight: 700;
       }
 
       .menu-category-item .arrow {
-        display: none;
+        font-family: inherit;
+        font-weight: inherit;
+        color: var(--border-strong);
+        transition:
+          transform 250ms var(--ease),
+          color 250ms var(--ease);
       }
 
-      .dietary-notice-card,
+      .menu-category-item.active .arrow {
+        color: var(--seal);
+        transform: translateX(3px);
+      }
+
+      /* Dietary Notice Card */
+      .dietary-notice-card {
+        background: rgba(178, 58, 36, 0.04);
+        border: 1px solid rgba(178, 58, 36, 0.15);
+        border-radius: 4px;
+        padding: 24px;
+      }
+
+      .dietary-notice-card .notice-title {
+        font-family: "Space Mono", monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--seal);
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+
+      .dietary-notice-card .notice-text {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--ink-soft);
+      }
+
+      /* Cart Card */
       .cart-card {
-        display: none;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: sticky;
+        top: 130px;
+        z-index: 40;
+        max-height: calc(100vh - 180px);
+        overflow-y: auto;
       }
 
-      /* Show mobile cart bar */
+      .cart-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .cart-title {
+        font-family: "Shippori Mincho", serif;
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cart-count-badge {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--ink);
+        color: var(--bg);
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+      .cart-empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 32px 0;
+        color: var(--ink-muted);
+        text-align: center;
+      }
+
+      .cart-empty-icon {
+        width: 44px;
+        height: 44px;
+        opacity: 0.35;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        fill: none;
+      }
+
+      .cart-empty-text {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13.5px;
+        line-height: 1.6;
+      }
+
+      .cart-items-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-height: 240px;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-family: "Shippori Mincho", serif;
+        font-size: 14px;
+        gap: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed rgba(17, 17, 17, 0.08);
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .cart-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+      }
+
+      .cart-item-name {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .cart-item-price {
+        font-family: "Space Mono", monospace;
+        font-size: 12.5px;
+        color: #b88a58;
+      }
+
+      .cart-item-qty-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .qty-btn {
+        width: 20px;
+        height: 20px;
+        border: 1px solid var(--border-strong);
+        background: transparent;
+        color: var(--ink);
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: all 150ms ease;
+      }
+
+      .qty-btn:hover {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+
+      .cart-item-qty {
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .cart-item-remove {
+        background: none;
+        border: none;
+        color: var(--ink-soft);
+        cursor: pointer;
+        font-size: 11px;
+        font-family: "Space Mono", monospace;
+        padding: 0 4px;
+        transition: color 150ms ease;
+      }
+
+      .cart-item-remove:hover {
+        color: var(--seal);
+      }
+
+      .cart-summary {
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .cart-subtotal-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .cart-subtotal-price {
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .btn-checkout {
+        width: 100%;
+        padding: 15px;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        background: rgba(17, 17, 17, 0.15);
+        color: #999999;
+        border: none;
+        cursor: not-allowed;
+        transition: all 300ms var(--ease);
+        text-align: center;
+      }
+
+      .btn-checkout.active {
+        background: var(--ink);
+        color: var(--bg);
+        cursor: pointer;
+      }
+
+      .btn-checkout.active:hover {
+        background: var(--seal);
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+
+      .artisanal-quality-tag {
+        font-family: "Space Mono", monospace;
+        font-size: 9.5px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        text-align: center;
+        margin-top: 4px;
+      }
+
+      /* Main Menu Grid Column */
+      .menu-main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      /* Category header block */
+      .menu-category-header {
+        border-bottom: 1.5px solid var(--ink);
+        padding-bottom: 20px;
+        margin-bottom: 8px;
+      }
+
+      .menu-category-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .menu-active-category-title {
+        font-family: "Shippori Mincho", serif;
+        font-size: 32px;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: 0.01em;
+      }
+
+      .menu-active-category-count {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding-bottom: 6px;
+      }
+
+      /* Cards Grid */
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 32px;
+      }
+
+      /* Grid cards style matching reference exactly */
+      .menu-card {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        transition: all 300ms var(--ease);
+        position: relative;
+      }
+
+      .menu-card:hover {
+        border-color: var(--ink);
+        background: #ffffff;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+      }
+
+      .menu-card-img-wrap {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+        background: #eee8e0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .drink-card .menu-card-img-wrap {
+        height: 380px;
+      }
+
+      .menu-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 500ms var(--ease);
+      }
+
+      .menu-card:hover .menu-card-img {
+        transform: scale(1.04);
+      }
+
+      .menu-card-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--seal);
+        color: #ffffff;
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 2px;
+        z-index: 5;
+        box-shadow: 0 4px 12px rgba(178, 58, 36, 0.2);
+      }
+
+      .menu-card-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: 12px;
+      }
+
+      .menu-card-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .menu-card-title {
+        font-family: "Shippori Mincho", serif;
+        font-weight: 600;
+        font-size: 17px;
+        color: var(--ink);
+        line-height: 1.35;
+      }
+
+      .menu-card-price {
+        font-family: "Space Mono", monospace;
+        font-size: 14.5px;
+        font-weight: 700;
+        color: #b88a58;
+        white-space: nowrap;
+      }
+
+      .menu-card-desc {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13.5px;
+        line-height: 1.6;
+        color: #555555;
+        flex-grow: 1;
+      }
+
+      .menu-card-action {
+        border-top: 1px dashed var(--border);
+        padding-top: 16px;
+        margin-top: 4px;
+        text-align: center;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--ink);
+        cursor: pointer;
+        transition:
+          color 200ms ease,
+          background-color 200ms ease;
+        font-weight: 700;
+      }
+
+      .menu-card-action:hover {
+        color: var(--seal);
+      }
+
+      .menu-card-counter {
+        border-top: 1px dashed var(--border);
+        padding-top: 12px;
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .menu-counter-btn {
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        color: var(--ink);
+        font-family: "Space Mono", monospace;
+        font-size: 14px;
+        font-weight: 700;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 200ms ease;
+      }
+
+      .menu-counter-btn:hover {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+
+      .menu-counter-qty {
+        font-family: "Space Mono", monospace;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--seal);
+      }
+
+      /* Floating summary bar for mobile devices */
       .mobile-cart-summary-bar {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 500px;
+        background: #181715;
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        padding: 14px 20px;
+        z-index: 80;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .mobile-cart-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mobile-cart-label {
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+      }
+
+      .mobile-cart-value {
+        font-family: "Space Mono", monospace;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .mobile-cart-btn {
+        background: #ffffff;
+        color: #111111;
+        border: 1px solid #ffffff;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        padding: 8px 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: all 200ms ease;
+      }
+
+      .mobile-cart-btn:hover {
+        background: var(--seal);
+        border-color: var(--seal);
+        color: #ffffff;
+      }
+
+      /* Mobile Cart Modal Drawer */
+      .cart-drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(17, 17, 17, 0.5);
+        backdrop-filter: blur(6px);
+        z-index: 110;
+        display: none;
+        justify-content: flex-end;
+      }
+
+      .cart-drawer-overlay.active {
         display: flex;
       }
 
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
+      .cart-drawer {
+        width: 100%;
+        max-width: 420px;
+        height: 100%;
+        background: var(--bg);
+        border-left: 1px solid var(--ink);
+        display: flex;
+        flex-direction: column;
+        padding: 32px 24px;
+        box-shadow: -10px 0 32px rgba(0, 0, 0, 0.15);
+        animation: slideIn 300ms var(--ease);
       }
-    }
 
-    @media (max-width: 768px) {
-      .nav-links {
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .cart-drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 20px;
+      }
+
+      .cart-drawer-close {
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: var(--ink-soft);
+      }
+
+      /* ============ FOOTER SECTION ============ */
+      .site-footer {
+        background: #181715;
+        color: #e5e2dc;
+        padding: 80px 48px 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+      }
+
+      .footer-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.8fr 1fr 1fr 1fr 1.6fr;
+        gap: 48px;
+        margin-bottom: 64px;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .footer-brand-logo {
+        height: 48px;
+        width: auto;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+
+      .footer-brand .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-brand .kumo {
+        font-family: "Space Mono", monospace;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.35em;
+        color: #ffffff;
+        line-height: 1.1;
+      }
+
+      .footer-brand .ramen {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.55em;
+        color: #99948c;
+        margin-top: 4px;
+      }
+
+      .brand-copy {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13.5px;
+        line-height: 1.8;
+        color: #99948c;
+        max-width: 280px;
+      }
+
+      .footer-col .col-title {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: #c5a059;
+        margin-bottom: 6px;
+      }
+
+      .footer-col .col-title-line {
+        width: 26px;
+        height: 1.5px;
+        background: #b23a24;
+        margin-bottom: 22px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-col ul li a {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13.5px;
+        color: #b0ab9f;
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      .footer-col ul li a:hover {
+        color: #ffffff;
+      }
+
+      .newsletter-col {
+        position: relative;
+      }
+
+      .newsletter-copy {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13.5px;
+        line-height: 1.65;
+        color: #b0ab9f;
+        margin-bottom: 20px;
+      }
+
+      .newsletter-form {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .newsletter-form input {
+        width: 100%;
+        padding: 12px 38px 12px 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 2px;
+        color: #ffffff;
+        font-family: "Shippori Mincho", serif;
+        font-size: 13px;
+        outline: none;
+        transition: border-color 200ms ease;
+      }
+
+      .newsletter-form input::placeholder {
+        color: #6d6860;
+      }
+
+      .newsletter-form input:focus {
+        border-color: #c5a059;
+      }
+
+      .newsletter-form button {
+        position: absolute;
+        right: 12px;
+        background: none;
+        border: none;
+        color: #b0ab9f;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          color 200ms ease,
+          transform 200ms ease;
+      }
+
+      .newsletter-form button:hover {
+        color: #ffffff;
+        transform: translateX(3px);
+      }
+
+      .footer-seal-wrap {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 24px;
+      }
+
+      .footer-seal-img {
+        width: 44px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .footer-bottom {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        color: #7a766e;
+      }
+
+      .footer-bottom .motto-jp {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13.5px;
+        color: #b0ab9f;
+        letter-spacing: 0.08em;
+      }
+
+      .footer-legal {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .footer-legal a {
+        color: #7a766e;
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      .footer-legal a:hover {
+        color: #ffffff;
+      }
+
+      .footer-legal .sep {
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* ============ RESERVATION & CHECKOUT MODAL ============ */
+      .modal-overlay {
         position: fixed;
         inset: 0;
-        background: var(--bg);
-        flex-direction: column;
-        justify-content: center;
+        background: rgba(17, 17, 17, 0.5);
+        backdrop-filter: blur(6px);
+        z-index: 100;
+        display: flex;
         align-items: center;
-        gap: 32px;
-        font-size: 16px;
-        z-index: 55;
+        justify-content: center;
+        padding: 24px;
         opacity: 0;
         pointer-events: none;
         transition: opacity 300ms var(--ease);
       }
 
-      .nav-links.open {
+      .modal-overlay.active {
         opacity: 1;
         pointer-events: auto;
       }
 
-      .hamburger {
-        display: flex;
+      .modal-card {
+        background: var(--bg);
+        border: 1px solid var(--ink);
+        max-width: 520px;
+        width: 100%;
+        padding: 44px;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 300ms var(--ease);
       }
 
-      .nav-cta {
+      .modal-overlay.active .modal-card {
+        transform: translateY(0);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--ink-soft);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 14px 16px;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        font-family: inherit;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 200ms var(--ease);
+      }
+
+      .form-control:focus {
+        border-color: var(--ink);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .reservation-success,
+      .checkout-success {
         display: none;
+        text-align: center;
+        padding: 20px 0;
       }
 
-      .nav-dropdown {
+      /* ============ UPDATED & NEW STYLES ============ */
+      .mobile-only {
         display: none !important;
       }
 
-      .mobile-only {
-        display: block !important;
+      .brand {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 14px;
       }
 
-      .navbar {
-        padding: 16px 24px;
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
       }
 
-      .footer-grid {
-        grid-template-columns: 1fr;
+      /* Cart Button in Nav */
+      .nav-cart-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        color: var(--ink);
+        transition: color 250ms var(--ease);
+        padding: 0;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <div class="grain"></div>
+      .nav-cart-btn:hover {
+        color: var(--seal);
+      }
 
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html#home" class="brand">
-      <img src="images/logo.png" alt="Kumo Ramen Logo" />
-      <div class="brand-text">
-        <span class="kumo">KUMO</span>
-        <span class="ramen">RAMEN</span>
-      </div>
-    </a>
+      .cart-icon-svg {
+        width: 22px;
+        height: 22px;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        fill: none;
+      }
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html#home">Home</a></li>
-      <li><a href="index.html#story">Story</a></li>
-      <li><a href="menu.html" class="active">Bowls</a></li>
-      <li><a href="build.html">Customisation</a></li>
-      <li><a href="index.html#why">Why Kumo</a></li>
-      <li class="mobile-only"><a href="#" class="open-modal-btn">Reserve a Table</a></li>
-    </ul>
+      .nav-cart-count {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background: var(--seal);
+        color: #ffffff;
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        font-weight: 700;
+        min-width: 16px;
+        height: 16px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4px;
+        box-shadow: 0 2px 6px rgba(178, 58, 36, 0.3);
+      }
 
-    <div class="nav-actions">
-      <!-- Profile & History Button -->
-      <button class="nav-cart-btn" id="navProfileBtn" aria-label="Open Profile">
-        <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-      </button>
+      /* Dropdown styles */
+      .nav-dropdown {
+        position: relative;
+        display: inline-block;
+      }
 
-      <!-- Cart Icon Toggle Button -->
-      <button class="nav-cart-btn" id="navCartBtn" aria-label="Open Cart">
-        <svg class="cart-icon-svg" viewBox="0 0 24 24">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
-        </svg>
-        <span class="nav-cart-count" id="navCartCount">0</span>
-      </button>
+      .nav-dropdown-btn {
+        padding: 14px 22px;
+        font-size: 11px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
 
-      <button class="btn-outline nav-cta open-modal-btn">Reserve a Table</button>
-    </div>
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(248, 244, 239, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--ink);
+        min-width: 200px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        z-index: 100;
+        margin-top: 8px;
+        transition:
+          opacity 300ms var(--ease),
+          transform 300ms var(--ease),
+          visibility 300ms var(--ease);
+        display: block;
+      }
 
-    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+      .nav-dropdown:hover .dropdown-menu,
+      .nav-dropdown:focus-within .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
 
-  <!-- MENU SECTION CONTENT -->
-  <section class="menu-section">
-    <!-- Intro Header -->
-    <div class="menu-intro">
-      <span class="menu-intro-tag stagger-1">SELECTED CRAFT</span>
-      <h1 class="menu-intro-title stagger-1">Our Menu</h1>
-      <p class="menu-intro-desc stagger-2">
-        A balanced selection of traditional ramen bowls, artisanal appetizers, and seasonal enhancements crafted with
-        precision.
-      </p>
-    </div>
+      .dropdown-item {
+        display: block;
+        padding: 14px 20px;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--ink);
+        border-bottom: 1px solid var(--border);
+        transition:
+          background-color 200ms ease,
+          color 200ms ease;
+      }
 
-    <!-- Main Flex Columns -->
-    <div class="menu-split-container">
-      <!-- Sidebar Panel -->
-      <aside class="menu-sidebar">
-        <!-- Categories list -->
-        <div class="menu-categories-list" role="tablist">
-          <div class="menu-category-item" data-category="starters" role="tab">
-            <span>Starters</span>
-            <span class="arrow">›</span>
-          </div>
-          <div class="menu-category-item active" data-category="ramen" role="tab">
-            <span>Signature Ramen</span>
-            <span class="arrow">›</span>
-          </div>
-          <div class="menu-category-item" data-category="build" role="tab">
-            <span>Build Your Own</span>
-            <span class="arrow">›</span>
-          </div>
-          <div class="menu-category-item" data-category="desserts" role="tab">
-            <span>Desserts</span>
-            <span class="arrow">›</span>
-          </div>
-          <div class="menu-category-item" data-category="drinks" role="tab">
-            <span>Drinks</span>
-            <span class="arrow">›</span>
-          </div>
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--ink);
+        color: var(--bg);
+      }
+
+      /* Global Cart Drawer Modal */
+      .cart-drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(17, 17, 17, 0.5);
+        backdrop-filter: blur(6px);
+        z-index: 200;
+        display: none;
+        justify-content: flex-end;
+      }
+
+      .cart-drawer-overlay.active {
+        display: flex;
+      }
+
+      .cart-drawer {
+        width: 100%;
+        max-width: 440px;
+        height: 100%;
+        background: var(--bg);
+        border-left: 1px solid var(--ink);
+        display: flex;
+        flex-direction: column;
+        padding: 32px 24px;
+        box-shadow: -10px 0 32px rgba(0, 0, 0, 0.15);
+        animation: slideIn 300ms var(--ease);
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .cart-drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 20px;
+      }
+
+      .cart-drawer-close {
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: var(--ink-soft);
+        transition: color 200ms ease;
+      }
+
+      .cart-drawer-close:hover {
+        color: var(--seal);
+      }
+
+      .cart-sections-wrapper {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+
+      .cart-sections-wrapper::-webkit-scrollbar {
+        width: 4px;
+      }
+      .cart-sections-wrapper::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .cart-sections-wrapper::-webkit-scrollbar-thumb {
+        background: var(--border-strong);
+      }
+
+      .cart-section {
+        margin-bottom: 24px;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+        padding-bottom: 20px;
+      }
+      .cart-section:last-child {
+        border-bottom: none;
+      }
+
+      .cart-section-title {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--seal);
+        margin-bottom: 14px;
+        font-weight: 700;
+        border-left: 2px solid var(--seal);
+        padding-left: 8px;
+      }
+
+      .cart-section-subtotal {
+        display: flex;
+        justify-content: space-between;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-soft);
+        margin-top: 14px;
+        font-weight: 500;
+        padding-top: 8px;
+        border-top: 1px dashed var(--border);
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.04);
+      }
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .cart-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        padding-right: 16px;
+      }
+
+      .cart-item-name {
+        font-family: "Shippori Mincho", serif;
+        font-size: 14.5px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .cart-item-desc {
+        font-family: "Shippori Mincho", serif;
+        font-size: 11.5px;
+        color: var(--ink-soft);
+        line-height: 1.4;
+      }
+
+      .cart-item-price {
+        font-family: "Space Mono", monospace;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      .cart-item-qty-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .qty-btn {
+        width: 24px;
+        height: 24px;
+        border: 1px solid var(--border-strong);
+        background: transparent;
+        color: var(--ink);
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 200ms ease;
+      }
+
+      .qty-btn:hover {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+
+      .cart-item-qty {
+        font-family: "Space Mono", monospace;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .cart-item-remove {
+        background: none;
+        border: none;
+        color: var(--ink-muted);
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition: color 200ms ease;
+        margin-top: 4px;
+      }
+
+      .cart-item-remove:hover {
+        color: var(--seal);
+      }
+
+      .cart-summary {
+        background: rgba(17, 17, 17, 0.02);
+        border-radius: 4px;
+        padding: 16px;
+      }
+
+      .cart-subtotal-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Space Mono", monospace;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+
+      .cart-subtotal-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .btn-checkout {
+        width: 100%;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--bg);
+        border: 1px solid var(--ink);
+        padding: 16px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 300ms var(--ease);
+      }
+
+      .btn-checkout.active:hover {
+        background: var(--seal);
+        border-color: var(--seal);
+        color: #ffffff;
+      }
+
+      .btn-checkout:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .artisanal-quality-tag {
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      /* Profile Tab Buttons and Layout */
+      .profile-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 20px;
+        gap: 16px;
+      }
+
+      .profile-tab-btn {
+        background: none;
+        border: none;
+        padding: 10px 4px;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: var(--ink-soft);
+        position: relative;
+        transition: color 250ms ease;
+      }
+
+      .profile-tab-btn:hover {
+        color: var(--ink);
+      }
+
+      .profile-tab-btn.active {
+        color: var(--seal);
+        font-weight: 700;
+      }
+
+      .profile-tab-btn.active::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--seal);
+      }
+
+      .profile-content-wrapper {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .profile-tab-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Past Order card styles */
+      .past-order-card {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 16px;
+        margin-bottom: 16px;
+        background: rgba(17, 17, 17, 0.01);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .past-order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dashed var(--border);
+        padding-bottom: 8px;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+      }
+
+      .past-order-number {
+        font-weight: 700;
+        color: var(--seal);
+      }
+
+      .past-order-date {
+        color: var(--ink-soft);
+      }
+
+      .past-order-items {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 4px 0;
+      }
+
+      .past-order-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        font-family: "Shippori Mincho", serif;
+      }
+
+      .past-order-item-qty {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-soft);
+      }
+
+      .past-order-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px dashed var(--border);
+        padding-top: 8px;
+        margin-top: 4px;
+      }
+
+      .past-order-total {
+        font-family: "Space Mono", monospace;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .past-order-status {
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: rgba(46, 125, 50, 0.1);
+        color: #2e7d32;
+        padding: 2px 8px;
+        border-radius: 2px;
+      }
+
+      /* Terms Conditions Content */
+      .terms-text-block {
+        font-family: "Shippori Mincho", serif;
+        font-size: 13.5px;
+        line-height: 1.6;
+        color: var(--ink-soft);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .terms-text-block h4 {
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-top: 8px;
+        margin-bottom: -4px;
+      }
+
+      /* Premium Entry Animations */
+      .stagger-1 {
+        opacity: 0;
+        animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 150ms forwards;
+      }
+      .stagger-2 {
+        opacity: 0;
+        animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards;
+      }
+      .stagger-3 {
+        opacity: 0;
+        animation: pageEnter 900ms cubic-bezier(0.16, 1, 0.3, 1) 450ms forwards;
+      }
+      .stagger-image {
+        opacity: 0;
+        animation: imageEnter 1200ms cubic-bezier(0.16, 1, 0.3, 1) 250ms
+          forwards;
+      }
+
+      @keyframes pageEnter {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes imageEnter {
+        from {
+          opacity: 0;
+          transform: scale(1.04) translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* ============ RESPONSIVE BREAKPOINTS ============ */
+      @media (max-width: 1024px) {
+        .menu-section {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+
+        .menu-split-container {
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        .menu-sidebar {
+          width: 100%;
+          position: static;
+          gap: 24px;
+        }
+
+        /* Horizontal Scrolling Categories */
+        .menu-categories-list {
+          flex-direction: row;
+          border-top: none;
+          overflow-x: auto;
+          padding-bottom: 8px;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE */
+          border-bottom: 1px solid var(--border);
+          width: 100%;
+          gap: 20px;
+        }
+
+        .menu-categories-list::-webkit-scrollbar {
+          display: none; /* Chrome/Safari */
+        }
+
+        .menu-category-item {
+          border-bottom: none;
+          padding: 12px 16px;
+          white-space: nowrap;
+        }
+
+        .menu-category-item.active {
+          border-bottom: 2px solid var(--seal);
+          color: var(--seal);
+        }
+
+        .menu-category-item .arrow {
+          display: none;
+        }
+
+        .dietary-notice-card,
+        .cart-card {
+          display: none;
+        }
+
+        /* Show mobile cart bar */
+        .mobile-cart-summary-bar {
+          display: flex;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          position: fixed;
+          inset: 0;
+          background: var(--bg);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 32px;
+          font-size: 16px;
+          z-index: 55;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 300ms var(--ease);
+        }
+
+        .nav-links.open {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-cta {
+          display: none;
+        }
+
+        .nav-dropdown {
+          display: none !important;
+        }
+
+        .mobile-only {
+          display: block !important;
+        }
+
+        .navbar {
+          padding: 16px 24px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grain"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+      <a href="index.html#home" class="brand">
+        <img src="./images/logo.png" alt="Kumo Ramen Logo" />
+        <div class="brand-text">
+          <span class="kumo">KUMO</span>
+          <span class="ramen">RAMEN</span>
         </div>
+      </a>
 
-        <!-- Dietary notice card -->
-        <div class="dietary-notice-card">
-          <div class="notice-title">Dietary Notice</div>
-          <p class="notice-text">
-            Our broth is simmered for 18 hours. Please inform us of any allergies before placing your order.
-          </p>
-        </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#story">Story</a></li>
+        <li><a href="menu.html" class="active">Bowls</a></li>
+        <li><a href="build.html">Customisation</a></li>
+        <li><a href="index.html#why">Why Kumo</a></li>
+        <li class="mobile-only">
+          <a href="#" class="open-modal-btn">Reserve a Table</a>
+        </li>
+      </ul>
 
-        <!-- Cart Sidebar Card -->
-        <div class="cart-card">
-          <div class="cart-header-row">
-            <h3 class="cart-title">
-              <svg style="width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;" viewBox="0 0 24 24">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
-              </svg>
-              Your Cart
-            </h3>
-            <span class="cart-count-badge" id="sidebarCartCount">0</span>
-          </div>
-
-          <!-- Items list container -->
-          <div class="cart-items-list" id="sidebarCartList">
-            <!-- Empty state default -->
-            <div class="cart-empty-state" id="sidebarCartEmptyState">
-              <svg class="cart-empty-icon" viewBox="0 0 24 24">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
-              </svg>
-              <p class="cart-empty-text">Your selection will appear here.</p>
-            </div>
-          </div>
-
-          <!-- Checkout Details -->
-          <div class="cart-summary">
-            <div class="cart-subtotal-row">
-              <span>Subtotal</span>
-              <span class="cart-subtotal-price" id="sidebarSubtotal">¥0</span>
-            </div>
-            <button class="btn-checkout" id="sidebarCheckoutBtn" disabled>Checkout</button>
-            <div class="artisanal-quality-tag">Artisanal Quality</div>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Main Food Grid Column -->
-      <main class="menu-main-content">
-        <!-- Category Heading banner -->
-        <div class="menu-category-header">
-          <div class="menu-category-header-row">
-            <h2 class="menu-active-category-title" id="activeCategoryTitle">Signature Ramen</h2>
-            <span class="menu-active-category-count" id="activeCategoryCount">10 Varieties</span>
-          </div>
-        </div>
-
-        <!-- Cards Grid wrapper -->
-        <div class="menu-grid" id="menuItemsGrid">
-          <!-- Dynamically populated via JS -->
-        </div>
-      </main>
-    </div>
-  </section>
-
-  <!-- Mobile Floating Sticky Cart Summary -->
-  <div class="mobile-cart-summary-bar" id="mobileCartSummary">
-    <div class="mobile-cart-info">
-      <span class="mobile-cart-label">YOUR SELECTION</span>
-      <span class="mobile-cart-value" id="mobileCartSubtotal">¥0 (0 items)</span>
-    </div>
-    <button class="mobile-cart-btn" id="mobileCartOpenBtn">View Cart</button>
-  </div>
-
-  <!-- GLOBAL CART DRAWER -->
-  <div class="cart-drawer-overlay" id="globalCartDrawerOverlay">
-    <div class="cart-drawer">
-      <div class="cart-drawer-header">
-        <h3 class="cart-title">
-          <svg style="width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;" viewBox="0 0 24 24">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
-          </svg>
-          Your Bag
-        </h3>
-        <button class="cart-drawer-close" id="globalCartCloseBtn">&times;</button>
-      </div>
-
-      <div class="cart-sections-wrapper">
-        <!-- Group 1: Signature Menu Items -->
-        <div class="cart-section" id="cartSectionMenu">
-          <h4 class="cart-section-title">Signature Menu</h4>
-          <div class="cart-section-items" id="cartSectionMenuItems">
-            <!-- items go here -->
-          </div>
-          <div class="cart-section-subtotal">
-            <span>Menu Subtotal:</span>
-            <span id="cartSectionMenuSubtotal">¥0</span>
-          </div>
-        </div>
-
-        <!-- Group 2: Build Your Own Bowl -->
-        <div class="cart-section" id="cartSectionBuild">
-          <h4 class="cart-section-title">Custom Bowls</h4>
-          <div class="cart-section-items" id="cartSectionBuildItems">
-            <!-- items go here -->
-          </div>
-          <div class="cart-section-subtotal">
-            <span>Custom Subtotal:</span>
-            <span id="cartSectionBuildSubtotal">¥0</span>
-          </div>
-        </div>
-
-        <!-- Empty state placeholder -->
-        <div class="cart-empty-state" id="globalCartEmptyState">
-          <svg class="cart-empty-icon" viewBox="0 0 24 24">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
-          </svg>
-          <p class="cart-empty-text">Your bag is empty.</p>
-        </div>
-      </div>
-
-      <div class="cart-summary" style="margin-top:auto; padding-top:20px; border-top: 1px solid var(--border);">
-        <div class="cart-subtotal-row">
-          <span style="font-weight:700;">Grand Total</span>
-          <span class="cart-subtotal-price" id="globalCartGrandTotal">¥0</span>
-        </div>
-        <button class="btn-checkout" id="globalCartCheckoutBtn" disabled>Checkout</button>
-        <div class="artisanal-quality-tag">Artisanal Quality &bull; Simmered Daily</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- GLOBAL PROFILE & HISTORY DRAWER -->
-  <div class="cart-drawer-overlay" id="globalProfileDrawerOverlay">
-    <div class="cart-drawer">
-      <div class="cart-drawer-header">
-        <h3 class="cart-title">
-          <svg style="width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;" viewBox="0 0 24 24">
+      <div class="nav-actions">
+        <!-- Profile & History Button -->
+        <button
+          class="nav-cart-btn"
+          id="navProfileBtn"
+          aria-label="Open Profile"
+        >
+          <svg
+            class="cart-icon-svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             <circle cx="12" cy="7" r="4" />
           </svg>
-          Profile & History
-        </h3>
-        <button class="cart-drawer-close" id="globalProfileCloseBtn">&times;</button>
+        </button>
+
+        <!-- Cart Icon Toggle Button -->
+        <button class="nav-cart-btn" id="navCartBtn" aria-label="Open Cart">
+          <svg class="cart-icon-svg" viewBox="0 0 24 24">
+            <path
+              d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"
+            />
+          </svg>
+          <span class="nav-cart-count" id="navCartCount">0</span>
+        </button>
+
+        <button class="btn-outline nav-cta open-modal-btn">
+          Reserve a Table
+        </button>
       </div>
 
-      <!-- Tab Buttons -->
-      <div class="profile-tabs">
-        <button class="profile-tab-btn active" id="tabBtnHistory" onclick="toggleProfileTab('history')">Order History</button>
-        <button class="profile-tab-btn" id="tabBtnTerms" onclick="toggleProfileTab('terms')">Terms & Conditions</button>
+      <button
+        class="hamburger"
+        id="hamburgerBtn"
+        aria-label="Toggle navigation"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MENU SECTION CONTENT -->
+    <section class="menu-section">
+      <!-- Intro Header -->
+      <div class="menu-intro">
+        <span class="menu-intro-tag stagger-1">SELECTED CRAFT</span>
+        <h1 class="menu-intro-title stagger-1">Our Menu</h1>
+        <p class="menu-intro-desc stagger-2">
+          A balanced selection of traditional ramen bowls, artisanal appetizers,
+          and seasonal enhancements crafted with precision.
+        </p>
       </div>
 
-      <div class="profile-content-wrapper">
-        <!-- Tab Content 1: Order History -->
-        <div class="profile-tab-content active" id="profileTabHistory">
-          <div id="profileOrdersList">
-            <!-- Dynamically loaded list of past orders -->
+      <!-- Main Flex Columns -->
+      <div class="menu-split-container">
+        <!-- Sidebar Panel -->
+        <aside class="menu-sidebar">
+          <!-- Categories list -->
+          <div class="menu-categories-list" role="tablist">
+            <div class="menu-category-item" data-category="starters" role="tab">
+              <span>Starters</span>
+              <span class="arrow">›</span>
+            </div>
+            <div
+              class="menu-category-item active"
+              data-category="ramen"
+              role="tab"
+            >
+              <span>Signature Ramen</span>
+              <span class="arrow">›</span>
+            </div>
+            <div class="menu-category-item" data-category="build" role="tab">
+              <span>Build Your Own</span>
+              <span class="arrow">›</span>
+            </div>
+            <div class="menu-category-item" data-category="desserts" role="tab">
+              <span>Desserts</span>
+              <span class="arrow">›</span>
+            </div>
+            <div class="menu-category-item" data-category="drinks" role="tab">
+              <span>Drinks</span>
+              <span class="arrow">›</span>
+            </div>
           </div>
-          <div class="cart-empty-state" id="profileOrdersEmpty" style="display: flex;">
-            <svg class="cart-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
+
+          <!-- Dietary notice card -->
+          <div class="dietary-notice-card">
+            <div class="notice-title">Dietary Notice</div>
+            <p class="notice-text">
+              Our broth is simmered for 18 hours. Please inform us of any
+              allergies before placing your order.
+            </p>
+          </div>
+
+          <!-- Cart Sidebar Card -->
+          <div class="cart-card">
+            <div class="cart-header-row">
+              <h3 class="cart-title">
+                <svg
+                  style="
+                    width: 18px;
+                    height: 18px;
+                    stroke: currentColor;
+                    stroke-width: 1.8;
+                    fill: none;
+                  "
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"
+                  />
+                </svg>
+                Your Cart
+              </h3>
+              <span class="cart-count-badge" id="sidebarCartCount">0</span>
+            </div>
+
+            <!-- Items list container -->
+            <div class="cart-items-list" id="sidebarCartList">
+              <!-- Empty state default -->
+              <div class="cart-empty-state" id="sidebarCartEmptyState">
+                <svg class="cart-empty-icon" viewBox="0 0 24 24">
+                  <path
+                    d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"
+                  />
+                </svg>
+                <p class="cart-empty-text">Your selection will appear here.</p>
+              </div>
+            </div>
+
+            <!-- Checkout Details -->
+            <div class="cart-summary">
+              <div class="cart-subtotal-row">
+                <span>Subtotal</span>
+                <span class="cart-subtotal-price" id="sidebarSubtotal">¥0</span>
+              </div>
+              <button class="btn-checkout" id="sidebarCheckoutBtn" disabled>
+                Checkout
+              </button>
+              <div class="artisanal-quality-tag">Artisanal Quality</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Food Grid Column -->
+        <main class="menu-main-content">
+          <!-- Category Heading banner -->
+          <div class="menu-category-header">
+            <div class="menu-category-header-row">
+              <h2 class="menu-active-category-title" id="activeCategoryTitle">
+                Signature Ramen
+              </h2>
+              <span class="menu-active-category-count" id="activeCategoryCount"
+                >10 Varieties</span
+              >
+            </div>
+          </div>
+
+          <!-- Cards Grid wrapper -->
+          <div class="menu-grid" id="menuItemsGrid">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <!-- Mobile Floating Sticky Cart Summary -->
+    <div class="mobile-cart-summary-bar" id="mobileCartSummary">
+      <div class="mobile-cart-info">
+        <span class="mobile-cart-label">YOUR SELECTION</span>
+        <span class="mobile-cart-value" id="mobileCartSubtotal"
+          >¥0 (0 items)</span
+        >
+      </div>
+      <button class="mobile-cart-btn" id="mobileCartOpenBtn">View Cart</button>
+    </div>
+
+    <!-- GLOBAL CART DRAWER -->
+    <div class="cart-drawer-overlay" id="globalCartDrawerOverlay">
+      <div class="cart-drawer">
+        <div class="cart-drawer-header">
+          <h3 class="cart-title">
+            <svg
+              style="
+                width: 18px;
+                height: 18px;
+                stroke: currentColor;
+                stroke-width: 1.8;
+                fill: none;
+              "
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"
+              />
             </svg>
-            <p class="cart-empty-text">No order history found.</p>
+            Your Bag
+          </h3>
+          <button class="cart-drawer-close" id="globalCartCloseBtn">
+            &times;
+          </button>
+        </div>
+
+        <div class="cart-sections-wrapper">
+          <!-- Group 1: Signature Menu Items -->
+          <div class="cart-section" id="cartSectionMenu">
+            <h4 class="cart-section-title">Signature Menu</h4>
+            <div class="cart-section-items" id="cartSectionMenuItems">
+              <!-- items go here -->
+            </div>
+            <div class="cart-section-subtotal">
+              <span>Menu Subtotal:</span>
+              <span id="cartSectionMenuSubtotal">¥0</span>
+            </div>
+          </div>
+
+          <!-- Group 2: Build Your Own Bowl -->
+          <div class="cart-section" id="cartSectionBuild">
+            <h4 class="cart-section-title">Custom Bowls</h4>
+            <div class="cart-section-items" id="cartSectionBuildItems">
+              <!-- items go here -->
+            </div>
+            <div class="cart-section-subtotal">
+              <span>Custom Subtotal:</span>
+              <span id="cartSectionBuildSubtotal">¥0</span>
+            </div>
+          </div>
+
+          <!-- Empty state placeholder -->
+          <div class="cart-empty-state" id="globalCartEmptyState">
+            <svg class="cart-empty-icon" viewBox="0 0 24 24">
+              <path
+                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"
+              />
+            </svg>
+            <p class="cart-empty-text">Your bag is empty.</p>
           </div>
         </div>
 
-        <!-- Tab Content 2: Terms & Conditions -->
-        <div class="profile-tab-content" id="profileTabTerms" style="display: none;">
-          <div class="terms-text-block">
-            <h4>1. Quality Promise</h4>
-            <p>At Kumo Ramen, our broths are slow-simmered for 18 hours daily using fresh ingredients. We do not use any artificial preservatives. Once prepared, orders should be consumed within 2 hours to ensure freshness.</p>
-            
-            <h4>2. Ordering & Deliveries</h4>
-            <p>We deliver within a 5km radius of our kitchens. Standard preparation times vary between 15-25 minutes, with delivery times ranging from 30-45 minutes. Pre-orders are cooked to be ready at the scheduled slot.</p>
-            
-            <h4>3. Cancellations & Refunds</h4>
-            <p>Due to the perishable nature of our fresh ramen, orders cannot be cancelled once preparation has started. In case of damaged deliveries or incorrect items, please contact support with details within 30 minutes of receipt for refunds.</p>
-
-            <h4>4. Allergy Warnings</h4>
-            <p>Our kitchen processes wheat, egg, soy, seafood, peanuts, sesame, and dairy. Please consult our allergens guide or speak to a chef before placing orders if you have severe dietary sensitivities.</p>
+        <div
+          class="cart-summary"
+          style="
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+          "
+        >
+          <div class="cart-subtotal-row">
+            <span style="font-weight: 700">Grand Total</span>
+            <span class="cart-subtotal-price" id="globalCartGrandTotal"
+              >¥0</span
+            >
+          </div>
+          <button class="btn-checkout" id="globalCartCheckoutBtn" disabled>
+            Checkout
+          </button>
+          <div class="artisanal-quality-tag">
+            Artisanal Quality &bull; Simmered Daily
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- RESERVATION MODAL -->
-  <div class="modal-overlay" id="reservationModal">
-    <div class="modal-card">
-      <button class="modal-close" id="closeModalBtn" aria-label="Close modal">&times;</button>
+    <!-- GLOBAL PROFILE & HISTORY DRAWER -->
+    <div class="cart-drawer-overlay" id="globalProfileDrawerOverlay">
+      <div class="cart-drawer">
+        <div class="cart-drawer-header">
+          <h3 class="cart-title">
+            <svg
+              style="
+                width: 18px;
+                height: 18px;
+                stroke: currentColor;
+                stroke-width: 1.8;
+                fill: none;
+              "
+              viewBox="0 0 24 24"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Profile & History
+          </h3>
+          <button class="cart-drawer-close" id="globalProfileCloseBtn">
+            &times;
+          </button>
+        </div>
 
-      <div id="reservationFormContainer">
-        <span class="menu-intro-tag" style="color: var(--seal);">TABLE RESERVATION</span>
-        <h3 style="font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 24px; margin-bottom: 20px;">
-          Reserve Your Seat
+        <!-- Tab Buttons -->
+        <div class="profile-tabs">
+          <button
+            class="profile-tab-btn active"
+            id="tabBtnHistory"
+            onclick="toggleProfileTab('history')"
+          >
+            Order History
+          </button>
+          <button
+            class="profile-tab-btn"
+            id="tabBtnTerms"
+            onclick="toggleProfileTab('terms')"
+          >
+            Terms & Conditions
+          </button>
+        </div>
+
+        <div class="profile-content-wrapper">
+          <!-- Tab Content 1: Order History -->
+          <div class="profile-tab-content active" id="profileTabHistory">
+            <div id="profileOrdersList">
+              <!-- Dynamically loaded list of past orders -->
+            </div>
+            <div
+              class="cart-empty-state"
+              id="profileOrdersEmpty"
+              style="display: flex"
+            >
+              <svg
+                class="cart-empty-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <p class="cart-empty-text">No order history found.</p>
+            </div>
+          </div>
+
+          <!-- Tab Content 2: Terms & Conditions -->
+          <div
+            class="profile-tab-content"
+            id="profileTabTerms"
+            style="display: none"
+          >
+            <div class="terms-text-block">
+              <h4>1. Quality Promise</h4>
+              <p>
+                At Kumo Ramen, our broths are slow-simmered for 18 hours daily
+                using fresh ingredients. We do not use any artificial
+                preservatives. Once prepared, orders should be consumed within 2
+                hours to ensure freshness.
+              </p>
+
+              <h4>2. Ordering & Deliveries</h4>
+              <p>
+                We deliver within a 5km radius of our kitchens. Standard
+                preparation times vary between 15-25 minutes, with delivery
+                times ranging from 30-45 minutes. Pre-orders are cooked to be
+                ready at the scheduled slot.
+              </p>
+
+              <h4>3. Cancellations & Refunds</h4>
+              <p>
+                Due to the perishable nature of our fresh ramen, orders cannot
+                be cancelled once preparation has started. In case of damaged
+                deliveries or incorrect items, please contact support with
+                details within 30 minutes of receipt for refunds.
+              </p>
+
+              <h4>4. Allergy Warnings</h4>
+              <p>
+                Our kitchen processes wheat, egg, soy, seafood, peanuts, sesame,
+                and dairy. Please consult our allergens guide or speak to a chef
+                before placing orders if you have severe dietary sensitivities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESERVATION MODAL -->
+    <div class="modal-overlay" id="reservationModal">
+      <div class="modal-card">
+        <button class="modal-close" id="closeModalBtn" aria-label="Close modal">
+          &times;
+        </button>
+
+        <div id="reservationFormContainer">
+          <span class="menu-intro-tag" style="color: var(--seal)"
+            >TABLE RESERVATION</span
+          >
+          <h3
+            style="
+              font-family: &quot;Zen Kaku Gothic New&quot;, sans-serif;
+              font-size: 24px;
+              margin-bottom: 20px;
+            "
+          >
+            Reserve Your Seat
+          </h3>
+
+          <form id="reservationForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resName">Full Name</label>
+                <input
+                  type="text"
+                  id="resName"
+                  class="form-control"
+                  required
+                  placeholder="Kenji Sato"
+                />
+              </div>
+              <div class="form-group">
+                <label for="resGuests">Guests</label>
+                <select id="resGuests" class="form-control">
+                  <option value="1">1 Person (Counter)</option>
+                  <option value="2" selected>2 Guests</option>
+                  <option value="4">4 Guests</option>
+                  <option value="6">6 Guests</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resDate">Date</label>
+                <input type="date" id="resDate" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="resTime">Time Slot</label>
+                <select id="resTime" class="form-control">
+                  <option value="12:00 PM">12:00 PM (Lunch)</option>
+                  <option value="1:30 PM">1:30 PM (Lunch)</option>
+                  <option value="6:00 PM" selected>6:00 PM (Dinner)</option>
+                  <option value="7:30 PM">7:30 PM (Dinner)</option>
+                  <option value="9:00 PM">9:00 PM (Late Night)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="resNote">Special Notes / Dietary Requests</label>
+              <input
+                type="text"
+                id="resNote"
+                class="form-control"
+                placeholder="e.g. Counter seating preferred"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="btn-primary"
+              style="width: 100%; margin-top: 10px"
+            >
+              Confirm Reservation
+            </button>
+          </form>
+        </div>
+
+        <div class="reservation-success" id="reservationSuccess">
+          <div
+            class="seal"
+            style="
+              margin: 0 auto 16px;
+              border: 1.5px solid var(--seal);
+              color: var(--seal);
+              background: var(--seal-bg);
+              width: 48px;
+              height: 48px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 14px;
+              font-weight: 600;
+            "
+          >
+            予約
+          </div>
+          <h3
+            style="
+              font-family: &quot;Zen Kaku Gothic New&quot;, sans-serif;
+              font-size: 22px;
+              margin-bottom: 8px;
+            "
+          >
+            Reservation Confirmed!
+          </h3>
+          <p
+            style="color: var(--ink-soft); font-size: 14.5px"
+            id="successDetails"
+          >
+            We look forward to hosting you at KUMO RAMEN.
+          </p>
+          <button
+            class="btn-primary"
+            id="successDoneBtn"
+            style="margin-top: 24px; width: 100%"
+          >
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKOUT SUCCESS MODAL -->
+    <div class="modal-overlay" id="checkoutSuccessModal">
+      <div class="modal-card" style="text-align: center">
+        <button
+          class="modal-close"
+          id="closeCheckoutSuccessBtn"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+        <div
+          class="seal"
+          style="
+            margin: 0 auto 16px;
+            border: 1.5px solid var(--seal);
+            color: var(--seal);
+            background: var(--seal-bg);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+          "
+        >
+          感謝
+        </div>
+        <h3
+          style="
+            font-family: &quot;Zen Kaku Gothic New&quot;, sans-serif;
+            font-size: 24px;
+            margin-bottom: 12px;
+          "
+        >
+          Order Placed Successfully!
         </h3>
-
-        <form id="reservationForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="resName">Full Name</label>
-              <input type="text" id="resName" class="form-control" required placeholder="Kenji Sato" />
-            </div>
-            <div class="form-group">
-              <label for="resGuests">Guests</label>
-              <select id="resGuests" class="form-control">
-                <option value="1">1 Person (Counter)</option>
-                <option value="2" selected>2 Guests</option>
-                <option value="4">4 Guests</option>
-                <option value="6">6 Guests</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="resDate">Date</label>
-              <input type="date" id="resDate" class="form-control" required />
-            </div>
-            <div class="form-group">
-              <label for="resTime">Time Slot</label>
-              <select id="resTime" class="form-control">
-                <option value="12:00 PM">12:00 PM (Lunch)</option>
-                <option value="1:30 PM">1:30 PM (Lunch)</option>
-                <option value="6:00 PM" selected>6:00 PM (Dinner)</option>
-                <option value="7:30 PM">7:30 PM (Dinner)</option>
-                <option value="9:00 PM">9:00 PM (Late Night)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="resNote">Special Notes / Dietary Requests</label>
-            <input type="text" id="resNote" class="form-control" placeholder="e.g. Counter seating preferred" />
-          </div>
-
-          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Confirm Reservation</button>
-        </form>
-      </div>
-
-      <div class="reservation-success" id="reservationSuccess">
-        <div class="seal"
-          style="margin: 0 auto 16px; border: 1.5px solid var(--seal); color: var(--seal); background: var(--seal-bg); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600;">
-          予約
-        </div>
-        <h3 style="font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 22px; margin-bottom: 8px;">
-          Reservation Confirmed!
-        </h3>
-        <p style="color: var(--ink-soft); font-size: 14.5px;" id="successDetails">
-          We look forward to hosting you at KUMO RAMEN.
+        <p
+          style="
+            color: var(--ink-soft);
+            font-size: 15px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+          "
+        >
+          Your selection has been forwarded to our kitchen. If you have a table
+          reservation, your bowls will be served according to your seat seating
+          time.
         </p>
-        <button class="btn-primary" id="successDoneBtn" style="margin-top: 24px; width: 100%;">Done</button>
+        <button class="btn-primary" id="checkoutDoneBtn" style="width: 100%">
+          Done
+        </button>
       </div>
     </div>
-  </div>
 
-  <!-- CHECKOUT SUCCESS MODAL -->
-  <div class="modal-overlay" id="checkoutSuccessModal">
-    <div class="modal-card" style="text-align: center;">
-      <button class="modal-close" id="closeCheckoutSuccessBtn" aria-label="Close modal">&times;</button>
-      <div class="seal"
-        style="margin: 0 auto 16px; border: 1.5px solid var(--seal); color: var(--seal); background: var(--seal-bg); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600;">
-        感謝
-      </div>
-      <h3 style="font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 24px; margin-bottom: 12px;">
-        Order Placed Successfully!
-      </h3>
-      <p style="color: var(--ink-soft); font-size: 15px; margin-bottom: 24px; line-height: 1.6;">
-        Your selection has been forwarded to our kitchen. If you have a table reservation, your bowls will be served
-        according to your seat seating time.
-      </p>
-      <button class="btn-primary" id="checkoutDoneBtn" style="width: 100%;">Done</button>
-    </div>
-  </div>
-
-  <!-- SITE FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <!-- Col 1: Brand -->
-      <div class="footer-col brand-col">
-        <div class="footer-brand">
-          <img src="images/logo.png" alt="Kumo Ramen Logo" class="footer-brand-logo" />
-          <div class="brand-text">
-            <span class="kumo">KUMO</span>
-            <span class="ramen">RAMEN</span>
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <!-- Col 1: Brand -->
+        <div class="footer-col brand-col">
+          <div class="footer-brand">
+            <img
+              src="./images/logo.png"
+              alt="Kumo Ramen Logo"
+              class="footer-brand-logo"
+            />
+            <div class="brand-text">
+              <span class="kumo">KUMO</span>
+              <span class="ramen">RAMEN</span>
+            </div>
           </div>
+          <p class="brand-copy">
+            Ramen is more than a meal.<br />
+            It's a moment of comfort,<br />
+            crafted with care.
+          </p>
         </div>
-        <p class="brand-copy">
-          Ramen is more than a meal.<br />
-          It's a moment of comfort,<br />
-          crafted with care.
-        </p>
-      </div>
 
-      <!-- Col 2: Quick Links -->
-      <div class="footer-col">
-        <h5 class="col-title">QUICK LINKS</h5>
-        <div class="col-title-line"></div>
-        <ul>
-          <li><a href="index.html#home">Home</a></li>
-          <li><a href="index.html#story">Our Story</a></li>
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="build.html">Build Your Bowl</a></li>
-          <li><a href="index.html#why">Why Kumo</a></li>
-        </ul>
-      </div>
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col">
+          <h5 class="col-title">QUICK LINKS</h5>
+          <div class="col-title-line"></div>
+          <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#story">Our Story</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="build.html">Build Your Bowl</a></li>
+            <li><a href="index.html#why">Why Kumo</a></li>
+          </ul>
+        </div>
 
-      <!-- Col 3: Menu -->
-      <div class="footer-col">
-        <h5 class="col-title">MENU</h5>
-        <div class="col-title-line"></div>
-        <ul>
-          <li><a href="menu.html">Starter</a></li>
-          <li><a href="menu.html">Signature Ramen</a></li>
-          <li><a href="build.html">Build Your Own</a></li>
-          <li><a href="menu.html">Dessert</a></li>
-          <li><a href="menu.html">Drinks</a></li>
-        </ul>
-      </div>
+        <!-- Col 3: Menu -->
+        <div class="footer-col">
+          <h5 class="col-title">MENU</h5>
+          <div class="col-title-line"></div>
+          <ul>
+            <li><a href="menu.html">Starter</a></li>
+            <li><a href="menu.html">Signature Ramen</a></li>
+            <li><a href="build.html">Build Your Own</a></li>
+            <li><a href="menu.html">Dessert</a></li>
+            <li><a href="menu.html">Drinks</a></li>
+          </ul>
+        </div>
 
-      <!-- Col 4: Info -->
-      <div class="footer-col">
-        <h5 class="col-title">INFO</h5>
-        <div class="col-title-line"></div>
-        <ul>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Gift Cards</a></li>
-          <li><a href="#">Private Dining</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
+        <!-- Col 4: Info -->
+        <div class="footer-col">
+          <h5 class="col-title">INFO</h5>
+          <div class="col-title-line"></div>
+          <ul>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Gift Cards</a></li>
+            <li><a href="#">Private Dining</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
 
-      <!-- Col 5: Newsletter -->
-      <div class="footer-col newsletter-col">
-        <h5 class="col-title">NEWSLETTER</h5>
-        <div class="col-title-line"></div>
-        <p class="newsletter-copy">
-          Be the first to know about<br />
-          new bowls and special offers.
-        </p>
-        <form class="newsletter-form" onsubmit="event.preventDefault();">
-          <input type="email" placeholder="Your email address" required />
-          <button type="submit" aria-label="Subscribe">→</button>
-        </form>
-        <div class="footer-seal-wrap">
-          <img src="images/seal_kumo.png" alt="Kumo Seal" class="footer-seal-img" />
+        <!-- Col 5: Newsletter -->
+        <div class="footer-col newsletter-col">
+          <h5 class="col-title">NEWSLETTER</h5>
+          <div class="col-title-line"></div>
+          <p class="newsletter-copy">
+            Be the first to know about<br />
+            new bowls and special offers.
+          </p>
+          <form class="newsletter-form" onsubmit="event.preventDefault()">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit" aria-label="Subscribe">→</button>
+          </form>
+          <div class="footer-seal-wrap">
+            <img
+              src="./images/seal_kumo.png"
+              alt="Kumo Seal"
+              class="footer-seal-img"
+            />
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="footer-bottom">
-      <span class="copyright">&copy; 2024 Kumo Ramen. All rights reserved.</span>
-      <span class="motto-jp">一杯 of ラーメン、無限 of 温もり。</span>
-      <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <span class="sep">|</span>
-        <a href="#">Terms &amp; Conditions</a>
+      <div class="footer-bottom">
+        <span class="copyright"
+          >&copy; 2024 Kumo Ramen. All rights reserved.</span
+        >
+        <span class="motto-jp">一杯 of ラーメン、無限 of 温もり。</span>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <span class="sep">|</span>
+          <a href="#">Terms &amp; Conditions</a>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- DATABASE AND SCRIPT IMPLEMENTATION -->
-  <script>
-    // Navigation Drawer
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navLinks = document.getElementById('navLinks');
-    const navAnchors = document.querySelectorAll('.nav-links a');
+    <!-- DATABASE AND SCRIPT IMPLEMENTATION -->
+    <script>
+      // Navigation Drawer
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
+      const navLinks = document.getElementById("navLinks");
+      const navAnchors = document.querySelectorAll(".nav-links a");
 
-    hamburgerBtn.addEventListener('click', () => {
-      hamburgerBtn.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-
-    navAnchors.forEach(anchor => {
-      anchor.addEventListener('click', () => {
-        hamburgerBtn.classList.remove('open');
-        navLinks.classList.remove('open');
+      hamburgerBtn.addEventListener("click", () => {
+        hamburgerBtn.classList.toggle("open");
+        navLinks.classList.toggle("open");
       });
-    });
 
-    // MENU DATABASE (Exactly mapping Unsplash food photography paths)
-    const menuData = {
-      starters: {
-        title: "Starters",
-        varieties: "7 Varieties",
-        items: [
-          { id: "s1", name: "Edamame", price: 350, desc: "Steamed young soybeans tossed with sea salt.", image: "images/starter_edamame.jpg" },
-          { id: "s2", name: "Gyoza (5 pcs)", price: 550, desc: "Pan-fried chicken dumplings served with gyoza sauce.", image: "images/starter_gyoza.jpg" },
-          { id: "s3", name: "Karaage", price: 600, desc: "Japanese-style fried chicken with yuzu mayo.", image: "images/starter_karaage.jpg" },
-          { id: "s4", name: "Takoyaki (5 pcs)", price: 550, desc: "Octopus batter balls with takoyaki sauce, mayo, and bonito flakes.", image: "images/starter_takoyaki.jpg" },
-          { id: "s5", name: "Wakame Salad", price: 400, desc: "Seasoned seaweed with sesame dressing.", image: "images/starter_wakame.jpg" },
-          { id: "s6", name: "Kimchi", price: 350, desc: "Spicy fermented cabbage, house-made.", image: "images/starter_kimchi.jpg" },
-          { id: "s7", name: "Agedashi Tofu", price: 450, desc: "Crispy fried tofu in dashi broth with grated daikon and nori.", image: "images/starter_agedashi.jpg" }
-        ],
-        btnText: "+ ADD"
-      },
-      ramen: {
-        title: "Signature Ramen",
-        varieties: "14 Varieties",
-        items: [
-          { id: "r_shio", name: "Kumo Shio Ramen", price: 1350, desc: "Sea salt broth with a gentle, deep umami.", image: "images/shio_ramen.png" },
-          { id: "r_miso", name: "Miso Ramen", price: 1450, desc: "A hearty miso broth with roasted depth.", image: "images/miso_ramen.jpg", badge: "CHEF CHOICE" },
-          { id: "r_tonkotsu", name: "Tonkotsu Ramen", price: 1400, desc: "Slow-cooked pork broth, silky and full-bodied.", image: "images/tonkotsu_ramen.jpg" },
-          { id: "r_tantan", name: "Spicy Tantan Ramen", price: 1450, desc: "Sesame and chili with a perfect kick.", image: "images/tantan_ramen.jpg" },
-          { id: "r1", name: "Spicy Miso Red", price: 1850, desc: "A bold 18-hour pork bone broth enriched with our secret three-chili miso paste, topped with bamboo shoots and green onions.", image: "images/sig_spicy_miso_red.png" },
-          { id: "r2", name: "Golden Dashi Shio", price: 1800, desc: "A delicate clear broth made from sea salt, kelp, and dried bonito. Pure, light, and deeply satisfying for the soul.", image: "images/sig_golden_dashi_shio.png" },
-          { id: "r3", name: "Black Garlic Tonkotsu", price: 1950, desc: "Creamy pork bone broth infused with roasted black garlic oil (Mayu) and topped with wood ear mushrooms.", image: "images/sig_black_garlic_tonkotsu.png" },
-          { id: "r4", name: "Yuzu Shio", price: 1750, desc: "A refreshing, citrus-infused clear broth with delicate sea salt and thin-cut noodles.", image: "images/sig_yuzu_shio.png" },
-          { id: "r5", name: "Truffle Shoyu", price: 2100, desc: "Premium soy sauce broth enhanced with white truffle oil and slow-cooked pork belly.", image: "images/sig_truffle_shoyu.png" },
-          { id: "r6", name: "Vegetable Zen", price: 1650, desc: "A rich, creamy vegetable broth made from roasted roots and kombu, served with seasonal greens.", image: "images/sig_vegetable_zen.png" },
-          { id: "r7", name: "Smoky Tonkotsu", price: 1900, desc: "Our signature pork broth enhanced with smoked lard and charred leeks for a deep, campfire aroma.", image: "images/sig_smoky_tonkotsu.png" },
-          { id: "r8", name: "Curry Ramen", price: 1700, desc: "A rich, aromatic Japanese curry base blended with dashi, served with thick noodles and soft-boiled egg.", image: "images/sig_curry_ramen.png" },
-          { id: "r9", name: "Tan Tan Men", price: 1800, desc: "Spicy sesame and peanut broth with Sichuan peppercorns, topped with seasoned ground pork and bok choy.", image: "images/sig_tan_tan_men.png" },
-          { id: "r10", name: "Cold Soba", price: 1500, desc: "Chilled buckwheat noodles served with a side of savory dipping sauce, wasabi, and grated daikon.", image: "images/sig_cold_soba.png" }
-        ],
-        btnText: "+ ADD TO BOWL"
-      },
-      desserts: {
-        title: "Desserts",
-        varieties: "6 Varieties",
-        items: [
-          { id: "d1", name: "Matcha Ice Cream", price: 450, desc: "Creamy matcha ice cream served with sweet red bean and shiratama.", image: "images/dessert_matcha.jpg" },
-          { id: "d2", name: "Mochi (2 pcs)", price: 300, desc: "Soft rice mochi with a delicate sweet filling.", image: "images/dessert_mochi.jpg" },
-          { id: "d3", name: "Hojicha Panna Cotta", price: 420, desc: "Silky hojicha panna cotta with kuromitsu sauce.", image: "images/dessert_hojicha.jpg" },
-          { id: "d4", name: "Yuzu Cheesecake", price: 480, desc: "Light and creamy cheesecake infused with yuzu zest.", image: "images/dessert_cheesecake.jpg" },
-          { id: "d5", name: "Dorayaki", price: 350, desc: "Traditional Japanese pancake sandwich with sweet red bean paste.", image: "images/dessert_dorayaki.jpg" },
-          { id: "d6", name: "Black Sesame Ice Cream", price: 450, desc: "Rich black sesame ice cream topped with roasted sesame.", image: "images/dessert_sesame.jpg" }
-        ],
-        btnText: "+ ADD"
-      },
-      drinks: {
-        title: "Drinks",
-        varieties: "8 Varieties",
-        items: [
-          { id: "dr1", name: "Yuzu Lemonade", price: 220, desc: "Refreshing yuzu lemonade with a hint of honey.", image: "images/drink_lemonade.jpg" },
-          { id: "dr2", name: "Iced Green Tea", price: 180, desc: "Japanese sencha green tea, chilled and lightly sweetened.", image: "images/drink_greentea.jpg" },
-          { id: "dr3", name: "Barley Tea", price: 150, desc: "Roasted barley tea, caffeine-free and soothing.", image: "images/drink_barley.jpg" },
-          { id: "dr4", name: "Hojicha Milk Tea", price: 240, desc: "Roasted green tea with creamy milk and a touch of sweetness.", image: "images/drink_hojicha.jpg" },
-          { id: "dr5", name: "Calpico", price: 200, desc: "Classic Japanese cultured milk drink. Light and tangy.", image: "images/drink_calpico.jpg" },
-          { id: "dr6", name: "Lychee Soda", price: 220, desc: "Sparkling soda with juicy lychee and a hint of lime.", image: "images/drink_lychee.jpg" },
-          { id: "dr7", name: "Sparkling Water", price: 150, desc: "Lightly sparkling water with a slice of lemon.", image: "images/drink_sparkling.jpg" },
-          { id: "dr8", name: "Hot Green Tea", price: 150, desc: "Steamed sencha green tea. Simple and comforting.", image: "images/drink_hottea.jpg" }
-        ],
-        btnText: "+ ADD"
-      }
-    };
+      navAnchors.forEach((anchor) => {
+        anchor.addEventListener("click", () => {
+          hamburgerBtn.classList.remove("open");
+          navLinks.classList.remove("open");
+        });
+      });
 
-    // ACTIVE VIEW STATE
-    let currentCategory = "ramen";
-    let cart = [];
-    try {
-      const stored = localStorage.getItem("kumo_cart");
-      if (stored) cart = JSON.parse(stored);
-    } catch (e) {
-      console.error("Failed to load cart", e);
-    }
+      // MENU DATABASE (Exactly mapping Unsplash food photography paths)
+      const menuData = {
+        starters: {
+          title: "Starters",
+          varieties: "7 Varieties",
+          items: [
+            {
+              id: "s1",
+              name: "Edamame",
+              price: 350,
+              desc: "Steamed young soybeans tossed with sea salt.",
+              image: "./images/starter_edamame.jpg",
+            },
+            {
+              id: "s2",
+              name: "Gyoza (5 pcs)",
+              price: 550,
+              desc: "Pan-fried chicken dumplings served with gyoza sauce.",
+              image: "./images/starter_gyoza.jpg",
+            },
+            {
+              id: "s3",
+              name: "Karaage",
+              price: 600,
+              desc: "Japanese-style fried chicken with yuzu mayo.",
+              image: "./images/starter_karaage.jpg",
+            },
+            {
+              id: "s4",
+              name: "Takoyaki (5 pcs)",
+              price: 550,
+              desc: "Octopus batter balls with takoyaki sauce, mayo, and bonito flakes.",
+              image: "./images/starter_takoyaki.jpg",
+            },
+            {
+              id: "s5",
+              name: "Wakame Salad",
+              price: 400,
+              desc: "Seasoned seaweed with sesame dressing.",
+              image: "./images/starter_wakame.jpg",
+            },
+            {
+              id: "s6",
+              name: "Kimchi",
+              price: 350,
+              desc: "Spicy fermented cabbage, house-made.",
+              image: "./images/starter_kimchi.jpg",
+            },
+            {
+              id: "s7",
+              name: "Agedashi Tofu",
+              price: 450,
+              desc: "Crispy fried tofu in dashi broth with grated daikon and nori.",
+              image: "./images/starter_agedashi.jpg",
+            },
+          ],
+          btnText: "+ ADD",
+        },
+        ramen: {
+          title: "Signature Ramen",
+          varieties: "14 Varieties",
+          items: [
+            {
+              id: "r_shio",
+              name: "Kumo Shio Ramen",
+              price: 1350,
+              desc: "Sea salt broth with a gentle, deep umami.",
+              image: "./images/shio_ramen.png",
+            },
+            {
+              id: "r_miso",
+              name: "Miso Ramen",
+              price: 1450,
+              desc: "A hearty miso broth with roasted depth.",
+              image: "./images/miso_ramen.jpg",
+              badge: "CHEF CHOICE",
+            },
+            {
+              id: "r_tonkotsu",
+              name: "Tonkotsu Ramen",
+              price: 1400,
+              desc: "Slow-cooked pork broth, silky and full-bodied.",
+              image: "./images/tonkotsu_ramen.jpg",
+            },
+            {
+              id: "r_tantan",
+              name: "Spicy Tantan Ramen",
+              price: 1450,
+              desc: "Sesame and chili with a perfect kick.",
+              image: "./images/tantan_ramen.jpg",
+            },
+            {
+              id: "r1",
+              name: "Spicy Miso Red",
+              price: 1850,
+              desc: "A bold 18-hour pork bone broth enriched with our secret three-chili miso paste, topped with bamboo shoots and green onions.",
+              image: "./images/sig_spicy_miso_red.png",
+            },
+            {
+              id: "r2",
+              name: "Golden Dashi Shio",
+              price: 1800,
+              desc: "A delicate clear broth made from sea salt, kelp, and dried bonito. Pure, light, and deeply satisfying for the soul.",
+              image: "./images/sig_golden_dashi_shio.png",
+            },
+            {
+              id: "r3",
+              name: "Black Garlic Tonkotsu",
+              price: 1950,
+              desc: "Creamy pork bone broth infused with roasted black garlic oil (Mayu) and topped with wood ear mushrooms.",
+              image: "./images/sig_black_garlic_tonkotsu.png",
+            },
+            {
+              id: "r4",
+              name: "Yuzu Shio",
+              price: 1750,
+              desc: "A refreshing, citrus-infused clear broth with delicate sea salt and thin-cut noodles.",
+              image: "./images/sig_yuzu_shio.png",
+            },
+            {
+              id: "r5",
+              name: "Truffle Shoyu",
+              price: 2100,
+              desc: "Premium soy sauce broth enhanced with white truffle oil and slow-cooked pork belly.",
+              image: "./images/sig_truffle_shoyu.png",
+            },
+            {
+              id: "r6",
+              name: "Vegetable Zen",
+              price: 1650,
+              desc: "A rich, creamy vegetable broth made from roasted roots and kombu, served with seasonal greens.",
+              image: "./images/sig_vegetable_zen.png",
+            },
+            {
+              id: "r7",
+              name: "Smoky Tonkotsu",
+              price: 1900,
+              desc: "Our signature pork broth enhanced with smoked lard and charred leeks for a deep, campfire aroma.",
+              image: "./images/sig_smoky_tonkotsu.png",
+            },
+            {
+              id: "r8",
+              name: "Curry Ramen",
+              price: 1700,
+              desc: "A rich, aromatic Japanese curry base blended with dashi, served with thick noodles and soft-boiled egg.",
+              image: "./images/sig_curry_ramen.png",
+            },
+            {
+              id: "r9",
+              name: "Tan Tan Men",
+              price: 1800,
+              desc: "Spicy sesame and peanut broth with Sichuan peppercorns, topped with seasoned ground pork and bok choy.",
+              image: "./images/sig_tan_tan_men.png",
+            },
+            {
+              id: "r10",
+              name: "Cold Soba",
+              price: 1500,
+              desc: "Chilled buckwheat noodles served with a side of savory dipping sauce, wasabi, and grated daikon.",
+              image: "./images/sig_cold_soba.png",
+            },
+          ],
+          btnText: "+ ADD TO BOWL",
+        },
+        desserts: {
+          title: "Desserts",
+          varieties: "6 Varieties",
+          items: [
+            {
+              id: "d1",
+              name: "Matcha Ice Cream",
+              price: 450,
+              desc: "Creamy matcha ice cream served with sweet red bean and shiratama.",
+              image: "./images/dessert_matcha.jpg",
+            },
+            {
+              id: "d2",
+              name: "Mochi (2 pcs)",
+              price: 300,
+              desc: "Soft rice mochi with a delicate sweet filling.",
+              image: "./images/dessert_mochi.jpg",
+            },
+            {
+              id: "d3",
+              name: "Hojicha Panna Cotta",
+              price: 420,
+              desc: "Silky hojicha panna cotta with kuromitsu sauce.",
+              image: "./images/dessert_hojicha.jpg",
+            },
+            {
+              id: "d4",
+              name: "Yuzu Cheesecake",
+              price: 480,
+              desc: "Light and creamy cheesecake infused with yuzu zest.",
+              image: "./images/dessert_cheesecake.jpg",
+            },
+            {
+              id: "d5",
+              name: "Dorayaki",
+              price: 350,
+              desc: "Traditional Japanese pancake sandwich with sweet red bean paste.",
+              image: "./images/dessert_dorayaki.jpg",
+            },
+            {
+              id: "d6",
+              name: "Black Sesame Ice Cream",
+              price: 450,
+              desc: "Rich black sesame ice cream topped with roasted sesame.",
+              image: "./images/dessert_sesame.jpg",
+            },
+          ],
+          btnText: "+ ADD",
+        },
+        drinks: {
+          title: "Drinks",
+          varieties: "8 Varieties",
+          items: [
+            {
+              id: "dr1",
+              name: "Yuzu Lemonade",
+              price: 220,
+              desc: "Refreshing yuzu lemonade with a hint of honey.",
+              image: "./images/drink_lemonade.jpg",
+            },
+            {
+              id: "dr2",
+              name: "Iced Green Tea",
+              price: 180,
+              desc: "Japanese sencha green tea, chilled and lightly sweetened.",
+              image: "./images/drink_greentea.jpg",
+            },
+            {
+              id: "dr3",
+              name: "Barley Tea",
+              price: 150,
+              desc: "Roasted barley tea, caffeine-free and soothing.",
+              image: "./images/drink_barley.jpg",
+            },
+            {
+              id: "dr4",
+              name: "Hojicha Milk Tea",
+              price: 240,
+              desc: "Roasted green tea with creamy milk and a touch of sweetness.",
+              image: "./images/drink_hojicha.jpg",
+            },
+            {
+              id: "dr5",
+              name: "Calpico",
+              price: 200,
+              desc: "Classic Japanese cultured milk drink. Light and tangy.",
+              image: "./images/drink_calpico.jpg",
+            },
+            {
+              id: "dr6",
+              name: "Lychee Soda",
+              price: 220,
+              desc: "Sparkling soda with juicy lychee and a hint of lime.",
+              image: "./images/drink_lychee.jpg",
+            },
+            {
+              id: "dr7",
+              name: "Sparkling Water",
+              price: 150,
+              desc: "Lightly sparkling water with a slice of lemon.",
+              image: "./images/drink_sparkling.jpg",
+            },
+            {
+              id: "dr8",
+              name: "Hot Green Tea",
+              price: 150,
+              desc: "Steamed sencha green tea. Simple and comforting.",
+              image: "./images/drink_hottea.jpg",
+            },
+          ],
+          btnText: "+ ADD",
+        },
+      };
 
-    function saveCart() {
+      // ACTIVE VIEW STATE
+      let currentCategory = "ramen";
+      let cart = [];
       try {
-        localStorage.setItem("kumo_cart", JSON.stringify(cart));
+        const stored = localStorage.getItem("kumo_cart");
+        if (stored) cart = JSON.parse(stored);
       } catch (e) {
-        console.error("Failed to save cart", e);
-      }
-      updateCartDisplay();
-    }
-
-    // SELECT ELEMENTS
-    const activeCategoryTitle = document.getElementById("activeCategoryTitle");
-    const activeCategoryCount = document.getElementById("activeCategoryCount");
-    const menuItemsGrid = document.getElementById("menuItemsGrid");
-    const sidebarCategoryTabs = document.querySelectorAll(".menu-category-item");
-
-    // RENDER MENU GRID ITEMS
-    function renderMenuGrid(categoryKey) {
-      if (categoryKey === "build") {
-        // Redirect if tab list contains category item click
-        window.location.href = "build.html";
-        return;
+        console.error("Failed to load cart", e);
       }
 
-      currentCategory = categoryKey;
-      const data = menuData[categoryKey];
+      function saveCart() {
+        try {
+          localStorage.setItem("kumo_cart", JSON.stringify(cart));
+        } catch (e) {
+          console.error("Failed to save cart", e);
+        }
+        updateCartDisplay();
+      }
 
-      // Update titles
-      activeCategoryTitle.textContent = data.title;
-      activeCategoryCount.textContent = data.varieties;
+      // SELECT ELEMENTS
+      const activeCategoryTitle = document.getElementById(
+        "activeCategoryTitle",
+      );
+      const activeCategoryCount = document.getElementById(
+        "activeCategoryCount",
+      );
+      const menuItemsGrid = document.getElementById("menuItemsGrid");
+      const sidebarCategoryTabs = document.querySelectorAll(
+        ".menu-category-item",
+      );
 
-      // Clear grid
-      menuItemsGrid.innerHTML = "";
+      // RENDER MENU GRID ITEMS
+      function renderMenuGrid(categoryKey) {
+        if (categoryKey === "build") {
+          // Redirect if tab list contains category item click
+          window.location.href = "build.html";
+          return;
+        }
 
-      // Populate items
-      data.items.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "menu-card" + (categoryKey === "drinks" ? " drink-card" : "");
+        currentCategory = categoryKey;
+        const data = menuData[categoryKey];
 
-        // Badges check
-        let badgeHtml = item.badge ? `<div class="menu-card-badge">${item.badge}</div>` : "";
+        // Update titles
+        activeCategoryTitle.textContent = data.title;
+        activeCategoryCount.textContent = data.varieties;
 
-        // Check quantity in cart
-        const cartItem = cart.find(c => c.id === item.id);
-        const qty = cartItem ? cartItem.quantity : 0;
+        // Clear grid
+        menuItemsGrid.innerHTML = "";
 
-        let actionHtml = "";
-        if (qty > 0) {
-          actionHtml = `
+        // Populate items
+        data.items.forEach((item) => {
+          const card = document.createElement("div");
+          card.className =
+            "menu-card" + (categoryKey === "drinks" ? " drink-card" : "");
+
+          // Badges check
+          let badgeHtml = item.badge
+            ? `<div class="menu-card-badge">${item.badge}</div>`
+            : "";
+
+          // Check quantity in cart
+          const cartItem = cart.find((c) => c.id === item.id);
+          const qty = cartItem ? cartItem.quantity : 0;
+
+          let actionHtml = "";
+          if (qty > 0) {
+            actionHtml = `
             <div class="menu-card-counter">
               <button class="menu-counter-btn" onclick="updateQty('${item.id}', -1)" aria-label="Decrease quantity">-</button>
               <span class="menu-counter-qty">${qty}</span>
               <button class="menu-counter-btn" onclick="updateQty('${item.id}', 1)" aria-label="Increase quantity">+</button>
             </div>
           `;
-        } else {
-          actionHtml = `
+          } else {
+            actionHtml = `
             <div class="menu-card-action" onclick="addToCart('${item.id}', '${item.name}', ${item.price}, '${categoryKey}')">
               ${data.btnText}
             </div>
           `;
-        }
+          }
 
-        card.innerHTML = `
+          card.innerHTML = `
           <div class="menu-card-img-wrap">
             ${badgeHtml}
             <img src="${item.image}" alt="${item.name}" class="menu-card-img" />
@@ -2583,85 +3058,90 @@
             ${actionHtml}
           </div>
         `;
-        menuItemsGrid.appendChild(card);
-      });
-    }
+          menuItemsGrid.appendChild(card);
+        });
+      }
 
-    // TAB SWITCH LISTENER
-    sidebarCategoryTabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        const cat = tab.getAttribute("data-category");
-        if (cat === "build") {
-          window.location.href = "build.html";
-          return;
+      // TAB SWITCH LISTENER
+      sidebarCategoryTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const cat = tab.getAttribute("data-category");
+          if (cat === "build") {
+            window.location.href = "build.html";
+            return;
+          }
+
+          sidebarCategoryTabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          renderMenuGrid(cat);
+        });
+      });
+
+      // CART FUNCTIONALITY
+      window.addToCart = function (id, name, price, categoryKey) {
+        const existingItem = cart.find((item) => item.id === id);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ id, name, price, quantity: 1, category: categoryKey });
+        }
+        saveCart();
+      };
+
+      window.updateQty = function (id, delta) {
+        const item = cart.find((item) => item.id === id);
+        if (item) {
+          item.quantity += delta;
+          if (item.quantity <= 0) {
+            cart = cart.filter((i) => i.id !== id);
+          }
+        }
+        saveCart();
+      };
+
+      window.removeFromCart = function (id) {
+        cart = cart.filter((item) => item.id !== id);
+        saveCart();
+      };
+
+      function updateCartDisplay() {
+        // Calculate totals
+        const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const subtotal = cart.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0,
+        );
+        const formattedTotal = `¥${subtotal.toLocaleString()}`;
+
+        // Update navbar cart counts
+        const navCartCounts = document.querySelectorAll("#navCartCount");
+        navCartCounts.forEach((el) => {
+          el.textContent = totalCount;
+        });
+
+        // Update sidebar cart counts (Desktop menu sidebar)
+        const sidebarCartCount = document.getElementById("sidebarCartCount");
+        if (sidebarCartCount) {
+          sidebarCartCount.textContent = totalCount;
         }
 
-        sidebarCategoryTabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-        renderMenuGrid(cat);
-      });
-    });
-
-    // CART FUNCTIONALITY
-    window.addToCart = function (id, name, price, categoryKey) {
-      const existingItem = cart.find(item => item.id === id);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({ id, name, price, quantity: 1, category: categoryKey });
-      }
-      saveCart();
-    };
-
-    window.updateQty = function (id, delta) {
-      const item = cart.find(item => item.id === id);
-      if (item) {
-        item.quantity += delta;
-        if (item.quantity <= 0) {
-          cart = cart.filter(i => i.id !== id);
+        // Update mobile summary bar text
+        const mobileCartSubtotal =
+          document.getElementById("mobileCartSubtotal");
+        if (mobileCartSubtotal) {
+          mobileCartSubtotal.textContent = `${formattedTotal} (${totalCount} item${totalCount !== 1 ? "s" : ""})`;
         }
-      }
-      saveCart();
-    };
 
-    window.removeFromCart = function (id) {
-      cart = cart.filter(item => item.id !== id);
-      saveCart();
-    };
+        // Update sidebar cart items list and subtotal
+        const sidebarCartList = document.getElementById("sidebarCartList");
+        const sidebarSubtotal = document.getElementById("sidebarSubtotal");
+        const sidebarCheckoutBtn =
+          document.getElementById("sidebarCheckoutBtn");
 
-    function updateCartDisplay() {
-      // Calculate totals
-      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      const formattedTotal = `¥${subtotal.toLocaleString()}`;
-
-      // Update navbar cart counts
-      const navCartCounts = document.querySelectorAll("#navCartCount");
-      navCartCounts.forEach(el => {
-        el.textContent = totalCount;
-      });
-
-      // Update sidebar cart counts (Desktop menu sidebar)
-      const sidebarCartCount = document.getElementById("sidebarCartCount");
-      if (sidebarCartCount) {
-        sidebarCartCount.textContent = totalCount;
-      }
-
-      // Update mobile summary bar text
-      const mobileCartSubtotal = document.getElementById("mobileCartSubtotal");
-      if (mobileCartSubtotal) {
-        mobileCartSubtotal.textContent = `${formattedTotal} (${totalCount} item${totalCount !== 1 ? 's' : ''})`;
-      }
-
-      // Update sidebar cart items list and subtotal
-      const sidebarCartList = document.getElementById("sidebarCartList");
-      const sidebarSubtotal = document.getElementById("sidebarSubtotal");
-      const sidebarCheckoutBtn = document.getElementById("sidebarCheckoutBtn");
-
-      if (sidebarCartList && sidebarSubtotal && sidebarCheckoutBtn) {
-        sidebarSubtotal.textContent = formattedTotal;
-        if (cart.length === 0) {
-          sidebarCartList.innerHTML = `
+        if (sidebarCartList && sidebarSubtotal && sidebarCheckoutBtn) {
+          sidebarSubtotal.textContent = formattedTotal;
+          if (cart.length === 0) {
+            sidebarCartList.innerHTML = `
             <div class="cart-empty-state" id="sidebarCartEmptyState">
               <svg class="cart-empty-icon" viewBox="0 0 24 24">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0" />
@@ -2669,14 +3149,14 @@
               <p class="cart-empty-text">Your selection will appear here.</p>
             </div>
           `;
-          sidebarCheckoutBtn.disabled = true;
-          sidebarCheckoutBtn.classList.remove("active");
-        } else {
-          sidebarCheckoutBtn.disabled = false;
-          sidebarCheckoutBtn.classList.add("active");
-          let itemsHtml = "";
-          cart.forEach(item => {
-            itemsHtml += `
+            sidebarCheckoutBtn.disabled = true;
+            sidebarCheckoutBtn.classList.remove("active");
+          } else {
+            sidebarCheckoutBtn.disabled = false;
+            sidebarCheckoutBtn.classList.add("active");
+            let itemsHtml = "";
+            cart.forEach((item) => {
+              itemsHtml += `
               <div class="cart-item">
                 <div class="cart-item-info">
                   <span class="cart-item-name">${item.name}</span>
@@ -2690,38 +3170,46 @@
                 <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</button>
               </div>
             `;
-          });
-          sidebarCartList.innerHTML = itemsHtml;
+            });
+            sidebarCartList.innerHTML = itemsHtml;
+          }
         }
-      }
 
-      // Update Global Cart Drawer
-      const menuItemsContainer = document.getElementById("cartSectionMenuItems");
-      const buildItemsContainer = document.getElementById("cartSectionBuildItems");
-      const menuSection = document.getElementById("cartSectionMenu");
-      const buildSection = document.getElementById("cartSectionBuild");
-      const emptyState = document.getElementById("globalCartEmptyState");
-      const subtotalMenuText = document.getElementById("cartSectionMenuSubtotal");
-      const subtotalBuildText = document.getElementById("cartSectionBuildSubtotal");
-      const grandTotalText = document.getElementById("globalCartGrandTotal");
-      const checkoutBtn = document.getElementById("globalCartCheckoutBtn");
+        // Update Global Cart Drawer
+        const menuItemsContainer = document.getElementById(
+          "cartSectionMenuItems",
+        );
+        const buildItemsContainer = document.getElementById(
+          "cartSectionBuildItems",
+        );
+        const menuSection = document.getElementById("cartSectionMenu");
+        const buildSection = document.getElementById("cartSectionBuild");
+        const emptyState = document.getElementById("globalCartEmptyState");
+        const subtotalMenuText = document.getElementById(
+          "cartSectionMenuSubtotal",
+        );
+        const subtotalBuildText = document.getElementById(
+          "cartSectionBuildSubtotal",
+        );
+        const grandTotalText = document.getElementById("globalCartGrandTotal");
+        const checkoutBtn = document.getElementById("globalCartCheckoutBtn");
 
-      if (menuItemsContainer) {
-        // Partition items
-        const menuItems = cart.filter(item => item.category !== 'build');
-        const buildItems = cart.filter(item => item.category === 'build');
+        if (menuItemsContainer) {
+          // Partition items
+          const menuItems = cart.filter((item) => item.category !== "build");
+          const buildItems = cart.filter((item) => item.category === "build");
 
-        let menuSubtotal = 0;
-        let buildSubtotal = 0;
+          let menuSubtotal = 0;
+          let buildSubtotal = 0;
 
-        // Render menu items
-        if (menuItems.length > 0) {
-          menuSection.style.display = "block";
-          let html = "";
-          menuItems.forEach(item => {
-            const itemSub = item.price * item.quantity;
-            menuSubtotal += itemSub;
-            html += `
+          // Render menu items
+          if (menuItems.length > 0) {
+            menuSection.style.display = "block";
+            let html = "";
+            menuItems.forEach((item) => {
+              const itemSub = item.price * item.quantity;
+              menuSubtotal += itemSub;
+              html += `
               <div class="cart-item">
                 <div class="cart-item-info">
                   <span class="cart-item-name">${item.name}</span>
@@ -2735,26 +3223,26 @@
                 <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</button>
               </div>
             `;
-          });
-          menuItemsContainer.innerHTML = html;
-          subtotalMenuText.textContent = `¥${menuSubtotal.toLocaleString()}`;
-        } else {
-          menuSection.style.display = "none";
-          menuItemsContainer.innerHTML = "";
-        }
+            });
+            menuItemsContainer.innerHTML = html;
+            subtotalMenuText.textContent = `¥${menuSubtotal.toLocaleString()}`;
+          } else {
+            menuSection.style.display = "none";
+            menuItemsContainer.innerHTML = "";
+          }
 
-        // Render custom bowl items
-        if (buildItems.length > 0) {
-          buildSection.style.display = "block";
-          let html = "";
-          buildItems.forEach(item => {
-            const itemSub = item.price * item.quantity;
-            buildSubtotal += itemSub;
-            html += `
+          // Render custom bowl items
+          if (buildItems.length > 0) {
+            buildSection.style.display = "block";
+            let html = "";
+            buildItems.forEach((item) => {
+              const itemSub = item.price * item.quantity;
+              buildSubtotal += itemSub;
+              html += `
               <div class="cart-item">
                 <div class="cart-item-info">
                   <span class="cart-item-name">${item.name}</span>
-                  <span class="cart-item-desc">${item.desc || ''}</span>
+                  <span class="cart-item-desc">${item.desc || ""}</span>
                   <span class="cart-item-price">¥${item.price.toLocaleString()}</span>
                   <div class="cart-item-qty-row">
                     <button class="qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
@@ -2765,270 +3253,285 @@
                 <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</button>
               </div>
             `;
-          });
-          buildItemsContainer.innerHTML = html;
-          subtotalBuildText.textContent = `¥${buildSubtotal.toLocaleString()}`;
-        } else {
-          buildSection.style.display = "none";
-          buildItemsContainer.innerHTML = "";
+            });
+            buildItemsContainer.innerHTML = html;
+            subtotalBuildText.textContent = `¥${buildSubtotal.toLocaleString()}`;
+          } else {
+            buildSection.style.display = "none";
+            buildItemsContainer.innerHTML = "";
+          }
+
+          // Check empty state
+          if (cart.length === 0) {
+            emptyState.style.display = "flex";
+            checkoutBtn.disabled = true;
+            checkoutBtn.classList.remove("active");
+          } else {
+            emptyState.style.display = "none";
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.add("active");
+          }
+
+          const grandTotal = menuSubtotal + buildSubtotal;
+          grandTotalText.textContent = `¥${grandTotal.toLocaleString()}`;
         }
 
-        // Check empty state
-        if (cart.length === 0) {
-          emptyState.style.display = "flex";
-          checkoutBtn.disabled = true;
-          checkoutBtn.classList.remove("active");
-        } else {
-          emptyState.style.display = "none";
-          checkoutBtn.disabled = false;
-          checkoutBtn.classList.add("active");
+        // Update menu cards display to reflect current cart quantities
+        if (typeof currentCategory !== "undefined") {
+          renderMenuGrid(currentCategory);
         }
-
-        const grandTotal = menuSubtotal + buildSubtotal;
-        grandTotalText.textContent = `¥${grandTotal.toLocaleString()}`;
       }
-      
-      // Update menu cards display to reflect current cart quantities
-      if (typeof currentCategory !== 'undefined') {
-        renderMenuGrid(currentCategory);
-      }
-    }
 
-    // CHECKOUT LOGIC
-    const checkoutSuccessModal = document.getElementById("checkoutSuccessModal");
-    const closeCheckoutSuccessBtn = document.getElementById("closeCheckoutSuccessBtn");
-    const checkoutDoneBtn = document.getElementById("checkoutDoneBtn");
+      // CHECKOUT LOGIC
+      const checkoutSuccessModal = document.getElementById(
+        "checkoutSuccessModal",
+      );
+      const closeCheckoutSuccessBtn = document.getElementById(
+        "closeCheckoutSuccessBtn",
+      );
+      const checkoutDoneBtn = document.getElementById("checkoutDoneBtn");
 
-    function triggerCheckout() {
-      if (cart.length > 0) {
-        window.location.href = "order.html";
-      }
-    }
-
-    document.getElementById("sidebarCheckoutBtn").addEventListener("click", triggerCheckout);
-
-    closeCheckoutSuccessBtn.addEventListener("click", () => {
-      checkoutSuccessModal.classList.remove("active");
-    });
-    checkoutDoneBtn.addEventListener("click", () => {
-      checkoutSuccessModal.classList.remove("active");
-    });
-
-    // TABLE RESERVATION MODAL LOGIC
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    document.getElementById('resDate').valueAsDate = tomorrow;
-
-    const modal = document.getElementById('reservationModal');
-    const openModalBtns = document.querySelectorAll('.open-modal-btn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const reservationForm = document.getElementById('reservationForm');
-    const formContainer = document.getElementById('reservationFormContainer');
-    const successContainer = document.getElementById('reservationSuccess');
-    const successDoneBtn = document.getElementById('successDoneBtn');
-
-    openModalBtns.forEach(b => {
-      b.addEventListener('click', () => {
-        modal.classList.add('active');
-      });
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-    successDoneBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-      setTimeout(() => {
-        formContainer.style.display = 'block';
-        successContainer.style.display = 'none';
-      }, 300);
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-
-    reservationForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('resName').value;
-      const guests = parseInt(document.getElementById('resGuests').value, 10);
-      const date = document.getElementById('resDate').value;
-      const time = document.getElementById('resTime').value;
-
-      // Send reservation payload to server
-      const reservationPayload = {
-        customerName: name,
-        guests: guests,
-        date: date,
-        time: time,
-        timestamp: new Date().toISOString()
-      };
-
-      fetch('/api/reservations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reservationPayload)
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log('Reservation saved to backend:', data);
-      })
-      .catch(err => {
-        console.error('Failed to save reservation to backend:', err);
-      });
-
-      document.getElementById('successDetails').textContent =
-        `Thank you, ${name}! Your table for ${guests} guests on ${date} at ${time} is reserved.`;
-
-      formContainer.style.display = 'none';
-      successContainer.style.display = 'block';
-    });
-
-    // GLOBAL CART & PROFILE DRAWER CONTROLS
-    function loadCart() {
-      try {
-        const stored = localStorage.getItem("kumo_cart");
-        if (stored) {
-          cart = JSON.parse(stored);
-        } else {
-          cart = [];
-        }
-      } catch (e) {
-        cart = [];
-      }
-    }
-
-    const cartDrawerOverlay = document.getElementById("globalCartDrawerOverlay");
-    const navCartBtn = document.getElementById("navCartBtn");
-    const globalCartCloseBtn = document.getElementById("globalCartCloseBtn");
-    const globalCartCheckoutBtn = document.getElementById("globalCartCheckoutBtn");
-    const mobileCartOpenBtn = document.getElementById("mobileCartOpenBtn");
-
-    if (navCartBtn && cartDrawerOverlay) {
-      navCartBtn.addEventListener("click", () => {
-        cartDrawerOverlay.classList.add("active");
-      });
-    }
-
-    if (mobileCartOpenBtn && cartDrawerOverlay) {
-      mobileCartOpenBtn.addEventListener("click", () => {
-        cartDrawerOverlay.classList.add("active");
-      });
-    }
-
-    if (globalCartCloseBtn && cartDrawerOverlay) {
-      globalCartCloseBtn.addEventListener("click", () => {
-        cartDrawerOverlay.classList.remove("active");
-      });
-    }
-
-    if (cartDrawerOverlay) {
-      cartDrawerOverlay.addEventListener("click", (e) => {
-        if (e.target === cartDrawerOverlay) {
-          cartDrawerOverlay.classList.remove("active");
-        }
-      });
-    }
-
-    if (globalCartCheckoutBtn) {
-      globalCartCheckoutBtn.addEventListener("click", () => {
+      function triggerCheckout() {
         if (cart.length > 0) {
           window.location.href = "order.html";
         }
+      }
+
+      document
+        .getElementById("sidebarCheckoutBtn")
+        .addEventListener("click", triggerCheckout);
+
+      closeCheckoutSuccessBtn.addEventListener("click", () => {
+        checkoutSuccessModal.classList.remove("active");
       });
-    }
-
-    // Profile Drawer Controls & History Render
-    const profileDrawerOverlay = document.getElementById("globalProfileDrawerOverlay");
-    const navProfileBtn = document.getElementById("navProfileBtn");
-    const globalProfileCloseBtn = document.getElementById("globalProfileCloseBtn");
-
-    if (navProfileBtn && profileDrawerOverlay) {
-      navProfileBtn.addEventListener("click", () => {
-        profileDrawerOverlay.classList.add("active");
-        renderOrdersHistory();
+      checkoutDoneBtn.addEventListener("click", () => {
+        checkoutSuccessModal.classList.remove("active");
       });
-    }
 
-    if (globalProfileCloseBtn && profileDrawerOverlay) {
-      globalProfileCloseBtn.addEventListener("click", () => {
-        profileDrawerOverlay.classList.remove("active");
+      // TABLE RESERVATION MODAL LOGIC
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      document.getElementById("resDate").valueAsDate = tomorrow;
+
+      const modal = document.getElementById("reservationModal");
+      const openModalBtns = document.querySelectorAll(".open-modal-btn");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const reservationForm = document.getElementById("reservationForm");
+      const formContainer = document.getElementById("reservationFormContainer");
+      const successContainer = document.getElementById("reservationSuccess");
+      const successDoneBtn = document.getElementById("successDoneBtn");
+
+      openModalBtns.forEach((b) => {
+        b.addEventListener("click", () => {
+          modal.classList.add("active");
+        });
       });
-    }
 
-    if (profileDrawerOverlay) {
-      profileDrawerOverlay.addEventListener("click", (e) => {
-        if (e.target === profileDrawerOverlay) {
-          profileDrawerOverlay.classList.remove("active");
+      closeModalBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      successDoneBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+        setTimeout(() => {
+          formContainer.style.display = "block";
+          successContainer.style.display = "none";
+        }, 300);
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
         }
       });
-    }
 
-    window.toggleProfileTab = function(tabName) {
-      const btnHistory = document.getElementById("tabBtnHistory");
-      const btnTerms = document.getElementById("tabBtnTerms");
-      const tabHistory = document.getElementById("profileTabHistory");
-      const tabTerms = document.getElementById("profileTabTerms");
+      reservationForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("resName").value;
+        const guests = parseInt(document.getElementById("resGuests").value, 10);
+        const date = document.getElementById("resDate").value;
+        const time = document.getElementById("resTime").value;
 
-      if (tabName === 'history') {
-        btnHistory.classList.add("active");
-        btnTerms.classList.remove("active");
-        tabHistory.style.display = "flex";
-        tabTerms.style.display = "none";
-      } else {
-        btnHistory.classList.remove("active");
-        btnTerms.classList.add("active");
-        tabHistory.style.display = "none";
-        tabTerms.style.display = "block";
-      }
-    };
+        // Send reservation payload to server
+        const reservationPayload = {
+          customerName: name,
+          guests: guests,
+          date: date,
+          time: time,
+          timestamp: new Date().toISOString(),
+        };
 
-    function renderOrdersHistory() {
-      const ordersListContainer = document.getElementById("profileOrdersList");
-      const ordersEmptyState = document.getElementById("profileOrdersEmpty");
-
-      let orders = [];
-      try {
-        const stored = localStorage.getItem("kumo_orders");
-        if (stored) orders = JSON.parse(stored);
-      } catch (e) {}
-
-      if (orders.length === 0) {
-        ordersListContainer.innerHTML = "";
-        ordersEmptyState.style.display = "flex";
-      } else {
-        ordersEmptyState.style.display = "none";
-        // Sort orders newest first
-        const sortedOrders = [...orders].reverse();
-        
-        let html = "";
-        sortedOrders.forEach(order => {
-          const dateObj = new Date(order.timestamp || Date.now());
-          const formattedDate = dateObj.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
+        fetch("/api/reservations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(reservationPayload),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Reservation saved to backend:", data);
+          })
+          .catch((err) => {
+            console.error("Failed to save reservation to backend:", err);
           });
 
-          let itemsHtml = "";
-          order.items.forEach(item => {
-            itemsHtml += `
+        document.getElementById("successDetails").textContent =
+          `Thank you, ${name}! Your table for ${guests} guests on ${date} at ${time} is reserved.`;
+
+        formContainer.style.display = "none";
+        successContainer.style.display = "block";
+      });
+
+      // GLOBAL CART & PROFILE DRAWER CONTROLS
+      function loadCart() {
+        try {
+          const stored = localStorage.getItem("kumo_cart");
+          if (stored) {
+            cart = JSON.parse(stored);
+          } else {
+            cart = [];
+          }
+        } catch (e) {
+          cart = [];
+        }
+      }
+
+      const cartDrawerOverlay = document.getElementById(
+        "globalCartDrawerOverlay",
+      );
+      const navCartBtn = document.getElementById("navCartBtn");
+      const globalCartCloseBtn = document.getElementById("globalCartCloseBtn");
+      const globalCartCheckoutBtn = document.getElementById(
+        "globalCartCheckoutBtn",
+      );
+      const mobileCartOpenBtn = document.getElementById("mobileCartOpenBtn");
+
+      if (navCartBtn && cartDrawerOverlay) {
+        navCartBtn.addEventListener("click", () => {
+          cartDrawerOverlay.classList.add("active");
+        });
+      }
+
+      if (mobileCartOpenBtn && cartDrawerOverlay) {
+        mobileCartOpenBtn.addEventListener("click", () => {
+          cartDrawerOverlay.classList.add("active");
+        });
+      }
+
+      if (globalCartCloseBtn && cartDrawerOverlay) {
+        globalCartCloseBtn.addEventListener("click", () => {
+          cartDrawerOverlay.classList.remove("active");
+        });
+      }
+
+      if (cartDrawerOverlay) {
+        cartDrawerOverlay.addEventListener("click", (e) => {
+          if (e.target === cartDrawerOverlay) {
+            cartDrawerOverlay.classList.remove("active");
+          }
+        });
+      }
+
+      if (globalCartCheckoutBtn) {
+        globalCartCheckoutBtn.addEventListener("click", () => {
+          if (cart.length > 0) {
+            window.location.href = "order.html";
+          }
+        });
+      }
+
+      // Profile Drawer Controls & History Render
+      const profileDrawerOverlay = document.getElementById(
+        "globalProfileDrawerOverlay",
+      );
+      const navProfileBtn = document.getElementById("navProfileBtn");
+      const globalProfileCloseBtn = document.getElementById(
+        "globalProfileCloseBtn",
+      );
+
+      if (navProfileBtn && profileDrawerOverlay) {
+        navProfileBtn.addEventListener("click", () => {
+          profileDrawerOverlay.classList.add("active");
+          renderOrdersHistory();
+        });
+      }
+
+      if (globalProfileCloseBtn && profileDrawerOverlay) {
+        globalProfileCloseBtn.addEventListener("click", () => {
+          profileDrawerOverlay.classList.remove("active");
+        });
+      }
+
+      if (profileDrawerOverlay) {
+        profileDrawerOverlay.addEventListener("click", (e) => {
+          if (e.target === profileDrawerOverlay) {
+            profileDrawerOverlay.classList.remove("active");
+          }
+        });
+      }
+
+      window.toggleProfileTab = function (tabName) {
+        const btnHistory = document.getElementById("tabBtnHistory");
+        const btnTerms = document.getElementById("tabBtnTerms");
+        const tabHistory = document.getElementById("profileTabHistory");
+        const tabTerms = document.getElementById("profileTabTerms");
+
+        if (tabName === "history") {
+          btnHistory.classList.add("active");
+          btnTerms.classList.remove("active");
+          tabHistory.style.display = "flex";
+          tabTerms.style.display = "none";
+        } else {
+          btnHistory.classList.remove("active");
+          btnTerms.classList.add("active");
+          tabHistory.style.display = "none";
+          tabTerms.style.display = "block";
+        }
+      };
+
+      function renderOrdersHistory() {
+        const ordersListContainer =
+          document.getElementById("profileOrdersList");
+        const ordersEmptyState = document.getElementById("profileOrdersEmpty");
+
+        let orders = [];
+        try {
+          const stored = localStorage.getItem("kumo_orders");
+          if (stored) orders = JSON.parse(stored);
+        } catch (e) {}
+
+        if (orders.length === 0) {
+          ordersListContainer.innerHTML = "";
+          ordersEmptyState.style.display = "flex";
+        } else {
+          ordersEmptyState.style.display = "none";
+          // Sort orders newest first
+          const sortedOrders = [...orders].reverse();
+
+          let html = "";
+          sortedOrders.forEach((order) => {
+            const dateObj = new Date(order.timestamp || Date.now());
+            const formattedDate = dateObj.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
+            let itemsHtml = "";
+            order.items.forEach((item) => {
+              itemsHtml += `
               <div class="past-order-item">
                 <span>${item.name} <span class="past-order-item-qty">x${item.quantity}</span></span>
                 <span>¥${(item.price * item.quantity).toLocaleString()}</span>
               </div>
             `;
-          });
+            });
 
-          html += `
+            html += `
             <div class="past-order-card">
               <div class="past-order-header">
-                <span class="past-order-number">${order.orderId || '#KM-ORDER'}</span>
+                <span class="past-order-number">${order.orderId || "#KM-ORDER"}</span>
                 <span class="past-order-date">${formattedDate}</span>
               </div>
               <div class="past-order-items">
@@ -3040,36 +3543,41 @@
               </div>
             </div>
           `;
-        });
-        ordersListContainer.innerHTML = html;
-      }
-    }
-
-    // Page Entrance and Exit transitions
-    document.addEventListener("DOMContentLoaded", () => {
-      loadCart();
-      updateCartDisplay();
-
-      // Page exit transitions
-      document.querySelectorAll("a").forEach(link => {
-        const href = link.getAttribute("href");
-        if (href && !href.startsWith("#") && !link.classList.contains("no-transition") && link.target !== "_blank") {
-          link.addEventListener("click", (e) => {
-            e.preventDefault();
-            document.body.style.transition = "opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1)";
-            document.body.style.opacity = "0";
-            document.body.style.transform = "translateY(-8px)";
-            setTimeout(() => {
-              window.location.href = href;
-            }, 400);
           });
+          ordersListContainer.innerHTML = html;
         }
+      }
+
+      // Page Entrance and Exit transitions
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        updateCartDisplay();
+
+        // Page exit transitions
+        document.querySelectorAll("a").forEach((link) => {
+          const href = link.getAttribute("href");
+          if (
+            href &&
+            !href.startsWith("#") &&
+            !link.classList.contains("no-transition") &&
+            link.target !== "_blank"
+          ) {
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+              document.body.style.transition =
+                "opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1)";
+              document.body.style.opacity = "0";
+              document.body.style.transform = "translateY(-8px)";
+              setTimeout(() => {
+                window.location.href = href;
+              }, 400);
+            });
+          }
+        });
       });
-    });
 
-    // INITIAL RENDER
-    renderMenuGrid(currentCategory);
-  </script>
-</body>
-
+      // INITIAL RENDER
+      renderMenuGrid(currentCategory);
+    </script>
+  </body>
 </html>

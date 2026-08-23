@@ -30,7 +30,7 @@
         "quantity": 1,
         "category": "build",
         "desc": "Thick Wavy Noodles, Chashu Pork",
-        "image": "images/broth_tonkotsu.jpg"
+        "image": "./images/broth_tonkotsu.jpg"
       },
       {
         "id": "r_tonkotsu",
@@ -46,7 +46,7 @@
         "quantity": 1,
         "category": "build",
         "desc": "Thick Wavy Noodles, Chashu Pork",
-        "image": "images/broth_tonkotsu.jpg"
+        "image": "./images/broth_tonkotsu.jpg"
       }
     ],
     "timestamp": "2026-08-09T15:44:57.403Z"
